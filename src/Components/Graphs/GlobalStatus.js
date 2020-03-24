@@ -21,7 +21,7 @@ export default class GlobalStatus extends Component {
             breakpoint: 480,
             options: {
               chart: {
-                width: 200
+                width: 380
               },
               legend: {
                 position: 'bottom'
@@ -48,7 +48,7 @@ export default class GlobalStatus extends Component {
             breakpoint: 480,
             options: {
               chart: {
-                width: 200
+                width: 380
               },
               legend: {
                 position: 'bottom'
@@ -67,7 +67,7 @@ export default class GlobalStatus extends Component {
             breakpoint: 480,
             options: {
               chart: {
-                width: 200
+                width: 380
               },
               legend: {
                 position: 'bottom'
@@ -100,14 +100,12 @@ export default class GlobalStatus extends Component {
         
       return (
           
-<div id="chart" style={window.innerWidth>800?{display:"flex"}:{display:"",textAlign:"center"}}>
-
-    <h4>Overall Status</h4>
-<Chart  options={this.state.options} series={this.state.series} type="pie" width={380} />
-<h4>Active Cases</h4>
-<Chart options={this.state.active_options} series={this.state.active_series} type="pie" width={380} />
-<h4>Closed Cases</h4>
-<Chart options={this.state.closed_options} series={this.state.closed_series} type="pie" width={380} />
+<div id="chart">
+ <Chart  options={this.state.options} series={this.state.series} type="pie" width={400}  />
+{/* <h4>Active Cases</h4> */}
+{/* <Chart options={this.state.active_options} series={this.state.active_series} type="pie" width={340} /> */}
+{/* <h4>Closed Cases</h4>
+<Chart options={this.state.closed_options} series={this.state.closed_series} type="pie" width={380} /> */} 
 
 </div>
 

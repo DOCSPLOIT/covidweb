@@ -10,8 +10,10 @@ import {  useHistory } from 'react-router-dom';
 const useStyles = makeStyles({
   root: {
     width:"100%",
-    marginTop:window.innerHeight*.91,
-    color:"white"
+    marginTop:window.innerHeight,
+    color:"white",
+    position:"fixed",
+    zIndex:99
   },
 });
 

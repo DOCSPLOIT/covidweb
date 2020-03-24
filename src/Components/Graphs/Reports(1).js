@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Chart from 'react-apexcharts';
+import { url } from '../Configure';
 
 class Reports extends Component {
     constructor(props) {
@@ -38,7 +39,7 @@ class Reports extends Component {
 
     }
     componentDidMount() {
-        fetch("https://covid19apiss.herokuapp.com/reports")
+        fetch(`${url}/reports`)
             .then(response => response.json())
             .then(res => {
 
@@ -115,7 +116,7 @@ class Reports extends Component {
 
     }
     render() {
-        console.log(this.state.series);
+      
         
         return (
             <>

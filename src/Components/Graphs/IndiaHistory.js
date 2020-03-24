@@ -63,7 +63,7 @@ class IndiaHistory extends Component {
                     series={this.state.series}
                     type="line"
                     width="100%"
-                    height="500"
+                    height="300"
                 />
             </>)
     }

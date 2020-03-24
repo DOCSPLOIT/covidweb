@@ -1,0 +1,16 @@
+.kerala{
+    position: absolute;
+    width: 71px;
+    height: 29px;
+    left: 77px;
+    top: 101px;
+    z-index: 99;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 29px;
+    text-align: right;
+    
+    color: #000000;
+}

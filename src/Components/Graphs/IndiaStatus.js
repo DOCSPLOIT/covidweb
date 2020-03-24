@@ -18,7 +18,7 @@ export default class IndiaStatus extends Component{
                   breakpoint: 480,
                   options: {
                     chart: {
-                      width: 200
+                      width: 380
                     },
                     legend: {
                       position: 'bottom'
@@ -46,13 +46,12 @@ export default class IndiaStatus extends Component{
     render(){
        
         
-        console.log(this.state.series);
+       
         
         
         return(
-<div id="chart" style={window.innerWidth>800?{display:"flex"}:{display:"",textAlign:"center"}}>
-  <h4>Overall Status</h4>
-<Chart options={this.state.options} series={this.state.series} width={380} type="pie" />
+<div id="chart" style={window.innerWidth>800?{display:"flex"}:{display:""}}>
+<Chart options={this.state.options} series={this.state.series} width={420} type="pie" />
 </div>
         )
     }
