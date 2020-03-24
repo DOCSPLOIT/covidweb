@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Chart from 'react-apexcharts';
 import { url } from '../Configure';
 
-class Reports extends Component {
+export default class Reports extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -131,5 +131,3 @@ class Reports extends Component {
     }
 
 }
-
-export default Reports;

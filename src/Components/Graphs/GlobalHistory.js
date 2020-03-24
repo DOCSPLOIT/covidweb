@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Chart from 'react-apexcharts';
 import { url } from '../Configure';
 
-class GlobalHistory extends Component {
+export default class GlobalHistory extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -86,5 +86,3 @@ class GlobalHistory extends Component {
     }
 
 }
-
-export default GlobalHistory;

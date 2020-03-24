@@ -11,7 +11,7 @@ export default class IndiaStatus extends Component{
                   width: 380,
                   type: 'pie',
                 },
-                labels:['Total Cases','Total Recovered','Toatal Deaths',]
+                labels:['Total Cases','Total Recovered','Total Deaths',]
                 ,
                 
                 responsive: [{
@@ -30,7 +30,11 @@ export default class IndiaStatus extends Component{
               dataLabels:{
                 enabled:true,
                 
-            }
+            },
+            fill:{
+              colors:['#008ffb', '#35dd81', '#dd3535']
+            },
+            colors:['#008ffb', '#35dd81', '#dd3535']
               }
             
         }

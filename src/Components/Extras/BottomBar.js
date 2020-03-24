@@ -5,6 +5,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeIcon from '@material-ui/icons/Home'
 import NewsIcon from '@material-ui/icons/AnnouncementOutlined'
 import StatusIcon from '@material-ui/icons/ShowChart'
+import MediaIcon from '@material-ui/icons/PermMediaOutlined'
 import {  useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -35,6 +36,7 @@ export default function SimpleBottomNavigation() {
       <BottomNavigationAction onClick={()=>navigate.push("/")} style={{color:"rgb(0, 31, 58)"}} label="Home" icon={<HomeIcon />} />
       <BottomNavigationAction onClick={()=>navigate.push("/news")} style={{color:"rgb(0, 31, 58)"}} label="News" icon={<NewsIcon />} />
       <BottomNavigationAction onClick={()=>navigate.push("/status")} style={{color:"rgb(0, 31, 58)"}} label="Status" icon={<StatusIcon />} />
+      <BottomNavigationAction onClick={()=>navigate.push("/source")} style={{color:"rgb(0, 31, 58)"}} label="Sources" icon={<MediaIcon/>} />
     </BottomNavigation>
   );
 }

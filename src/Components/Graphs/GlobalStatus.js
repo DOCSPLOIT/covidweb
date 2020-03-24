@@ -33,6 +33,10 @@ export default class GlobalStatus extends Component {
         dataLabels:{
           enabled:true,
           
+      },
+      colors:['#008ffb', '#35dd81', '#dd3535'],
+      fill:{
+        colors:['#008ffb', '#35dd81', '#dd3535']
       }
         },
 

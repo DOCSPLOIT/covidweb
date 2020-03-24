@@ -43,5 +43,7 @@ left: 0px;
 background: #001F3A;
 }
 @media only screen and (max-width:900px){
-    
+.g{
+    color: #109bad;
+}
 }

@@ -1,38 +1,60 @@
 import React, { Component } from 'react'
-import {url, header} from '../Configure'
-import Chart from 'react-google-charts'
+import { url } from '../Configure';
+import Chart from 'react-apexcharts'
 export default class KeralaStatus extends Component{
     constructor(props){
-        super(props)
+        super(props);
         this.state={
-            status:[]
+            series:[],
+            options: {
+                chart: {
+                  width: 380,
+                  type: 'pie',
+                },
+                labels:['Confirmed (National)','Confirmed (Foreign)','Recovered','Deaths']
+                ,
+                
+                responsive: [{
+                  breakpoint: 480,
+                  options: {
+                    chart: {
+                      width: 380
+                    },
+                    legend: {
+                      position: 'bottom'
+                    }
+                  },
+                  
+                }],
+               
+              dataLabels:{
+                enabled:true,
+                
+            },
+            fill:{
+              colors:['#008ffb','#109bad', '#35dd81', '#dd3535']
+            },
+            colors:['#008ffb','#109bad', '#35dd81', '#dd3535']
+              }
         }
     }
-
     componentDidMount(){
         fetch(`${url}/stateWiseData/Kerala`).then(r=>r.json())
         .then(res=>{
-            this.setState({status:[['Overall','Population per Cases'],
-            
-            ['Confirmed(Foreign National)',parseInt(res['Total Confirmed cases ( Foreign National )'])],
-            ['Death',parseInt(res['Death'])],
-            ['Confirmed(National)',parseInt(res['Total Confirmed cases (Indian National)'])],
-            ['Cured/Discharged/Migrated',parseInt(res['Cured/Discharged/Migrated'])],
-            ]})
-        
+            this.setState({series:[
+                parseInt(res['Total Confirmed cases (Indian National)']),
+                parseInt(res['Total Confirmed cases ( Foreign National )']),
+                parseInt(res['Cured/Discharged/Migrated']),
+                parseInt(res['Death'])
+        ]})
         })
     }
     render(){
         return(
-            <div style={{marginTop:window.innerHeight*.17}}>
-            <Chart
-  width={'600px'}
-  height={'300px'}
-  chartType="PieChart"
-  loader={<div>Loading Chart</div>}
-  data={this.state.status}
-  rootProps={{ 'data-testid': '1' }}
-/>
+            <div id="chart" style={window.innerWidth>800?{
+                marginTop:window.innerHeight*.25,marginLeft:window.innerWidth*.05
+                }:{}}>
+<Chart  options={this.state.options} series={this.state.series} width={440} type="pie" />
 </div>
         )
     }
