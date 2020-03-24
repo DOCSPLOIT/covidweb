@@ -1,40 +1,28 @@
 .tdeath{
-    
-position: absolute;
-width: 163px;
-height: 34px;
-
 font-family: Roboto;
 font-style: normal;
 font-weight: 500;
 font-size: 22px;
-line-height: 34px;
 /* identical to box height */
-
-text-align: right;
 
 color: #000000;
 
 }
 .text{
-    position: absolute;
-    width: 163px;
-    height: 34px;
     text-align: center;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     font-size: 17px;
-    line-height: 150px;
     /* identical to box height */
     
-    text-align: right;
+    text-align: center;
     
     color: #000000;
 }  
 
 .footer{
-    position: absolute;
+position: absolute;
 width: 100%;
 height: 53px;
 left: 0px;

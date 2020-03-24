@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Chart from 'react-apexcharts';
 import { url } from '../Configure';
-
+import * as MaterialUI from '@material-ui/core'
 class IndiaHistory extends Component {
     constructor(props) {
         super(props);
@@ -21,9 +21,10 @@ class IndiaHistory extends Component {
                     enabled: false,
                 },
 
-                // stroke: {
-                //     curve: 'smooth'
-                // },
+                stroke: {
+                    width:1.5,
+                    
+                },
 
                 grid: {
                     padding: {
@@ -58,13 +59,16 @@ class IndiaHistory extends Component {
 
         return (
             <>
-                <Chart
+            <MaterialUI.Paper elevation={10}>
+            <Chart
                     options={this.state.options}
                     series={this.state.series}
                     type="line"
                     width="100%"
                     height="300"
                 />
+            </MaterialUI.Paper>
+               
             </>)
     }
     setData = () => {

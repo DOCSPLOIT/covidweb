@@ -6,6 +6,9 @@ import Home from './Pages/Home'
 import News from './Pages/News'
 import Status from './Pages/Status'
 import Sources from './Pages/Source'
+import Predict from './Graphs/Predict'
+import Predications from './Pages/Predictions'
+
 export default class Router extends Component{
    render(){
    return(
@@ -15,10 +18,11 @@ export default class Router extends Component{
             <h3 className="title">Covid Updates</h3>
             {
                 window.innerWidth>800?<div className="navlink">
-                <Link className="home" to="/" style={{left:window.innerWidth*.50}}>HOME</Link>
-                <Link className="news" to="/news" style={{left:window.innerWidth*.60}}>NEWS</Link>
-                <Link className="status" to="/status" style={{left:window.innerWidth*.70}}>STATUS</Link>
-                <Link className="status" style={{left:window.innerWidth*.80}} to="/source">SOURCES</Link>
+                <Link className="home" to="/" style={{left:window.innerWidth*.60}}>HOME</Link>
+                <Link className="news" to="/news" style={{left:window.innerWidth*.65}}>NEWS</Link>
+                <Link className="status" to="/status" style={{left:window.innerWidth*.7}}>STATUS</Link>
+                <Link className="status" style={{left:window.innerWidth*.76}} to="/source">SOURCES</Link>
+                <Link className="status" style={{left:window.innerWidth*.83}} to="/predict">PREDICTION</Link>
                 </div>:<div>
                <BottomBar/>
                     </div>
@@ -31,6 +35,7 @@ export default class Router extends Component{
                 <Route path="/news"><News/></Route>
                 <Route path="/status"><Status/></Route>
                 <Route path="/source"><Sources/></Route>
+                <Route path="/predict"><Predications/></Route>
             </Switch>
         </div>
         </div>

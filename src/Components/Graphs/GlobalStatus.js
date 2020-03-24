@@ -105,7 +105,7 @@ export default class GlobalStatus extends Component {
       return (
           
 <div id="chart">
- <Chart  options={this.state.options} series={this.state.series} type="pie" width={400}  />
+ <Chart  options={this.state.options} series={this.state.series} type="donut" width={400}  />
 {/* <h4>Active Cases</h4> */}
 {/* <Chart options={this.state.active_options} series={this.state.active_series} type="pie" width={340} /> */}
 {/* <h4>Closed Cases</h4>

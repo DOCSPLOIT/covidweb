@@ -54,7 +54,7 @@ export default class KeralaStatus extends Component{
             <div id="chart" style={window.innerWidth>800?{
                 marginTop:window.innerHeight*.25,marginLeft:window.innerWidth*.05
                 }:{}}>
-<Chart  options={this.state.options} series={this.state.series} width={440} type="pie" />
+<Chart  options={this.state.options} series={this.state.series} width={440} type="donut" />
 </div>
         )
     }

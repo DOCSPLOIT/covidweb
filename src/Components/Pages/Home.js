@@ -4,6 +4,11 @@ import IndiaStatus from '../Graphs/IndiaStatus';
 import { url } from '../Configure';
 import '../Styles/home.css'
 import KeralaStatus from '../Graphs/KeralaStatus';
+import FbPostVideo from '../Media/video1.mp4'
+import { Player } from 'video-react';
+import Prediction from '../Graphs/Predict';
+ import * as MaterialUI from '@material-ui/core'
+import PredictText from '../Graphs/PredictText';
 export default class News extends Component{
 
     constructor(props){
@@ -38,33 +43,40 @@ export default class News extends Component{
  
     render(){
         
+        
+        
         return(
             <>
            {window.innerWidth>800?<div style={{marginTop:100,width:"100%"}} >
                   
                 <div style={{display:"flex",marginLeft:"25%"}}>
-                    <div>
+                    
+                    <MaterialUI.Paper elevation={10} style={{width:200,height:200}}>
+                        <center>
                 <h5 className="tdeath" style={{color:"#117cb9"}}>Total Cases</h5>
 
 <p className="text">India   :  {this.state.indiaTcases}</p>
-<p className="text" style={{lineHeight:12}}>World:  {this.state.worldTcases}</p>
-</div>
-<div style={{marginLeft:window.innerWidth*.2}}>
+<p className="text">World:  {this.state.worldTcases}</p>
+</center>
+</MaterialUI.Paper>
+<MaterialUI.Paper elevation={10} style={{width:200,height:200,marginLeft:"5%"}} >
+    <center>
             <h5 className="tdeath" style={{color:"#d13838"}}>Total Deaths</h5>
-
         <p className="text">India   :  {this.state.indiaTdeath}</p>
-        <p className="text" style={{lineHeight:12}}>World:  {this.state.worldTdeath}</p>
-        </div>
-        <div style={{marginLeft:window.innerWidth*.2}}>
+        <p className="text">World:  {this.state.worldTdeath}</p>
+        </center>
+        </MaterialUI.Paper>
+        <MaterialUI.Paper elevation={10} style={{width:200,height:200,marginLeft:"5%"}} >
+            <center>
             <h5 className="tdeath" style={{color:"#35dd81"}}>Total Recovered</h5>
 
         <p className="text">India   :  {this.state.indiaRecover}</p>
-        <p className="text" style={{lineHeight:12}}>World:  {this.state.worldRecover}</p>
-        </div>
-            
-            
+        <p className="text">World:  {this.state.worldRecover}</p>
+        </center>
+        </MaterialUI.Paper>
             </div>
-            <div style={{display:"flex",marginTop:200}}>
+            
+            <div style={{display:"flex",marginTop:window.innerHeight*.1}}>
             <h2 style={{marginLeft:window.innerHeight*.05}}>Kerala</h2>
             <div style={{marginTop:-window.innerHeight*.2,marginLeft:-window.innerHeight*.2}}>
             <KeralaStatus/>
@@ -76,10 +88,38 @@ export default class News extends Component{
                 <h2 style={{marginLeft:5}}>World</h2>
                 <div style={{marginTop:window.innerHeight*.05,marginLeft:-window.innerHeight*.05}}>
                 <GlobalStatus/>
-                <video src=""></video>
+              
             </div>
-                
                 </div>
+                <br/>
+                
+                <div style={{display:"flex"}}>  
+                <div style={{marginLeft:window.innerHeight*.5}}>
+                <Player
+           
+        fluid={false}
+        width={window.innerWidth*.4}
+        height={window.innerHeight*.6}
+      src={FbPostVideo}
+    /></div>
+    <MaterialUI.Paper elevation={10} style={{
+        backgroundColor:"#0e6fc4",
+        width:200,height:150,
+        alignSelf:"center",
+        marginLeft:window.innerWidth*.2
+       
+        }} >
+            <center>
+            <h3 style={{color:"white"}}>Our Prediction</h3>
+        <p style={{color:"white"}}>India </p>
+        <p style={{color:"white"}}>World</p>
+        <a style={{color:"white",fontSize:15}} href="/predict">More</a>
+            </center>
+       
+    </MaterialUI.Paper>
+    </div>
+    
+   <br/><br/><br/>
                 <footer>
                  <div className="footer">
                      <center><p style={{fontWeight:"bold",color:"white"}}>IEDC SSCOLLEGE, Areekode</p></center>
@@ -88,10 +128,18 @@ export default class News extends Component{
             </div>:
             
             <div>
+                {/*Mobile View is below*/}
+                <div style={{marginTop:window.innerHeight*.15}}><center> <Player
+            
+        fluid={false}
+        width={window.innerWidth}
+        height={window.innerHeight*.5}
+      src={FbPostVideo}
+    /></center></div>
                 <center>
             <div>
                 <h5 style={{
-                    marginTop:"25%",
+                    marginTop:window.innerHeight*.05,
                     fontSize:25,
                     color:"#117cb9"
                 }} >Total Cases</h5>
@@ -135,7 +183,7 @@ export default class News extends Component{
             <h3 style={{marginLeft:"10%",fontSize:25}}>India</h3>
             <center> <IndiaStatus/></center> 
             <h3 style={{marginLeft:"10%",fontSize:25}}>World</h3>
-            <GlobalStatus/>
+            <center><GlobalStatus/></center>
             <br/><br/><br/><br/>
             </div>
             }

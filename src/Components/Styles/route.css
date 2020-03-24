@@ -38,9 +38,6 @@ background: #001F3A;
 
 .home{
     position: absolute;
-    width: 127px;
-    height: 53px;
-    left: 768px;
     top: 28px;
     
     font-family: Roboto;
@@ -61,9 +58,6 @@ background: #001F3A;
 .news{
 
     position: absolute;
-    width: 127px;
-    height: 53px;
-    left: 898px;
     top: 28px;
     text-decoration: none;
     font-family: Roboto;
@@ -83,9 +77,6 @@ background: #001F3A;
 
 .status{
     position: absolute;
-width: 127px;
-height: 53px;
-left: 1048px;
 top: 28px;
 text-decoration: none;
 font-family: Roboto;
@@ -102,7 +93,7 @@ color: #FFFFFF;
 width: 407px;
 height: 53px;
 flex-direction: row;
-margin-left: -20px;
+
 }
 
 
@@ -116,5 +107,8 @@ margin-left: -20px;
         font-weight: 500;
         align-self: center;
         
+    }
+    .w{
+     color: #0e6fc4;
     }
 }

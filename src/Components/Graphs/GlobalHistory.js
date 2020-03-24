@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Chart from 'react-apexcharts';
 import { url } from '../Configure';
-
+import * as MaterialUI from '@material-ui/core'
 export default class GlobalHistory extends Component {
     constructor(props) {
         super(props);
@@ -22,9 +22,9 @@ export default class GlobalHistory extends Component {
                     enabled: false,
                 },
 
-                // stroke: {
-                //     curve: 'smooth'
-                // },
+                 stroke: {
+                     width:1.5
+                 },
 
                 grid: {
                     padding: {
@@ -58,15 +58,17 @@ export default class GlobalHistory extends Component {
 
 
         return (
-            <>
-                <Chart
+          
+            <MaterialUI.Paper elevation={10}>
+            <Chart
                     options={this.state.options}
                     series={this.state.series}
                     type="line"
                     width="100%"
                     height="500"
                 />
-            </>)
+            </MaterialUI.Paper>
+            )
     }
     setData = () => {
 
