@@ -4,11 +4,8 @@ import IndiaStatus from '../Graphs/IndiaStatus';
 import { url } from '../Configure';
 import '../Styles/home.css'
 import KeralaStatus from '../Graphs/KeralaStatus';
-import FbPostVideo from '../Media/video1.mp4'
-import { Player } from 'video-react';
-import Prediction from '../Graphs/Predict';
- import * as MaterialUI from '@material-ui/core'
-import PredictText from '../Graphs/PredictText';
+import * as MaterialUI from '@material-ui/core'
+import StateWise from '../Graphs/StateWise';
 export default class News extends Component{
 
     constructor(props){
@@ -20,8 +17,23 @@ export default class News extends Component{
        indiaTcases:0,
        worldRecover:0,
        indiaRecover:0,
-
+       globalPredict:[],
+       indiaPredict:[],
+       keralaTdeath:0,
+       keralaTCases:0,
+       keralaRecover:0
     }    
+    }
+    UNSAFE_componentWillMount(){
+        
+        fetch(`https://covid19regression.herokuapp.com/predict/${new Date().getTime()}/2`)
+        .then(r=>r.json())
+        .then(res=>{
+            this.setState({indiaPredict:res['india'][0]['prediction'],
+           globalPredict:res['global'][0]['prediction']
+           })
+           
+        })
     }
     
     componentDidMount() { 
@@ -39,9 +51,20 @@ export default class News extends Component{
                 worldTdeath:res['deaths']
         })
      })
+     fetch(`${url}/stateWiseData/Kerala`).then(r=>r.json())
+     .then(res=>{
+         this.setState({
+           keralaTCases:  parseInt(res['Total Confirmed cases (Indian National)'])+parseInt(res['Total Confirmed cases ( Foreign National )']),
+           keralaRecover: parseInt(res['Cured/Discharged/Migrated']),
+            keralaTdeath: parseInt(res['Death'])
+     })
+     })
+     
  }
  
     render(){
+        let day=new Date();
+        day=day.toDateString();
         
         
         
@@ -50,74 +73,77 @@ export default class News extends Component{
            {window.innerWidth>800?<div style={{marginTop:100,width:"100%"}} >
                   
                 <div style={{display:"flex",marginLeft:"25%"}}>
+              
                     
-                    <MaterialUI.Paper elevation={10} style={{width:200,height:200}}>
+                    <MaterialUI.Paper elevation={10} style={{width:200,height:250}}>
                         <center>
                 <h5 className="tdeath" style={{color:"#117cb9"}}>Total Cases</h5>
-
+<p className="text">Kerala   :  {this.state.keralaTCases}</p>
 <p className="text">India   :  {this.state.indiaTcases}</p>
 <p className="text">World:  {this.state.worldTcases}</p>
 </center>
 </MaterialUI.Paper>
-<MaterialUI.Paper elevation={10} style={{width:200,height:200,marginLeft:"5%"}} >
+<MaterialUI.Paper elevation={10} style={{width:200,height:250,marginLeft:"5%"}} >
     <center>
             <h5 className="tdeath" style={{color:"#d13838"}}>Total Deaths</h5>
+        <p className="text">Kerala   :  {this.state.keralaTdeath}</p>
         <p className="text">India   :  {this.state.indiaTdeath}</p>
         <p className="text">World:  {this.state.worldTdeath}</p>
         </center>
         </MaterialUI.Paper>
-        <MaterialUI.Paper elevation={10} style={{width:200,height:200,marginLeft:"5%"}} >
+        <MaterialUI.Paper elevation={10} style={{width:200,height:250,marginLeft:"5%"}} >
             <center>
             <h5 className="tdeath" style={{color:"#35dd81"}}>Total Recovered</h5>
 
+        <p className="text">Kerala:  {this.state.keralaRecover}</p>
         <p className="text">India   :  {this.state.indiaRecover}</p>
         <p className="text">World:  {this.state.worldRecover}</p>
+        
         </center>
         </MaterialUI.Paper>
             </div>
             
             <div style={{display:"flex",marginTop:window.innerHeight*.1}}>
             <h2 style={{marginLeft:window.innerHeight*.05}}>Kerala</h2>
-            <div style={{marginTop:-window.innerHeight*.2,marginLeft:-window.innerHeight*.2}}>
+            <div style={{marginTop:-window.innerHeight*.2,marginLeft:-window.innerHeight*.25}}>
             <KeralaStatus/>
             </div>
-            <h2 style={{marginLeft:window.innerHeight*.75,position:"absolute"}}>India</h2>
+            <h2 style={{textAlign:"center"}}>India</h2>
             <div style={{marginTop:window.innerHeight*.05,marginLeft:-window.innerHeight*.05}}>
             <IndiaStatus/>
             </div>
                 <h2 style={{marginLeft:5}}>World</h2>
-                <div style={{marginTop:window.innerHeight*.05,marginLeft:-window.innerHeight*.05}}>
+                <div style={{marginTop:window.innerHeight*.05,marginLeft:-window.innerHeight*.07}}>
                 <GlobalStatus/>
               
             </div>
                 </div>
+               
                 <br/>
-                
-                <div style={{display:"flex"}}>  
-                <div style={{marginLeft:window.innerHeight*.5}}>
-                <Player
-           
-        fluid={false}
-        width={window.innerWidth*.4}
-        height={window.innerHeight*.6}
-      src={FbPostVideo}
-    /></div>
-    <MaterialUI.Paper elevation={10} style={{
-        backgroundColor:"#0e6fc4",
-        width:200,height:150,
-        alignSelf:"center",
-        marginLeft:window.innerWidth*.2
-       
+                <h3 style={{marginLeft:window.innerWidth*.4}}>StateWise Reports(India)</h3>
+                <StateWise/>
+                <center>
+    <MaterialUI.Paper  elevation={10} style={{
+        backgroundColor:"#4f5a90",
+        width:200,height:350,
+       position:"absolute",
+       zIndex:99,marginLeft:window.innerWidth*.83,marginTop:-window.innerHeight
         }} >
-            <center>
-            <h3 style={{color:"white"}}>Our Prediction</h3>
+           <br/>
+            <h3 style={{color:"white"}}>Our Today's Prediction</h3>
+    <p style={{color:"white"}}>On {'\n'} Confirming Cases</p>
+    <p style={{color:"white"}}>{day}</p>
         <p style={{color:"white"}}>India </p>
+    <b style={{color:"white",fontSize:25}}>{this.state.indiaPredict}</b>
         <p style={{color:"white"}}>World</p>
+        <b style={{color:"white",fontSize:25}}>{this.state.globalPredict}</b>
+        <br/><br/>
         <a style={{color:"white",fontSize:15}} href="/predict">More</a>
-            </center>
+            
        
     </MaterialUI.Paper>
-    </div>
+    </center>
+    
     
    <br/><br/><br/>
                 <footer>
@@ -129,62 +155,113 @@ export default class News extends Component{
             
             <div>
                 {/*Mobile View is below*/}
-                <div style={{marginTop:window.innerHeight*.15}}><center> <Player
-            
-        fluid={false}
-        width={window.innerWidth}
-        height={window.innerHeight*.5}
-      src={FbPostVideo}
-    /></center></div>
+                
                 <center>
+                    <br/>
             <div>
-                <h5 style={{
-                    marginTop:window.innerHeight*.05,
-                    fontSize:25,
-                    color:"#117cb9"
-                }} >Total Cases</h5>
-                <p style={{
-                    fontSize:22,
+            <MaterialUI.Paper style={{
+                    backgroundColor:"#117cb9",
+
+                }}>
+                    <br/>
+            <h3 style={{
                     
-                }}>India :{this.state.indiaTcases}</p>
-                <p style={{ 
-                    fontSize:22,
-                   
-                }} >World :{this.state.worldTcases}</p>
-                
-                <h5 style={{
-                    fontSize:25,
-                    color:"#d13838"
-                }} >Total Deaths</h5>
-                <p style={{
-                    fontSize:22
-                }}>India :{this.state.indiaTdeath}</p>
-                <p style={{ 
-                    fontSize:22,
+                   color:"white"
+                }} >Total Cases</h3>
+                <div style={{display:"flex"}}>
+                <p style={{color:"white",marginRight:window.innerWidth*.1,marginLeft:window.innerWidth*.23}}>Kerala</p>
+                <p style={{ color:"white",marginRight:window.innerWidth*.1}}>India</p>
+                <p style={{ color:"white"}} >World</p>
+                </div>
+                <div style={{display:"flex"}}>
+                <b style={{color:"white",marginRight:window.innerWidth*.1,
+                marginLeft:window.innerWidth*.22,fontSize:25}}>{this.state.keralaTCases}</b>
+                <b style={{fontSize:25, color:"white",marginRight:window.innerWidth*.09}}>{this.state.indiaTcases}</b>
+                <b style={{fontSize:25, color:"white"}} >{this.state.worldTcases}</b>
+                </div>
+                <br/>
+                </MaterialUI.Paper>
+                <br/>
+                <MaterialUI.Paper style={{
+                    backgroundColor:"#d13838",
+
+                }}>
+                    <br/>
+            <h3 style={{
                     
-                }} >World :{this.state.worldTdeath}</p>
-                
-                <h5 style={{
-                    fontSize:25,
-                    color:"#35dd81"
-                }} >Total Recovered</h5>
-                 <p style={{
-                    fontSize:22
-                }}>India :{this.state.indiaRecover}</p>
-                <p style={{ 
-                    fontSize:22,
+                   color:"white"
+                }} >Total Death</h3>
+                <div style={{display:"flex"}}>
+                <p style={{color:"white",marginRight:window.innerWidth*.1,marginLeft:window.innerWidth*.23}}>Kerala</p>
+                <p style={{ color:"white",marginRight:window.innerWidth*.1}}>India</p>
+                <p style={{ color:"white"}} >World</p>
+                </div>
+                <div style={{display:"flex"}}>
+                <b style={{color:"white",marginRight:window.innerWidth*.15,
+                marginLeft:window.innerWidth*.25,fontSize:25}}>{this.state.keralaTdeath}</b>
+                <b style={{fontSize:25, color:"white",marginRight:window.innerWidth*.09}}>{this.state.indiaTdeath}</b>
+                <b style={{fontSize:25, color:"white"}} >{this.state.worldTdeath}</b>
+                </div>
+                <br/>
+                </MaterialUI.Paper>
+                <br/>
+                <MaterialUI.Paper style={{
+                    backgroundColor:"#07552a",
+
+                }}>
+                    <br/>
+            <h3 style={{
                     
-                }} >World :{this.state.worldRecover}</p>
-               
+                   color:"white"
+                }} >Total Recovered</h3>
+                <div style={{display:"flex"}}>
+                <p style={{color:"white",marginRight:window.innerWidth*.1,marginLeft:window.innerWidth*.23}}>Kerala</p>
+                <p style={{ color:"white",marginRight:window.innerWidth*.1}}>India</p>
+                <p style={{ color:"white"}} >World</p>
+                </div>
+                <div style={{display:"flex"}}>
+                <b style={{color:"white",marginRight:window.innerWidth*.15,
+                marginLeft:window.innerWidth*.25,fontSize:25}}>{this.state.keralaRecover}</b>
+                <b style={{fontSize:25, color:"white",marginRight:window.innerWidth*.09}}>{this.state.indiaRecover}</b>
+                <b style={{fontSize:25, color:"white"}} >{this.state.worldRecover}</b>
+                </div>
+                <br/>
+                </MaterialUI.Paper>
             </div>
+            <h3>Statewise Reports (India)</h3>
+                <StateWise/>
             </center>
-            <h3 style={{marginLeft:"10%",fontSize:25}}>Kerala</h3>
+            <h3 style={{textAlign:"center",fontSize:25}}>Kerala</h3>
             <center><KeralaStatus/> </center> 
-            <h3 style={{marginLeft:"10%",fontSize:25}}>India</h3>
+            <h3 style={{textAlign:"center",fontSize:25}}>India</h3>
             <center> <IndiaStatus/></center> 
-            <h3 style={{marginLeft:"10%",fontSize:25}}>World</h3>
+            <h3 style={{textAlign:"center",fontSize:25}}>World</h3>
             <center><GlobalStatus/></center>
-            <br/><br/><br/><br/>
+            
+            <MaterialUI.Paper elevation={10} style={{
+        backgroundColor:"#4f5a90",
+        width:window.innerWidth,height:280,
+        alignSelf:"center",
+       
+        }} >
+            <br/>
+          <center>  <h3 style={{color:"white"}}>Our Today's Prediction</h3>
+    <i>{}</i>
+          <p style={{color:"white"}}>On Confirming Cases</p>
+          <div style={{display:"flex"}}>
+        <p style={{color:"white",marginRight:window.innerWidth*.2,marginLeft:window.innerWidth*.3}}>India</p>
+        <p style={{color:"white"}}>World</p>
+        </div>
+        <div style={{display:"flex"}}>
+    <b style={{color:"white",fontSize:25,marginLeft:window.innerWidth*.29,marginRight:window.innerWidth*.15}}>{this.state.indiaPredict}</b>
+       
+        <b style={{color:"white",fontSize:25}}>{this.state.globalPredict}</b>
+        </div>
+        <br/><br/>
+        <a style={{color:"white",fontSize:15}} href="/predict">More</a>
+        </center>
+    </MaterialUI.Paper>
+    <br/><br/><br/>
             </div>
             }
             </>

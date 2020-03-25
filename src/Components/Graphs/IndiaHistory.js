@@ -22,14 +22,14 @@ class IndiaHistory extends Component {
                 },
 
                 stroke: {
-                    width:1.5,
+                    width:2.5,
                     
                 },
-
+                
                 grid: {
                     padding: {
-                        left: 60, // or whatever value that works
-                        right: 60 // or whatever value that works
+                        left: 10, // or whatever value that works
+                        right: 10 // or whatever value that works
                     }
                 }
 

@@ -54,7 +54,7 @@ export default class IndiaStatus extends Component{
         
         
         return(
-<div id="chart" style={window.innerWidth>800?{display:"flex"}:{display:""}}>
+<div id="chart">
 <Chart options={this.state.options} series={this.state.series} width={420} type="donut" />
 </div>
         )

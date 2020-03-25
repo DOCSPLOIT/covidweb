@@ -11,7 +11,7 @@ export default class KeralaStatus extends Component{
                   width: 380,
                   type: 'pie',
                 },
-                labels:['Confirmed (National)','Confirmed (Foreign)','Recovered','Deaths']
+                labels:['Confirmed','Recovered','Deaths']
                 ,
                 
                 responsive: [{
@@ -32,9 +32,9 @@ export default class KeralaStatus extends Component{
                 
             },
             fill:{
-              colors:['#008ffb','#109bad', '#35dd81', '#dd3535']
+              colors:['#008ffb', '#35dd81', '#dd3535']
             },
-            colors:['#008ffb','#109bad', '#35dd81', '#dd3535']
+            colors:['#008ffb', '#35dd81', '#dd3535']
               }
         }
     }
@@ -42,7 +42,7 @@ export default class KeralaStatus extends Component{
         fetch(`${url}/stateWiseData/Kerala`).then(r=>r.json())
         .then(res=>{
             this.setState({series:[
-                parseInt(res['Total Confirmed cases (Indian National)']),
+                parseInt(res['Total Confirmed cases (Indian National)'])+
                 parseInt(res['Total Confirmed cases ( Foreign National )']),
                 parseInt(res['Cured/Discharged/Migrated']),
                 parseInt(res['Death'])
@@ -52,9 +52,9 @@ export default class KeralaStatus extends Component{
     render(){
         return(
             <div id="chart" style={window.innerWidth>800?{
-                marginTop:window.innerHeight*.25,marginLeft:window.innerWidth*.05
+                marginTop:window.innerHeight*.25,marginLeft:window.innerWidth*.1
                 }:{}}>
-<Chart  options={this.state.options} series={this.state.series} width={440} type="donut" />
+<Chart  options={this.state.options} series={this.state.series} width={380} type="donut" />
 </div>
         )
     }

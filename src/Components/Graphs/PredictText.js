@@ -33,7 +33,7 @@ export default class PredictText extends Component {
                 for (let i = 0; i < len; i++) {
                     let date = new Date(this.state.indiaData[i][0]);
                     let dd = date.getDate();
-                    let mm = date.getMonth();
+                    let mm = date.getMonth()+1;
                     let yy = date.getFullYear();
                     date = dd + '/' + mm + '/' + yy;
                     let item = [date, this.state.indiaData[i][1], this.state.GlobalData[i][1]]
@@ -48,19 +48,21 @@ export default class PredictText extends Component {
         return (
             
             <MaterialUI.TableContainer style={window.innerWidth>800?{
-                width:window.innerWidth*.6,
+                width:window.innerWidth*.5,alignSelf:"center"
         }:{width:window.innerWidth}} component={MaterialUI.Paper} elevation={10}>
             <h2>Prediction Table</h2>
                 <MaterialUI.Table style={window.innerWidth>800?{
-                        width:window.innerWidth*.6,
-                        minWidth:650
+                        
+                        minWidth:650,
                 }:{width:window.innerWidth}}>
-                   <MaterialUI.TableHead> <MaterialUI.TableRow><MaterialUI.TableCell>Date</MaterialUI.TableCell><MaterialUI.TableCell>India</MaterialUI.TableCell><MaterialUI.TableCell>World</MaterialUI.TableCell></MaterialUI.TableRow></MaterialUI.TableHead>
+                   <MaterialUI.TableHead> <MaterialUI.TableRow style={{marginLeft:200}}><MaterialUI.TableCell align="center">Date</MaterialUI.TableCell><MaterialUI.TableCell align="center">India</MaterialUI.TableCell><MaterialUI.TableCell align="center">World</MaterialUI.TableCell></MaterialUI.TableRow></MaterialUI.TableHead>
                    <MaterialUI.TableBody>
-                    {this.state.total.map(item => (<MaterialUI.TableRow key={item[0]}><MaterialUI.TableCell>{item[0]}</MaterialUI.TableCell><MaterialUI.TableCell>{item[1]}</MaterialUI.TableCell><MaterialUI.TableCell>{item[2]}</MaterialUI.TableCell></MaterialUI.TableRow>))}
+                    {this.state.total.map(item => (<MaterialUI.TableRow key={item[0]}><MaterialUI.TableCell align="center">{item[0]}</MaterialUI.TableCell ><MaterialUI.TableCell align="center">{item[1]}</MaterialUI.TableCell><MaterialUI.TableCell align="center">{item[2]}</MaterialUI.TableCell></MaterialUI.TableRow>))}
                     </MaterialUI.TableBody>
+                    
                 </MaterialUI.Table>
             </MaterialUI.TableContainer>
+            
 
         );
     }

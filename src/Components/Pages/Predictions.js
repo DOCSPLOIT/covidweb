@@ -6,19 +6,26 @@ export default class Predications extends Component{
     constructor(props){
         super(props)
         this.state={
-
+            timestamp:0
         }
     }
-    render(){
-        const timestamp=new Date().getTime();
-        console.log(timestamp);
+    UNSAFE_componentWillMount(){
+        let time=new Date().getTime();
+        time=time.toLocaleString()
+        time=time.toString();
+        let [a,b,c,d,e]=time.split(',')
+        time=parseInt(a+b+c+d+e)
         
-
+        this.setState({timestamp:time})
+    }
+    render(){
+   
+        
         return(
             <div style={{marginTop:window.innerHeight*.2}}>
                 <center>
-                 <PredictText timestamp={timestamp} days={7}/>
-                <Predict timestamp={timestamp} days={7} />
+                 <PredictText timestamp={this.state.timestamp} days={7}/>
+                <Predict timestamp={this.state.timestamp} days={7} />
                 </center>
                 <br/><br/><br/>
                 <footer>

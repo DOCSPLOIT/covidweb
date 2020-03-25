@@ -24,14 +24,14 @@ export default class Predict extends Component {
                 },
 
                  stroke: {
-                     width:1.5,
+                     width:2.5,
                      colors:"#f32"
                  },
 
                 grid: {
                     padding: {
-                        left: 60, // or whatever value that works
-                        right: 60 // or whatever value that works
+                        left: 10, // or whatever value that works
+                        right: 40 // or whatever value that works
                     },
                    
                 },
@@ -62,7 +62,7 @@ export default class Predict extends Component {
                 // let gdata = res.global.map(d => {
                 //     return [d.timestamp, d.prediction];
                 // });
-
+                
                 this.setState({
                     series: [
                         {

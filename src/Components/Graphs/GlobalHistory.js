@@ -23,13 +23,13 @@ export default class GlobalHistory extends Component {
                 },
 
                  stroke: {
-                     width:1.5
+                     width:2.5
                  },
-
+                 colors:["#005c31"],
                 grid: {
                     padding: {
-                        left: 60, // or whatever value that works
-                        right: 60 // or whatever value that works
+                        left: 10, // or whatever value that works
+                        right: 40 // or whatever value that works
                     }
                 }
 

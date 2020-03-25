@@ -12,24 +12,26 @@ export default class PredictWorld extends Component {
             GlobalData: [],
             options: {
                 xaxis: {
-                    style: {
-                        margin: 10
+                    style: {  
                     },
                     type: 'datetime'
 
                 },
+               tooltip:{
+                   shared:false
+               },
                 dataLabels: {
                     enabled: false,
                 },
 
                  stroke: {
-                     width:1.5
+                     width:2.5
                  },
 
                 grid: {
                     padding: {
-                        left: 60, // or whatever value that works
-                        right: 60 // or whatever value that works
+                        left: 10, // or whatever value that works
+                        right: 40 // or whatever value that works
                     }
                 }
 
@@ -59,7 +61,7 @@ export default class PredictWorld extends Component {
                 let gdata = res.global.map(d => {
                     return [d.timestamp, d.prediction];
                 });
-
+               
                 this.setState({
                     series: [
                         {
@@ -72,10 +74,6 @@ export default class PredictWorld extends Component {
 
             })
 
-
-
-
-
     }
 
     render() {
@@ -87,7 +85,7 @@ export default class PredictWorld extends Component {
                     }:{width:window.innerWidth,}}>
                 <h1>World</h1>
                 <Chart
-                   width={window.innerWidth>800?window.innerWidth*.4:window.innerWidth}
+                   
                     height={window.innerHeight*.4}
                     type="line"
                     options={this.state.options}

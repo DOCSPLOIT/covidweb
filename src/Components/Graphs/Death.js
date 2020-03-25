@@ -1,16 +1,52 @@
 import React, { Component } from "react";
-import { Chart } from "react-google-charts";
-
+import Chart from "react-apexcharts";
+import * as MaterialUI from '@material-ui/core'
 export default class Death extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             data: [],
-            chartData: [
-                [
-                    { type: 'date', label: 'Date' }, "Death"
-                ]
+            options: {
+                colors:["#da1414"],
+                chart: {
+                    type: 'area',
+                    height: 350,
+                    zoom: {
+                        enabled: false
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'smooth'
+                },
+
+                title: {
+                    text: 'Covid world wide death',
+                    align: 'left'
+                },
+                // subtitle: {
+                //     text: 'Price Movements',
+                //     align: 'left'
+                // },
+                // labels: series.monthDataSeries1.dates,
+                xaxis: {
+                    type: 'datetime',
+                },
+                yaxis: {
+                    opposite: false
+                },
+                legend: {
+                    horizontalAlign: 'left'
+                }
+            },
+            series: [
+                {
+                    type: 'area',
+                    data: []
+                }
             ]
         }
     }
@@ -21,9 +57,10 @@ export default class Death extends Component {
         let res = await response.json();
 
         this.setState({ data: res.table })
-
+        let data = [];
         this.state.data.forEach(i => {
             let death = 0;
+
 
             const [f, b] = i['Total Deaths'].split(',');
             if (f == '')
@@ -34,47 +71,48 @@ export default class Death extends Component {
                 death = parseInt(f + b);
             }
             let d = this.convertDate(i['Date'])
-            let dayData = [d,death]
-            this.state.chartData.push(dayData);
-           console.log(typeof(death));
-           
-            
+            let dayData = [new Date(d).toLocaleString(), death]
+
+
+            data.push(dayData)
+
+
         })
-       
-        
+        this.setState({
+            series: [
+                {
+                    type: 'area',
+                    data: data
+                }
+            ]
+        })
     }
 
     render() {
         return (
-            <div>
-                
-                <Chart
-                    chartType="LineChart"
-                    width={"100%"}
-                    height={"400px"}
-                    options={{
-                        hAxix: {
-                            title: 'Date'
-                        },
-                        vAxix: {
-                            title: 'Death'
-                        }
-                    }}
-                    loader={<div>loading</div>}
-                    data={this.state.chartData}
-                    rootProps={{ 'data-testid': '4' }}
+           <MaterialUI.Paper elevation={10} style={{width:window.innerWidth*.8}}>
+               <Chart
+                    options={this.state.options}
+                    series={this.state.series}
+                    type="area"
+                   
+                    height="500"
                 />
-            </div>
+           </MaterialUI.Paper>
+
+                
+            
         );
     }
     convertDate = (d) => {
         const Y = 2020;
-        let M = 0, D = 1;
+        let M = 0, D = 0;
         let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', "Dec"];
         let [strMonth, strDay] = d.split('.')
         M = months.indexOf(strMonth)
-        D = parseInt(strDay.trim())
-        return new Date(Y, M, D)
+        D = parseInt(strDay.trim()) + 1
+
+        return new Date(Y, M, D).getTime()
     }
 }
 

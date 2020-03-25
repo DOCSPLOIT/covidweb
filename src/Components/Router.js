@@ -3,10 +3,9 @@ import { Switch, Route, Link } from 'react-router-dom'
 import BottomBar from './Extras/BottomBar'
 import './Styles/route.css'
 import Home from './Pages/Home'
-import News from './Pages/News'
+import AllNews from './Pages/AllNews'
 import Status from './Pages/Status'
 import Sources from './Pages/Source'
-import Predict from './Graphs/Predict'
 import Predications from './Pages/Predictions'
 
 export default class Router extends Component{
@@ -32,7 +31,7 @@ export default class Router extends Component{
         <div>
             <Switch>
                 <Route exact path="/"><Home/></Route>
-                <Route path="/news"><News/></Route>
+                <Route path="/news"><AllNews/></Route>
                 <Route path="/status"><Status/></Route>
                 <Route path="/source"><Sources/></Route>
                 <Route path="/predict"><Predications/></Route>
