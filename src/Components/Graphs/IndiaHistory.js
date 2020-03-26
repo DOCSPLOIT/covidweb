@@ -18,7 +18,7 @@ class IndiaHistory extends Component {
 
                 },
                 dataLabels: {
-                    enabled: false,
+                    enabled: true,
                 },
 
                 stroke: {
@@ -63,7 +63,7 @@ class IndiaHistory extends Component {
             <Chart
                     options={this.state.options}
                     series={this.state.series}
-                    type="line"
+                    type="area"
                     width="100%"
                     height="300"
                 />

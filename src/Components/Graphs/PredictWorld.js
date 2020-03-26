@@ -11,6 +11,9 @@ export default class PredictWorld extends Component {
             indiaData: [],
             GlobalData: [],
             options: {
+                title:{
+                    text:'Confirmed Cases Prediction'
+                },
                 xaxis: {
                     style: {  
                     },
@@ -21,7 +24,7 @@ export default class PredictWorld extends Component {
                    shared:false
                },
                 dataLabels: {
-                    enabled: false,
+                    enabled: true,
                 },
 
                  stroke: {
@@ -87,7 +90,7 @@ export default class PredictWorld extends Component {
                 <Chart
                    
                     height={window.innerHeight*.4}
-                    type="line"
+                    type="area"
                     options={this.state.options}
                     series={this.state.series}
                     

@@ -12,7 +12,7 @@ class StateWise extends Component {
                 name: 'Cases',
                 data: []
             }, {
-                name: 'Discharged',
+                name: 'Recovered',
                 data: []
             }, {
                 name: 'Death',
@@ -78,7 +78,7 @@ class StateWise extends Component {
 
         let res = await response.json();
         res.pop();
-
+        res.pop();
         this.setState({ data: res })
 
         this.setData()
@@ -86,7 +86,7 @@ class StateWise extends Component {
     }
     render() {
 
-
+        
         return (
             <MaterialUI.Paper elevation={10} style={window.innerWidth>800?{
                 width:window.innerWidth*.8
@@ -207,7 +207,7 @@ class StateWise extends Component {
                 name: 'Cases',
                 data: totalCases
             }, {
-                name: 'Discharged',
+                name: 'Recovered',
                 data: discharged
             }, {
                 name: 'Death',

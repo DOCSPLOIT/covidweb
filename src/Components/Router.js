@@ -7,14 +7,20 @@ import AllNews from './Pages/AllNews'
 import Status from './Pages/Status'
 import Sources from './Pages/Source'
 import Predications from './Pages/Predictions'
-
+import Swiper from './Extras/Drawer'
 export default class Router extends Component{
    render(){
    return(
        <div >
         <div className="navbar" >
-       
-            <h3 className="title">Covid Updates</h3>
+           
+        {window.innerWidth>800?null:<Swiper/>}
+            <h3 className={window.innerWidth>800?"title":''} style={window.innerWidth<800?{
+                marginLeft:window.innerWidth*.3,
+                fontSize:25,
+                color:'white',
+                position:'absolute'
+            }:{}}>Covid Updates</h3>
             {
                 window.innerWidth>800?<div className="navlink">
                 <Link className="home" to="/" style={{left:window.innerWidth*.60}}>HOME</Link>
@@ -23,7 +29,7 @@ export default class Router extends Component{
                 <Link className="status" style={{left:window.innerWidth*.76}} to="/source">SOURCES</Link>
                 <Link className="status" style={{left:window.innerWidth*.83}} to="/predict">PREDICTION</Link>
                 </div>:<div>
-               <BottomBar/>
+                <BottomBar/> 
                     </div>
                 
             }

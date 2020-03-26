@@ -5,7 +5,7 @@ export default class KeralaStatus extends Component{
     constructor(props){
         super(props);
         this.state={
-            series:[],
+            series:[1,.5,0],
             options: {
                 chart: {
                   width: 380,

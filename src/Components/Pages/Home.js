@@ -6,6 +6,9 @@ import '../Styles/home.css'
 import KeralaStatus from '../Graphs/KeralaStatus';
 import * as MaterialUI from '@material-ui/core'
 import StateWise from '../Graphs/StateWise';
+import { Animated } from 'react-animated-css';
+import logosm from '../Media/logosm.png'
+import iedclog from '../Media/iedcw.png'
 export default class News extends Component{
 
     constructor(props){
@@ -25,6 +28,7 @@ export default class News extends Component{
     }    
     }
     UNSAFE_componentWillMount(){
+        console.log(new Date().getTime());
         
         fetch(`https://covid19regression.herokuapp.com/predict/${new Date().getTime()}/2`)
         .then(r=>r.json())
@@ -70,39 +74,47 @@ export default class News extends Component{
         
         return(
             <>
-           {window.innerWidth>800?<div style={{marginTop:100,width:"100%"}} >
+           {window.innerWidth>800?
+               <div style={{marginTop:100,width:"100%"}} >
                   
                 <div style={{display:"flex",marginLeft:"25%"}}>
               
                     
                     <MaterialUI.Paper elevation={10} style={{width:200,height:250}}>
                         <center>
+                            <Animated animationIn="fadeIn" animationInDuration={2000}>
                 <h5 className="tdeath" style={{color:"#117cb9"}}>Total Cases</h5>
 <p className="text">Kerala   :  {this.state.keralaTCases}</p>
 <p className="text">India   :  {this.state.indiaTcases}</p>
 <p className="text">World:  {this.state.worldTcases}</p>
+<p style={{fontFamily:'Lato',fontSize:12,color:'gray'}}>*data updated in reference with MoHFW</p>
+</Animated>
 </center>
 </MaterialUI.Paper>
 <MaterialUI.Paper elevation={10} style={{width:200,height:250,marginLeft:"5%"}} >
-    <center>
+    <center><Animated animationIn="fadeIn" animationInDuration={4000}>
             <h5 className="tdeath" style={{color:"#d13838"}}>Total Deaths</h5>
         <p className="text">Kerala   :  {this.state.keralaTdeath}</p>
         <p className="text">India   :  {this.state.indiaTdeath}</p>
         <p className="text">World:  {this.state.worldTdeath}</p>
+        <p style={{fontFamily:'Lato',fontSize:12,color:'gray'}}>*data updated in reference with MoHFW</p>
+        </Animated>
+        
         </center>
         </MaterialUI.Paper>
         <MaterialUI.Paper elevation={10} style={{width:200,height:250,marginLeft:"5%"}} >
-            <center>
+            <center><Animated animationIn="fadeIn" animationInDuration={6000}>
             <h5 className="tdeath" style={{color:"#35dd81"}}>Total Recovered</h5>
 
         <p className="text">Kerala:  {this.state.keralaRecover}</p>
         <p className="text">India   :  {this.state.indiaRecover}</p>
         <p className="text">World:  {this.state.worldRecover}</p>
-        
+        <p style={{fontFamily:'Lato',fontSize:12,color:'gray'}}>*data updated in reference with MoHFW</p>
+        </Animated>
         </center>
         </MaterialUI.Paper>
             </div>
-            
+           
             <div style={{display:"flex",marginTop:window.innerHeight*.1}}>
             <h2 style={{marginLeft:window.innerHeight*.05}}>Kerala</h2>
             <div style={{marginTop:-window.innerHeight*.2,marginLeft:-window.innerHeight*.25}}>
@@ -118,7 +130,7 @@ export default class News extends Component{
               
             </div>
                 </div>
-               
+                
                 <br/>
                 <h3 style={{marginLeft:window.innerWidth*.4}}>StateWise Reports(India)</h3>
                 <StateWise/>
@@ -148,7 +160,21 @@ export default class News extends Component{
    <br/><br/><br/>
                 <footer>
                  <div className="footer">
-                     <center><p style={{fontWeight:"bold",color:"white"}}>IEDC SSCOLLEGE, Areekode</p></center>
+                     <br/>
+                     <img src={logosm} style={{
+                         width:'75px',
+                         height:'75px',
+                         position:'absolute',
+                         marginLeft:"20px"
+                     }}/>
+                     <center><p style={{color:"white"}}><b style={{fontSize:20}}>Sullamussalam Science College |</b><l style={{fontSize:14}}>Powered By IEDC </l></p></center>
+                     <img src={iedclog} style={{
+                         width:'100px',
+                         height:'100px',
+                         position:'absolute',
+                         marginLeft:window.innerWidth*.9,
+                         marginTop:-75
+                     }}/>
                  </div>
              </footer>
             </div>:
@@ -157,8 +183,9 @@ export default class News extends Component{
                 {/*Mobile View is below*/}
                 
                 <center>
-                    <br/>
+                    <br/> <br/> <br/> <br/> <br/>
             <div>
+                <Animated animationIn="fadeIn" animationInDuration={2500}>
             <MaterialUI.Paper style={{
                     backgroundColor:"#117cb9",
 
@@ -179,9 +206,12 @@ export default class News extends Component{
                 <b style={{fontSize:25, color:"white",marginRight:window.innerWidth*.09}}>{this.state.indiaTcases}</b>
                 <b style={{fontSize:25, color:"white"}} >{this.state.worldTcases}</b>
                 </div>
+                <p style={{fontFamily:'Lato',fontSize:12,color:'white'}}>*data updated in reference with MoHFW</p>
                 <br/>
                 </MaterialUI.Paper>
+                </Animated>
                 <br/>
+                <Animated animationIn="fadeInUp" animationInDuration={4500}>
                 <MaterialUI.Paper style={{
                     backgroundColor:"#d13838",
 
@@ -202,9 +232,12 @@ export default class News extends Component{
                 <b style={{fontSize:25, color:"white",marginRight:window.innerWidth*.09}}>{this.state.indiaTdeath}</b>
                 <b style={{fontSize:25, color:"white"}} >{this.state.worldTdeath}</b>
                 </div>
+                <p style={{fontFamily:'Lato',fontSize:12,color:'white'}}>*data updated in reference with MoHFW</p>
                 <br/>
                 </MaterialUI.Paper>
+                </Animated>
                 <br/>
+                <Animated animationIn="fadeInUp" animationInDuration={6500}>
                 <MaterialUI.Paper style={{
                     backgroundColor:"#07552a",
 
@@ -225,11 +258,15 @@ export default class News extends Component{
                 <b style={{fontSize:25, color:"white",marginRight:window.innerWidth*.09}}>{this.state.indiaRecover}</b>
                 <b style={{fontSize:25, color:"white"}} >{this.state.worldRecover}</b>
                 </div>
+                <p style={{fontFamily:'Lato',fontSize:12,color:'white'}}>*data updated in reference with MoHFW</p>
                 <br/>
                 </MaterialUI.Paper>
+                </Animated>
             </div>
+            <Animated animationIn="fadeInUp" animationInDuration={8500}>
             <h3>Statewise Reports (India)</h3>
                 <StateWise/>
+                </Animated>
             </center>
             <h3 style={{textAlign:"center",fontSize:25}}>Kerala</h3>
             <center><KeralaStatus/> </center> 

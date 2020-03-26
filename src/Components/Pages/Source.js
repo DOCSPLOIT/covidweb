@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as MaterialUI from '@material-ui/core'
-
+import logosm from '../Media/logosm.png'
+import iedclog from '../Media/iedcw.png'
 export default class Sources extends Component{
     constructor(props){
         super(props);
@@ -24,19 +25,45 @@ export default class Sources extends Component{
              
             <h4 style={{fontFamily: 'Poppins,sans-serif'}}> World Health Organization</h4>
                  <a style={{fontFamily: 'Poppins,sans-serif',textDecoration:"none"}} href="https://www.who.int/">https://www.who.int/</a>
-          
+                <br/>
+                whatsapp:  <a style={{fontFamily: 'Poppins,sans-serif',textDecoration:"none"}} href="https://bit.ly/who-covid-19-whatsapp">https://bit.ly/who-covid-19-whatsapp</a>
              <br/><br/>
              
                  <a style={{fontFamily: 'Poppins,sans-serif',textDecoration:"none"}} href="https://www.facebook.com/worldwideengineeringcommunity/videos/502978780383351/">Animated statistics from @world_wide_engineeringcommunity</a>
             <br/><br/>
+            
              </MaterialUI.Paper>
            
              </center>
-             <footer>
-                 <div className="footer" style={{marginTop:window.innerHeight*.26}}>
-                     <center><p style={{fontFamily: 'Poppins,sans-serif',fontWeight:"bold",color:"white"}}>IEDC SSCOLLEGE, Areekode</p></center>
+             <br/><br/>
+             {
+                 window.innerWidth>800?
+                 <footer>
+                 <div className="footer">
+                     
+                     <img src={logosm} style={{
+                         width:'75px',
+                         height:'75px',
+                         position:'absolute',
+                         marginLeft:"20px",
+                         marginTop:'20px'
+                     }}/>
+                     <center><p style={{color:"white",marginTop:'40px'}}><b style={{fontSize:20}}>Sullamussalam Science College |</b><l style={{fontSize:14}}>Powered By IEDC </l></p></center>
+                     <img src={iedclog} style={{
+                         width:'100px',
+                         height:'100px',
+                         position:'absolute',
+                         marginLeft:window.innerWidth*.9,
+                         marginTop:-75
+                     }}/>
                  </div>
              </footer>
+             :
+             <>
+             <br/>
+             </>
+             }
+             
           </div>
          
         

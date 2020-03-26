@@ -8,7 +8,7 @@ export default class GlobalStatus extends Component {
 
       this.state = {
       
-        series: [],
+        series: [1,1,1],
         options: {
           chart: {
             width: 380,

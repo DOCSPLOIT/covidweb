@@ -27,7 +27,7 @@ export default class DeathChange extends Component {
                 },
                 colors: ['#008FFB', '#da1414', '#CED4DC'],
                 dataLabels: {
-                    enabled: false
+                    enabled: true
                 },
                 stroke: {
                     curve: 'smooth'

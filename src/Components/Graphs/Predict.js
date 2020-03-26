@@ -12,6 +12,9 @@ export default class Predict extends Component {
             indiaData: [],
             GlobalData: [],
             options: {
+                title:{
+                    text:'Confirmed Cases Prediction'
+                },
                 xaxis: {
                     style: {
                         margin: 10
@@ -20,7 +23,7 @@ export default class Predict extends Component {
 
                 },
                 dataLabels: {
-                    enabled: false,
+                    enabled: true,
                 },
 
                  stroke: {
@@ -90,7 +93,7 @@ export default class Predict extends Component {
                 <Chart
                     width={window.innerWidth>800?window.innerWidth*.4:window.innerWidth}
                     height={window.innerHeight*.4}
-                    type="line"
+                    type="area"
                     options={this.state.options}
                     series={this.state.series}
 

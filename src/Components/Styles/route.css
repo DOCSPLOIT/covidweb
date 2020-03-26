@@ -14,11 +14,7 @@ background: #001F3A;
 
 .title{
     position: absolute;
-    width: 261px;
-    height: 34px;
-    left: 0px;
-    
-    
+    left: 20px;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;

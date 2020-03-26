@@ -50,14 +50,14 @@ export default class PredictText extends Component {
             <MaterialUI.TableContainer style={window.innerWidth>800?{
                 width:window.innerWidth*.5,alignSelf:"center"
         }:{width:window.innerWidth}} component={MaterialUI.Paper} elevation={10}>
-            <h2>Prediction Table</h2>
+            <h2>Prediction Table [Confrimation Cases]</h2>
                 <MaterialUI.Table style={window.innerWidth>800?{
                         
                         minWidth:650,
                 }:{width:window.innerWidth}}>
-                   <MaterialUI.TableHead> <MaterialUI.TableRow style={{marginLeft:200}}><MaterialUI.TableCell align="center">Date</MaterialUI.TableCell><MaterialUI.TableCell align="center">India</MaterialUI.TableCell><MaterialUI.TableCell align="center">World</MaterialUI.TableCell></MaterialUI.TableRow></MaterialUI.TableHead>
+                   <MaterialUI.TableHead> <MaterialUI.TableRow style={{marginLeft:200,backgroundColor:'#66b0ff'}}><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}}  align="center">Date</MaterialUI.TableCell><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">India</MaterialUI.TableCell><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">World</MaterialUI.TableCell></MaterialUI.TableRow></MaterialUI.TableHead>
                    <MaterialUI.TableBody>
-                    {this.state.total.map(item => (<MaterialUI.TableRow key={item[0]}><MaterialUI.TableCell align="center">{item[0]}</MaterialUI.TableCell ><MaterialUI.TableCell align="center">{item[1]}</MaterialUI.TableCell><MaterialUI.TableCell align="center">{item[2]}</MaterialUI.TableCell></MaterialUI.TableRow>))}
+                    {this.state.total.map((item,index) => (<MaterialUI.TableRow key={item[0]} style={{backgroundColor:index%2==0?'white':'#66b0ff'}}><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">{item[0]}</MaterialUI.TableCell ><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">{item[1]}</MaterialUI.TableCell><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">{item[2]}</MaterialUI.TableCell></MaterialUI.TableRow>))}
                     </MaterialUI.TableBody>
                     
                 </MaterialUI.Table>

@@ -5,7 +5,7 @@ export default class IndiaStatus extends Component{
     constructor(props){
         super(props);
         this.state={
-            series:[],
+            series:[1,1,1],
             options: {
                 chart: {
                   width: 380,

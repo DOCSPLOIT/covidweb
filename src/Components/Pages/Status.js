@@ -6,9 +6,10 @@ import GlobalHistory from '../Graphs/GlobalHistory'
 import IndiaStatus from '../Graphs/IndiaStatus'
 import GlobalStatus from '../Graphs/GlobalStatus'
 import DeathChange from '../Graphs/DeathsChange'
-import StateWise from '../Graphs/StateWise'
 import GIFFB from '../Media/giffb.gif'
 import { Paper } from '@material-ui/core'
+import logosm from '../Media/logosm.png'
+import iedclog from '../Media/iedcw.png'
 export default class News extends Component{
     
     render(){
@@ -18,14 +19,14 @@ export default class News extends Component{
             <div>
                 <center>
                 <div style={{width:window.innerWidth*.8,marginTop:window.innerHeight*.15}}>
-                    <h3>India Cases By Day</h3>
+                    <h3>India Cases Till Today</h3>
                     <div style={{marginTop:window.innerHeight*.1}}>
                     <IndiaHistory/>
                     </div>
                     
                 </div>
                 <div style={{width:window.innerWidth*.8}} >
-                    <h3>World Cases By Day</h3>
+                    <h3>World Cases Till Today</h3>
                     <GlobalHistory/>
                 </div>
                 <h3> Total World Death </h3>
@@ -54,9 +55,23 @@ export default class News extends Component{
                </center>    
                 <br/><br/>
                 <footer>
-                 <div className="footer">
-                     <center><p style={{fontWeight:"bold",color:"white"}}>IEDC SSCOLLEGE, Areekode</p></center>
+                <div className="footer">
+                     <br/>
+                     <img src={logosm} style={{
+                         width:'75px',
+                         height:'75px',
+                         position:'absolute',
+                         marginLeft:"20px"
+                     }}/>
+                     <center><p style={{color:"white"}}><b style={{fontSize:20}}>Sullamussalam Science College |</b><l style={{fontSize:14}}>Powered By IEDC </l></p></center>
                  </div>
+                
+                 <img src={iedclog} style={{
+                         width:'100px',
+                         height:'100px',
+                         position:'absolute',
+                         marginLeft:window.innerWidth*.9
+                     }}/>
              </footer> 
             </div>:
             <div>

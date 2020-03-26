@@ -19,13 +19,13 @@ export default class GlobalHistory extends Component {
 
                 },
                 dataLabels: {
-                    enabled: false,
+                    enabled: true,
                 },
 
                  stroke: {
                      width:2.5
                  },
-                 colors:["#005c31"],
+                 colors:["#ee571b"],
                 grid: {
                     padding: {
                         left: 10, // or whatever value that works
@@ -63,7 +63,7 @@ export default class GlobalHistory extends Component {
             <Chart
                     options={this.state.options}
                     series={this.state.series}
-                    type="line"
+                    type="area"
                     width="100%"
                     height="500"
                 />
