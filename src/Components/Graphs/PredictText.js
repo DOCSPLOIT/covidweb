@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import * as MaterialUI from '@material-ui/core'
+import { url } from "../Configure";
+// import { regressionUrl } from "../Configure";
 
 
 export default class PredictText extends Component {
@@ -7,57 +9,59 @@ export default class PredictText extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            timestamp: this.props.timestamp,
-            days: this.props.days,
+            data:[],
             indiaData: [],
             GlobalData: [],
-            total: []
+            keralaData:[],
+           
         }
     }
 
     componentDidMount() {
-        fetch(`https://covid19regression.herokuapp.com/predict/${this.state.timestamp}/${this.state.days}`)
+        fetch(`${url}/PredictionPage`)
             .then(response => response.json())
             .then(res => {
+            
+                
+                const oneDay = 1000 * 3600 * 24
+                let today = Date.now()
+                let date = [];
+                const n = res['arr'].length;
+                for (let i = 0; i < n; i++) {
+                    let d = today + i * oneDay;
+                   let de=new Date(d)
+                 let dd=de.getDate()
+                 let mm=de.getMonth()+1
+                 let yy=de.getFullYear()
+                 d=`${dd}-${mm}-${yy}`
+                    date.push([d,res['arr'][i]])
 
-                let idata = res.india.map(d => [d.timestamp, d.prediction]);
-                let gdata = res.global.map(d => [d.timestamp, d.prediction]);
-
-                this.setState({
-                    indiaData: idata,
-                    GlobalData: gdata,
-                })
-                const len = this.state.indiaData.length;
-
-                let arr = [];
-                for (let i = 0; i < len; i++) {
-                    let date = new Date(this.state.indiaData[i][0]);
-                    let dd = date.getDate();
-                    let mm = date.getMonth()+1;
-                    let yy = date.getFullYear();
-                    date = dd + '/' + mm + '/' + yy;
-                    let item = [date, this.state.indiaData[i][1], this.state.GlobalData[i][1]]
-                    arr.push(item)
                 }
-                this.setState({ total: arr })
-            })
+                
+                
+                
+           this.setState({data:date})
+            })        
     }
-
+    
     render() {
+        
+      
+
         
         return (
             
             <MaterialUI.TableContainer style={window.innerWidth>800?{
                 width:window.innerWidth*.5,alignSelf:"center"
         }:{width:window.innerWidth}} component={MaterialUI.Paper} elevation={10}>
-            <h2>Prediction Table [Confrimation Cases]</h2>
+            <h2>Prediction Table [Confirmation Cases]</h2>
                 <MaterialUI.Table style={window.innerWidth>800?{
                         
                         minWidth:650,
                 }:{width:window.innerWidth}}>
-                   <MaterialUI.TableHead> <MaterialUI.TableRow style={{marginLeft:200,backgroundColor:'#66b0ff'}}><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}}  align="center">Date</MaterialUI.TableCell><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">India</MaterialUI.TableCell><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">World</MaterialUI.TableCell></MaterialUI.TableRow></MaterialUI.TableHead>
+                   <MaterialUI.TableHead> <MaterialUI.TableRow style={{marginLeft:200,backgroundColor:'#66b0ff'}}><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}}  align="center">Date</MaterialUI.TableCell><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">Kerala</MaterialUI.TableCell><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">India</MaterialUI.TableCell><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">World</MaterialUI.TableCell></MaterialUI.TableRow></MaterialUI.TableHead>
                    <MaterialUI.TableBody>
-                    {this.state.total.map((item,index) => (<MaterialUI.TableRow key={item[0]} style={{backgroundColor:index%2==0?'white':'#66b0ff'}}><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">{item[0]}</MaterialUI.TableCell ><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">{item[1]}</MaterialUI.TableCell><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">{item[2]}</MaterialUI.TableCell></MaterialUI.TableRow>))}
+                    {this.state.data.map((item,index) => (<MaterialUI.TableRow key={item[0]} style={{backgroundColor:index%2==0?'white':'#66b0ff'}}><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">{item[0]}</MaterialUI.TableCell ><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">{item[1][0]}</MaterialUI.TableCell><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">{item[1][1]}</MaterialUI.TableCell><MaterialUI.TableCell style={{fontWeight:"bold",color:'#25266d'}} align="center">{item[1][2]}</MaterialUI.TableCell></MaterialUI.TableRow>))}
                     </MaterialUI.TableBody>
                     
                 </MaterialUI.Table>
@@ -66,6 +70,6 @@ export default class PredictText extends Component {
 
         );
     }
-
+   
 }
 

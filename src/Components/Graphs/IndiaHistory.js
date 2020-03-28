@@ -45,11 +45,11 @@ class IndiaHistory extends Component {
 
     }
     async componentDidMount() {
-        const response = await fetch(`${url}/getHistoryIndia`);
+        const response = await fetch(`${url}/statusPage`);
 
         let res = await response.json();
 
-        this.setState({ data: res })
+        this.setState({ data: res['historyIndia'] })
 
         this.setData()
 

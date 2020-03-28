@@ -3,6 +3,7 @@ import News from './News'
 import { Animated } from 'react-animated-css';
 import logosm from '../Media/logosm.png'
 import iedclog from '../Media/iedcw.png'
+import Loader from '../Extras/Loader';
 export default class AllNews extends Component {
     constructor(props) {
         super(props)
@@ -11,6 +12,7 @@ export default class AllNews extends Component {
             who: [],
             all: [],
             showedIndex: -1,
+            isLoading:false
         };
     }
     componentDidMount() {
@@ -20,7 +22,8 @@ export default class AllNews extends Component {
                 this.setState({
                     gok: res.gok,
                     who: res.who,
-                    all: res.gok.concat(res.who)
+                    all: res.gok.concat(res.who),
+                    isLoading:true
                 })
 
             })
@@ -28,6 +31,8 @@ export default class AllNews extends Component {
     }
     render() {
         return (
+            <>
+            {this.state.isLoading===true?<div>
             <div style={{
 
             }}>
@@ -65,6 +70,8 @@ export default class AllNews extends Component {
             </>
                     }
             </div>
+            </div>:<Loader/>}
+            </>
         )
     }
     ShowedNews = (i) => {

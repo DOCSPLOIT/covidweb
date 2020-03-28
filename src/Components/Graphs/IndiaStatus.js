@@ -39,14 +39,15 @@ export default class IndiaStatus extends Component{
             
         }
     }
-     componentDidMount(){
-        
-        fetch(`${url}/reportsIndia`).then(r=>r.json())
-        .then(res=>{
-           this.setState({series:[parseInt(res.TotalCases),parseInt(res.TotalRecovered),parseInt(res.TotalDeaths)]})
-        })
-       
-    }
+    componentDidUpdate(prevProps,prevState){
+  
+      
+      if(this.state.series[0]!=prevProps.cases){
+        this.setState({series:[this.props.cases,this.props.recovered,this.props.deaths]})
+      }
+      
+    
+   }
     render(){
        
         

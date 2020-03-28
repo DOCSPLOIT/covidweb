@@ -5,7 +5,8 @@ export default class KeralaStatus extends Component{
     constructor(props){
         super(props);
         this.state={
-            series:[1,.5,0],
+            series:[0,0,0],
+            
             options: {
                 chart: {
                   width: 380,
@@ -38,18 +39,21 @@ export default class KeralaStatus extends Component{
               }
         }
     }
-    componentDidMount(){
-        fetch(`${url}/stateWiseData/Kerala`).then(r=>r.json())
-        .then(res=>{
-            this.setState({series:[
-                parseInt(res['Total Confirmed cases (Indian National)'])+
-                parseInt(res['Total Confirmed cases ( Foreign National )']),
-                parseInt(res['Cured/Discharged/Migrated']),
-                parseInt(res['Death'])
-        ]})
-        })
-    }
+  
+  componentDidUpdate(prevProps,prevState){
+    
+    
+     if(this.state.series[0]!=prevProps.cases){
+       this.setState({series:[this.props.cases,this.props.recovered,this.props.deaths]})
+     }
+     
+   
+   
+  }
+   
     render(){
+  
+      
         return(
             <div id="chart" style={window.innerWidth>800?{
                 marginTop:window.innerHeight*.25,marginLeft:window.innerWidth*.1
@@ -59,3 +63,4 @@ export default class KeralaStatus extends Component{
         )
     }
 }
+

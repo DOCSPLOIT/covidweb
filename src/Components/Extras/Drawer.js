@@ -15,6 +15,7 @@ import StatusIcon from '@material-ui/icons/Equalizer'
 import SourceIcon from '@material-ui/icons/PermMediaOutlined'
 import PredictIcon from '@material-ui/icons/ShowChart'
 import DrawerIcon from '@material-ui/icons/Menu'
+import InfoIcon from '@material-ui/icons/InfoOutlined'
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -55,20 +56,20 @@ export default function TemporaryDrawer() {
       }}>Covid Updates</h3>
       <Divider />
       <List>
-        {['Home', 'News', 'Status', 'Sources','Prediction'].map((text, index) => (
+        {['Home','Updates','Prediction','Status','Sources','About'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index===0?<HomeIcon style={{color:"rgb(0, 31, 58)"}}/>:index===1?<NewsIcon style={{color:"rgb(0, 31, 58)"}}/>:index===2?<StatusIcon style={{color:"rgb(0, 31, 58)"}}/>:
-            index===3?<SourceIcon style={{color:"rgb(0, 31, 58)"}} />:<PredictIcon style={{color:"rgb(0, 31, 58)"}} />
-            }</ListItemIcon>
+            <ListItemIcon>{index===0?<HomeIcon style={{color:"rgb(0, 31, 58)"}}/>:index===2?<PredictIcon style={{color:"rgb(0, 31, 58)"}} />:index===3?<StatusIcon style={{color:"rgb(0, 31, 58)"}}/>:
+            index===1?<NewsIcon style={{color:"rgb(0, 31, 58)"}}/>
+        :index===4?<SourceIcon style={{color:"rgb(0, 31, 58)"}} />:<InfoIcon style={{color:"rgb(0, 31, 58)"}}/>}</ListItemIcon>
            <Link style={{textDecoration:'none',}} to={
-             index===0?'/':index===1?'/news':index===2?'/status':index===3?'/source':'/predict'
+             index===0?'/':index===2?'/predict':index===3?'/status':index===1?'/news':index===4?'/source':'/about'
            }> <ListItemText style={{color:"rgb(0, 31, 58)"}} primary={text}  /></Link>
           </ListItem>
         ))}
       </List>
       <footer>
                     <div className="footer" style={{
-                      marginTop:window.innerHeight*.33
+                      marginTop:window.innerHeight*.23
                     }}>
                         <br/>
                         <center><p style={{color:"white"}}><b style={{fontSize:15}}>Sullamussalam Science College </b><l style={{fontSize:14}}>Powered By IEDC </l></p></center>

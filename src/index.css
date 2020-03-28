@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@font-face {
+  font-family: 'arch';
+  src: url('Components/Media/arch/archia-regular-webfont.eot');
+  src: url('Components/Media/arch/archia-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('Components/Media/arch/archia-regular-webfont.woff2') format('woff2'),
+       url('Components/Media/arch/archia-regular-webfont.woff') format('woff'),
+       url('Components/Media/arch/archia-regular-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+
+}

@@ -13,9 +13,11 @@ const useStyles = makeStyles({
   root: {
     width:"100%",
     marginTop:window.innerHeight,
-    color:"white",
+    color:"black",
     position:"fixed",
     zIndex:99,
+    backgroundColor:"rgb(0, 31, 58)"
+    
     
   },
 });
@@ -35,11 +37,13 @@ export default function SimpleBottomNavigation() {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction onClick={()=>navigate.push("/")} style={{color:"rgb(0, 31, 58)"}} label="Home" icon={<HomeIcon />} />
-      <BottomNavigationAction onClick={()=>navigate.push("/news")} style={{color:"rgb(0, 31, 58)"}} label="News" icon={<NewsIcon />} />
-      <BottomNavigationAction onClick={()=>navigate.push("/status")} style={{color:"rgb(0, 31, 58)"}} label="Status" icon={<StatusIcon />} />
-      <BottomNavigationAction onClick={()=>navigate.push("/source")} style={{color:"rgb(0, 31, 58)"}} label="Sources" icon={<MediaIcon/>} />
-      <BottomNavigationAction onClick={()=>navigate.push("/predict")} style={{color:"rgb(0, 31, 58)"}} label="Prediction" icon={<PredictIcon/>} />
+      <BottomNavigationAction onClick={()=>navigate.push("/")} style={{color:"white"}} label="Home" icon={<HomeIcon style={{color:"white"}} />} />
+      <BottomNavigationAction onClick={()=>navigate.push("/news")} style={{color:"white"}} label="Updates" icon={<NewsIcon />} />
+      <BottomNavigationAction onClick={()=>navigate.push("/predict")} style={{color:"white"}} label="Prediction" icon={<PredictIcon/>} />
+      <BottomNavigationAction onClick={()=>navigate.push("/status")} style={{color:"white"}} label="Status" icon={<StatusIcon />} />
+
+      <BottomNavigationAction onClick={()=>navigate.push("/source")} style={{color:"white"}} label="Sources" icon={<MediaIcon/>} />
+     
     </BottomNavigation>
   );
 }

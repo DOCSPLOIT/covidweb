@@ -1,20 +1,34 @@
 import React, { Component } from 'react'
 import '../Styles/status.css'
-import KeralaStatus from '../Graphs/KeralaStatus'
 import IndiaHistory from '../Graphs/IndiaHistory'
 import GlobalHistory from '../Graphs/GlobalHistory'
-import IndiaStatus from '../Graphs/IndiaStatus'
-import GlobalStatus from '../Graphs/GlobalStatus'
 import DeathChange from '../Graphs/DeathsChange'
 import GIFFB from '../Media/giffb.gif'
 import { Paper } from '@material-ui/core'
 import logosm from '../Media/logosm.png'
 import iedclog from '../Media/iedcw.png'
+import DistrictWise from '../Graphs/DistrictWise'
+import { url } from '../Configure'
+import Loader from '../Extras/Loader'
 export default class News extends Component{
+    constructor(props){
+        super(props)
+        this.state={
+            isLoading:false
+
+        }
+    }
+    componentDidMount(){
+        fetch(`${url}/statusPage`).then(r=>r.json())
+        .then(res=>{
+            this.setState({isLoading:true})
+        })
+    }
     
     render(){
         return(
             <>
+            {this.state.isLoading===true?<div>
             {window.innerWidth>800?
             <div>
                 <center>
@@ -32,28 +46,24 @@ export default class News extends Component{
                 <h3> Total World Death </h3>
                 <DeathChange/>
                 </center>
-                <div style={{display:"flex",marginTop:window.innerHeight*.1,marginLeft:window.innerHeight*.05}}>
-            <h2 style={{marginLeft:window.innerHeight*.05}}>Kerala</h2>
-            <div style={{marginTop:-window.innerHeight*.2,marginLeft:-window.innerWidth*.12}}>
-            <KeralaStatus/>
-            </div>
-            <h2>India</h2>
-            <div style={{marginTop:window.innerHeight*.05,marginLeft:-window.innerWidth*.02}}>
-            <IndiaStatus/>
-            </div>
-                <h2 style={{marginLeft:-window.innerWidth*.01}}>World</h2>
-                <div style={{marginTop:window.innerHeight*.05,marginLeft:-window.innerWidth*.03}}>
-                <GlobalStatus/>
-              
-            </div>
-            
-                </div>
-            <center>
+              <br/> <br/> 
+               <Paper elevation={10} style={{marginLeft:window.innerWidth*.25
+                ,width:window.innerWidth*.52}}>
+                    <br/>
+                    <h3 style={{textAlign:"center"}}>Kerala DistrictWise Confirmed Cases</h3>
+               <DistrictWise/>
+               <br/>
+               <p style={{fontFamily:'Lato',fontSize:12,color:'gray',textAlign:"center"}}>*data updated in reference with covid19india.com</p>
+                   <br/>
+                   </Paper>  
+
+                <br/><br/>
+                <center>
                 <Paper elevation={4} style={{width:350}}>
                 <img src={GIFFB} alt="autedecatre"/>
                 </Paper>
-               </center>    
-                <br/><br/>
+               </center> 
+               <br/><br/>
                 <footer>
                 <div className="footer">
                      <br/>
@@ -86,18 +96,17 @@ export default class News extends Component{
                     <GlobalHistory/>
                     
                 </div>
-                <div style={{marginTop:window.innerHeight*.9}}>
-                     </div>
-                <h3 className="kerala" style={{marginTop:window.innerHeight*.05}}>Kerala</h3>
+                <Paper elevation={10} style={{
+            width:window.innerWidth,marginTop:window.innerHeight*.9}}>
+                    <br/>
+                    <h3 style={{textAlign:"center"}}>Kerala DistrictWise Confirmed Cases</h3>
+                    <br/>
+               <DistrictWise/>
+               <br/>
+               <p style={{fontFamily:'Lato',fontSize:12,color:'gray'}}>*data updated in reference with covid19india.com</p>
+                   </Paper>  
                 <div>
-                <KeralaStatus/>
-                </div>
-              
-                <h3 className="kerala" style={{marginTop:window.innerHeight*.05,left:"40%"}}>India</h3>
-                <div>
-                <IndiaStatus/>
-                </div>
-                <div>
+                <br/><br/>
                     <img src={GIFFB} alt="autedecatre"/>
 
                </div>
@@ -105,7 +114,7 @@ export default class News extends Component{
                 <br/><br/><br/><br/>
                 
             </div>
-    }
+    }   </div>:<Loader/>}
             </>
         )
     }

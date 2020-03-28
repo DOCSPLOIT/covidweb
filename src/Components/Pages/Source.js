@@ -2,15 +2,20 @@ import React, { Component } from 'react'
 import * as MaterialUI from '@material-ui/core'
 import logosm from '../Media/logosm.png'
 import iedclog from '../Media/iedcw.png'
+
+
 export default class Sources extends Component{
     constructor(props){
         super(props);
         this.state={
-
+          
         }
     }
+   
     render(){
         return(
+            <>
+            
           <div style={{marginTop:window.innerHeight*.15}}>
               <center>
              <h1 style={{fontFamily: 'Poppins,sans-serif'}}>Helpful Sources</h1>
@@ -31,11 +36,16 @@ export default class Sources extends Component{
              
                  <a style={{fontFamily: 'Poppins,sans-serif',textDecoration:"none"}} href="https://www.facebook.com/worldwideengineeringcommunity/videos/502978780383351/">Animated statistics from @world_wide_engineeringcommunity</a>
             <br/><br/>
-            
+            <h4>GoK Direct (Goverment of Kerala)</h4>
+                 <a style={{fontFamily: 'Poppins,sans-serif',textDecoration:"none"}} href="http://prdlive.kerala.gov.in">http://prdlive.kerala.gov.in</a>
+                 <br/><br/>
+                 <p>Kerala Live Updates from</p>  <a style={{fontFamily: 'Poppins,sans-serif',textDecoration:"none"}} href="api.covid19india.org">api.covid19india.org</a>
+                 <br/><br/>
              </MaterialUI.Paper>
-           
+         
              </center>
              <br/><br/>
+             
              {
                  window.innerWidth>800?
                  <footer>
@@ -66,7 +76,7 @@ export default class Sources extends Component{
              
           </div>
          
-        
+        </>
           
         )
     }

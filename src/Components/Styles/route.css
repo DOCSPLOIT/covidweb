@@ -27,68 +27,24 @@ background: #001F3A;
     color: #FFFFFF;
 }
 
-
-
-/* HOME */
-
-
-.home{
-    position: absolute;
-    top: 28px;
-    
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 21px;
-    text-align: right;
-    text-decoration: none;
-    color: #FFFFFF;
-}
+ .navitem{
+        margin:10px;
+        color: rgb(255, 255, 255);
+        text-decoration: wavy;
+        
+    }
 
 
 
-/* NEWS */
 
 
-.news{
-
-    position: absolute;
-    top: 28px;
-    text-decoration: none;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 21px;
-    text-align: right;
-    
-    color: #FFFFFF;
-}
-
-
-
-/* STATUS */
-
-
-.status{
-    position: absolute;
-top: 28px;
-text-decoration: none;
-font-family: Roboto;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 21px;
-text-align: right;
-
-color: #FFFFFF;
-}
 .navlink{
     position: absolute;
-width: 407px;
-height: 53px;
+width: auto;
+height: auto;
 flex-direction: row;
+margin-left: 60%;
+margin-top: 30px;
 
 }
 

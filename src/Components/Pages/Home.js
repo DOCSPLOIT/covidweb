@@ -9,71 +9,81 @@ import StateWise from '../Graphs/StateWise';
 import { Animated } from 'react-animated-css';
 import logosm from '../Media/logosm.png'
 import iedclog from '../Media/iedcw.png'
+import Loader from '../Extras/Loader';
+import DistrictWiseBar from '../Graphs/DistrictWiseBar';
+
+
 export default class News extends Component{
 
     constructor(props){
         super(props);
     this.state={
+        data:[],
        indiaTdeath:0,
        worldTdeath:0,
        worldTcases:0,
        indiaTcases:0,
        worldRecover:0,
        indiaRecover:0,
-       globalPredict:[],
-       indiaPredict:[],
+       globalPredict:0,
+       indiaPredict:0,
+       keralaPredict:0,
        keralaTdeath:0,
        keralaTCases:0,
-       keralaRecover:0
+       keralaRecover:0,
+       stateWiseRecover:0,
+       isLoading:false
     }    
     }
-    UNSAFE_componentWillMount(){
-        console.log(new Date().getTime());
+    componentDidMount(){
         
-        fetch(`https://covid19regression.herokuapp.com/predict/${new Date().getTime()}/2`)
+        
+        fetch(`${url}/homePage`)
         .then(r=>r.json())
         .then(res=>{
-            this.setState({indiaPredict:res['india'][0]['prediction'],
-           globalPredict:res['global'][0]['prediction']
-           })
-           
+           let ksumreccover=parseInt(res['kerala']["Total Confirmed cases (Indian National)"])+
+                         parseInt(res['kerala']['Total Confirmed cases ( Foreign National )'])
+               this.setState({
+                   keralaPredict:res['prediction']['arr'][0][0],
+                   indiaPredict:res['prediction']['arr'][0][1],
+                   globalPredict:res['prediction']['arr'][0][2],
+                   keralaRecover:res['kerala']["Cured/Discharged/Migrated"],
+                   keralaTdeath:res['kerala']['Death'],
+                   indiaRecover:res['india']['TotalRecovered'],
+                   indiaTdeath:res['india']['TotalDeaths'],
+                   worldRecover:res['global']['recovered'],
+                   worldTdeath:res['global']['deaths'],
+                   keralaTCases:ksumreccover,
+                   worldTcases:res['global']['cases'],
+                   indiaTcases:res['india']['TotalCases'],
+                   isLoading:true
+               })
+             const sdata=res['stateWiseData'];
+             
+             sdata.pop();
+             sdata.pop();
+             this.setState({data:sdata})
+             
+             
         })
+       
     }
-    
-    componentDidMount() { 
-     fetch(`${url}/reportsIndia`).then(r=>r.json())
-     .then(res=>{
-         this.setState({indiaTcases:res['TotalCases'],
-                indiaTdeath:res['TotalDeaths'],
-                indiaRecover:res['TotalRecovered']
-        })
-     })
-     fetch(`${url}/globalStatus`).then(r=>r.json())
-     .then(res=>{
-         this.setState({worldTcases:res['cases'],
-                worldRecover:res['recovered'],
-                worldTdeath:res['deaths']
-        })
-     })
-     fetch(`${url}/stateWiseData/Kerala`).then(r=>r.json())
-     .then(res=>{
-         this.setState({
-           keralaTCases:  parseInt(res['Total Confirmed cases (Indian National)'])+parseInt(res['Total Confirmed cases ( Foreign National )']),
-           keralaRecover: parseInt(res['Cured/Discharged/Migrated']),
-            keralaTdeath: parseInt(res['Death'])
-     })
-     })
      
- }
- 
+   
+
+
+
     render(){
         let day=new Date();
         day=day.toDateString();
-        
+        let kd=this.state.keralaTdeath
+        let kr=this.state.keralaRecover
+        let kc=this.state.keralaTCases
         
         
         return(
             <>
+            {this.state.isLoading===true?<div>
            {window.innerWidth>800?
                <div style={{marginTop:100,width:"100%"}} >
                   
@@ -118,45 +128,59 @@ export default class News extends Component{
             <div style={{display:"flex",marginTop:window.innerHeight*.1}}>
             <h2 style={{marginLeft:window.innerHeight*.05}}>Kerala</h2>
             <div style={{marginTop:-window.innerHeight*.2,marginLeft:-window.innerHeight*.25}}>
-            <KeralaStatus/>
+            <KeralaStatus cases={kc} deaths={parseInt(kd)} recovered={parseInt(kr)} />
             </div>
             <h2 style={{textAlign:"center"}}>India</h2>
             <div style={{marginTop:window.innerHeight*.05,marginLeft:-window.innerHeight*.05}}>
-            <IndiaStatus/>
+            <IndiaStatus cases={parseInt(this.state.indiaTcases)} deaths={parseInt(this.state.indiaTdeath)} recovered={parseInt(this.state.indiaRecover)} />
             </div>
                 <h2 style={{marginLeft:5}}>World</h2>
                 <div style={{marginTop:window.innerHeight*.05,marginLeft:-window.innerHeight*.07}}>
-                <GlobalStatus/>
+                <GlobalStatus cases={parseInt(this.state.worldTcases)} deaths={parseInt(this.state.worldTdeath)} recovered={parseInt(this.state.worldRecover)} />
               
             </div>
                 </div>
                 
                 <br/>
                 <h3 style={{marginLeft:window.innerWidth*.4}}>StateWise Reports(India)</h3>
+               <div style={{display:"flex"}}>
                 <StateWise/>
+               
                 <center>
     <MaterialUI.Paper  elevation={10} style={{
         backgroundColor:"#4f5a90",
-        width:200,height:350,
+        width:200,
        position:"absolute",
-       zIndex:99,marginLeft:window.innerWidth*.83,marginTop:-window.innerHeight
-        }} >
+       zIndex:99,marginLeft:window.innerWidth*.02,marginTop:window.innerHeight*.2}}>
            <br/>
             <h3 style={{color:"white"}}>Our Today's Prediction</h3>
     <p style={{color:"white"}}>On {'\n'} Confirming Cases</p>
     <p style={{color:"white"}}>{day}</p>
+    <p style={{color:"white"}}>Kerala </p>
+    <b style={{color:"white",fontSize:25}}>{this.state.keralaPredict}</b>
         <p style={{color:"white"}}>India </p>
     <b style={{color:"white",fontSize:25}}>{this.state.indiaPredict}</b>
         <p style={{color:"white"}}>World</p>
         <b style={{color:"white",fontSize:25}}>{this.state.globalPredict}</b>
         <br/><br/>
         <a style={{color:"white",fontSize:15}} href="/predict">More</a>
-            
+          <br/>  <br/><br/>
        
     </MaterialUI.Paper>
     </center>
     
-    
+    </div>
+    <br/>
+    <center>
+    <MaterialUI.Paper style={{width:window.innerWidth*.8}} elevation={10}>
+        <br/>
+              <h3>Districtwise Confirmed Reports (Kerala)</h3>
+                <DistrictWiseBar/>
+                <br/>
+                <p style={{fontFamily:'Lato',fontSize:12,color:'gray',textAlign:"center"}}>*data updated in reference with covid19india.org</p>
+                <br/>
+              </MaterialUI.Paper>
+              </center>
    <br/><br/><br/>
                 <footer>
                  <div className="footer">
@@ -267,13 +291,20 @@ export default class News extends Component{
             <h3>Statewise Reports (India)</h3>
                 <StateWise/>
                 </Animated>
+              <MaterialUI.Paper elevation={10}>
+              <h3>Districtwise Confirmed Reports (Kerala)</h3>
+                <DistrictWiseBar/>
+                
+                <p style={{fontFamily:'Lato',fontSize:12,color:'gray',textAlign:"center"}}>*data updated in reference with covid19india.org</p>
+                <br/>
+              </MaterialUI.Paper>
             </center>
             <h3 style={{textAlign:"center",fontSize:25}}>Kerala</h3>
-            <center><KeralaStatus/> </center> 
+            <center><KeralaStatus cases={kc} deaths={parseInt(kd)} recovered={parseInt(kr)}/> </center> 
             <h3 style={{textAlign:"center",fontSize:25}}>India</h3>
-            <center> <IndiaStatus/></center> 
+            <center> <IndiaStatus cases={parseInt(this.state.indiaTcases)} deaths={parseInt(this.state.indiaTdeath)} recovered={parseInt(this.state.indiaRecover)}/></center> 
             <h3 style={{textAlign:"center",fontSize:25}}>World</h3>
-            <center><GlobalStatus/></center>
+            <center><GlobalStatus cases={parseInt(this.state.worldTcases)} deaths={parseInt(this.state.worldTdeath)} recovered={parseInt(this.state.worldRecover)}/></center>
             
             <MaterialUI.Paper elevation={10} style={{
         backgroundColor:"#4f5a90",
@@ -283,24 +314,30 @@ export default class News extends Component{
         }} >
             <br/>
           <center>  <h3 style={{color:"white"}}>Our Today's Prediction</h3>
-    <i>{}</i>
           <p style={{color:"white"}}>On Confirming Cases</p>
+          <p style={{color:"white"}}>{day}</p>
           <div style={{display:"flex"}}>
-        <p style={{color:"white",marginRight:window.innerWidth*.2,marginLeft:window.innerWidth*.3}}>India</p>
+              
+        <p style={{color:"white",marginRight:window.innerWidth*.2,marginLeft:window.innerWidth*.1}}>Kerala</p>
+        <p style={{color:"white",marginRight:window.innerWidth*.15}}>India</p>
         <p style={{color:"white"}}>World</p>
         </div>
         <div style={{display:"flex"}}>
-    <b style={{color:"white",fontSize:25,marginLeft:window.innerWidth*.29,marginRight:window.innerWidth*.15}}>{this.state.indiaPredict}</b>
+    <b style={{color:"white",fontSize:25,marginLeft:window.innerWidth*.1,marginRight:window.innerWidth*.2}}>{this.state.keralaPredict}</b>
        
+        <b style={{color:"white",fontSize:25,marginRight:window.innerWidth*.1}}>{this.state.indiaPredict}</b>
+        
         <b style={{color:"white",fontSize:25}}>{this.state.globalPredict}</b>
         </div>
-        <br/><br/>
+        <br/>
         <a style={{color:"white",fontSize:15}} href="/predict">More</a>
+        <br/><br/>
         </center>
     </MaterialUI.Paper>
     <br/><br/><br/>
             </div>
             }
+            </div>:<Loader/>}
             </>
         )
     }

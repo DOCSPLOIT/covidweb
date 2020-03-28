@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
 import * as MaterialUI from '@material-ui/core'
+import { url } from "../Configure";
 export default class DeathChange extends Component {
 
     constructor(props) {
@@ -53,11 +54,11 @@ export default class DeathChange extends Component {
     }
 
     async componentDidMount() {
-        const response = await fetch("https://covid19apiss.herokuapp.com/deaths");
+        const response = await fetch(`${url}/statusPage`);
 
         let res = await response.json();
 
-        this.setState({ data: res.table })
+        this.setState({ data: res['deaths']['table'] })
         let deathData = [];
         let changeDeathData = [];
         this.state.data.forEach(i => {

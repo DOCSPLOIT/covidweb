@@ -1,35 +1,29 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
 import * as MaterialUI from '@material-ui/core'
+import { url } from "../Configure";
 export default class PredictWorld extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            timestamp: this.props.timestamp,
-            days: this.props.days,
-            indiaData: [],
-            GlobalData: [],
+
             options: {
-                title:{
-                    text:'Confirmed Cases Prediction'
-                },
+                colors:["#f06d30"],
                 xaxis: {
-                    style: {  
+                    style: {
+                        margin: 10
                     },
                     type: 'datetime'
 
                 },
-               tooltip:{
-                   shared:false
-               },
                 dataLabels: {
                     enabled: true,
                 },
 
-                 stroke: {
-                     width:2.5
-                 },
+                // stroke: {
+                //     curve: 'smooth'
+                // },
 
                 grid: {
                     padding: {
@@ -41,61 +35,57 @@ export default class PredictWorld extends Component {
 
             },
             series: [
-                // {
-                //     name: "India",
-                //     data: []
-                // }
                 {
-                    name: "Global",
-                    data: []
+                    name: "World",
+                    data: [[1585236526093, 50], [1585322926093, 75], [1585409326093, 100], [1585495726093, 125], [1585582126093, 150], [1585668526093, 175], [1585754926093, 200]]
                 }
             ]
         }
     }
-
     componentDidMount() {
-        fetch(`https://covid19regression.herokuapp.com/predict/${this.state.timestamp}/${this.state.days}`)
+        fetch(`${url}/PredictionPage`)
             .then(response => response.json())
             .then(res => {
-
-                // let idata = res.india.map(d => {
-                //     return [d.timestamp, d.prediction];
-                // });
-                let gdata = res.global.map(d => {
-                    return [d.timestamp, d.prediction];
-                });
-               
+            
+                
+                const oneDay = 1000 * 3600 * 24
+                let today = Date.now()
+                let gdata = [];
+                const n = res['arr'].length;
+                for (let i = 0; i < n; i++) {
+                    let d = today + i * oneDay;
+                    gdata.push([d, res['arr'][i][2]])
+                }
                 this.setState({
                     series: [
                         {
-                            name: "Global",
+                            name: "World",
                             data: gdata
                         }
                     ]
                 })
-
-
             })
-
     }
 
     render() {
         return (
           
-                <MaterialUI.Paper elevation={10} style={
-                    window.innerWidth>800?{width:window.innerWidth*.4,
-                    height:window.innerHeight*.6,
-                    }:{width:window.innerWidth,}}>
-                <h1>World</h1>
-                <Chart
-                   
-                    height={window.innerHeight*.4}
-                    type="area"
-                    options={this.state.options}
-                    series={this.state.series}
-                    
-                />
-                </MaterialUI.Paper>
+            <div style={window.innerWidth>800?{display:"flex",marginTop:window.innerWidth*.02,justifyContent:"center"}:{}} >
+            
+            <MaterialUI.Paper elevation={10} style={window.innerWidth>800?{width:window.innerWidth*.4,
+                height:window.innerHeight*.6,}:{width:window.innerWidth}}>
+            <h1>World</h1>
+            <Chart
+                width={window.innerWidth>800?window.innerWidth*.4:window.innerWidth}
+                height={window.innerHeight*.4}
+                type="area"
+                options={this.state.options}
+                series={this.state.series}
+
+            />
+            </MaterialUI.Paper>
+           
+        </div>
            
         );
     }

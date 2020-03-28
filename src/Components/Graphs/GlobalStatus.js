@@ -84,19 +84,16 @@ export default class GlobalStatus extends Component {
       
       };
     }
-    componentDidMount(){
-        fetch(`${url}/globalStatus`).then(r=>r.json()).then(res=>{
-            this.setState({series:[res.cases,res.recovered,res.deaths],
-            active_series:[res['active_cases']['currently_infected_patients'],
-        res['active_cases']['inMidCondition'],res['active_cases']['criticalStates']
-        ],
-        closed_series:[res["closed_cases"]["cases_which_had_an_outcome"],
-    res["closed_cases"]["recovered"],res["closed_cases"]["deaths"]
-    ]
-            })
-        }
-        )
-    }
+  
+    componentDidUpdate(prevProps,prevState){
+  
+      
+      if(this.state.series[0]!=prevProps.cases){
+        this.setState({series:[this.props.cases,this.props.recovered,this.props.deaths]})
+      }
+      
+    
+   }
 
   
 

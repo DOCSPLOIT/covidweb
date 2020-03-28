@@ -4,17 +4,22 @@ import PredictText from '../Graphs/PredictText';
 import '../Styles/home.css'
 import logosm from '../Media/logosm.png'
 import iedclog from '../Media/iedcw.png'
+import { url } from '../Configure';
+import Loader from '../Extras/Loader';
+
 export default class Predications extends Component{
     constructor(props){
         super(props)
         this.state={
-            timestamp:0
+            isLoading:false
         }
     }
-    UNSAFE_componentWillMount(){
-        let time=Date.now();
-        this.setState({timestamp:time})
-    }
+   componentDidMount(){
+       fetch(`${url}/PredictionPage`).then(r=>r.json())
+       .then(res=>{
+           this.setState({isLoading:true})
+       })
+   }
     render(){
         const para=(
             <p style={{
@@ -31,13 +36,16 @@ export default class Predications extends Component{
         )
         
         return(
+            <>
+            {this.state.isLoading===true?<div>
             <div style={{marginTop:window.innerHeight*.2}}>
                
                 <center>
                {window.innerWidth<800?para:null}
                <br/>
-                 <PredictText timestamp={this.state.timestamp} days={7}/>
-                <Predict timestamp={this.state.timestamp} days={7} />
+                 <PredictText/>
+                <Predict/>
+               
                 <br/>
                {window.innerWidth>800?para:null}
                 </center>
@@ -71,6 +79,8 @@ export default class Predications extends Component{
                 }
                
             </div>
+            </div>:<Loader/>}
+            </>
         )
     }
 }

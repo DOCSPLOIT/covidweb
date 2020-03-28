@@ -45,11 +45,11 @@ export default class GlobalHistory extends Component {
 
     }
     async componentDidMount() {
-        const response = await fetch(`${url}/getHistoryGlobal`);
+        const response = await fetch(`${url}/statusPage`);
 
         let res = await response.json();
 
-        this.setState({ data: res })
+        this.setState({ data: res['historyGlobal'] })
 
         this.setData()
 

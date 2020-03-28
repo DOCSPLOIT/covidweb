@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Chart from 'react-apexcharts';
 import * as MaterialUI from '@material-ui/core'
+import { url } from '../Configure';
 class StateWise extends Component {
     constructor(props) {
         super(props);
@@ -74,12 +75,13 @@ class StateWise extends Component {
 
     }
     async componentDidMount() {
-        const response = await fetch("https://covid19apiss.herokuapp.com/stateWiseData");
+        const response = await fetch(`${url}/homePage`);
 
         let res = await response.json();
-        res.pop();
-        res.pop();
-        this.setState({ data: res })
+        let ds=res['stateWiseData']
+        ds.pop();
+        ds.pop();
+        this.setState({ data: ds })
 
         this.setData()
 
