@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import * as MaterialUI from "@material-ui/core";
 import logosm from "../Media/logosm.png";
 import iedclog from "../Media/iedcw.png";
 export default class About extends Component {
   constructor(props) {
     super(props);
+    this.state={
+
+    }
   }
   render() {
     return (
@@ -80,6 +82,7 @@ export default class About extends Component {
               <a href="http://sscollege.ac.in">
                 <img
                   src={logosm}
+                  alt='logsm'
                   style={{
                     width: "75px",
                     height: "75px",
@@ -107,6 +110,7 @@ export default class About extends Component {
                 {" "}
                 <img
                   src={iedclog}
+                  alt='logoc'
                   style={{
                     width: "100px",
                     height: "100px",

@@ -64,6 +64,7 @@ export default class AllNews extends Component {
                       {" "}
                       <img
                         src={logosm}
+                        alt='logosm'
                         style={{
                           width: "75px",
                           height: "75px",
@@ -89,6 +90,7 @@ export default class AllNews extends Component {
                       {" "}
                       <img
                         src={iedclog}
+                        alt='logosme'
                         style={{
                           width: "100px",
                           height: "100px",
@@ -116,7 +118,7 @@ export default class AllNews extends Component {
     );
   }
   ShowedNews = i => {
-    if (i == undefined)
+    if (i === undefined)
       this.setState({
         showedIndex: -1
       });

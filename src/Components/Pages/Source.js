@@ -123,6 +123,7 @@ export default class Sources extends Component {
                   {" "}
                   <img
                     src={logosm}
+                    alt='logsm'
                     style={{
                       width: "75px",
                       height: "75px",
@@ -148,6 +149,7 @@ export default class Sources extends Component {
                 <a href="http://iedc.sscollege.ac.in">
                   {" "}
                   <img
+                  alt='logosm'
                     src={iedclog}
                     style={{
                       width: "100px",

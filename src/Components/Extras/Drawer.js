@@ -2,7 +2,6 @@ import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
@@ -13,7 +12,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import NewsIcon from "@material-ui/icons/AnnouncementOutlined";
 import StatusIcon from "@material-ui/icons/Equalizer";
 import SourceIcon from "@material-ui/icons/PermMediaOutlined";
-import PredictIcon from "@material-ui/icons/ShowChart";
+// import PredictIcon from "@material-ui/icons/ShowChart";
 import DrawerIcon from "@material-ui/icons/Menu";
 import InfoIcon from "@material-ui/icons/InfoOutlined";
 const useStyles = makeStyles({

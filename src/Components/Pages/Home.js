@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import GlobalStatus from "../Graphs/GlobalStatus";
-import IndiaStatus from "../Graphs/IndiaStatus";
 import { url } from "../Configure";
 import "../Styles/home.css";
-import KeralaStatus from "../Graphs/KeralaStatus";
 import * as MaterialUI from "@material-ui/core";
 import StateWise from "../Graphs/StateWise";
 import { Animated } from "react-animated-css";
@@ -42,22 +39,20 @@ export default class News extends Component {
     fetch(`${url}/homePage`)
       .then(r => r.json())
       .then(res => {
-        let ksumreccover =
-          parseInt(res["kerala"]["Total Confirmed cases (Indian National)"]) +
-          parseInt(res["kerala"]["Total Confirmed cases ( Foreign National )"]);
+        
         this.setState({
           keralaPredict: res["prediction"]["arr"][0][0],
           indiaPredict: res["prediction"]["arr"][0][1],
           globalPredict: res["prediction"]["arr"][0][2],
-          keralaRecover: res["kerala"]["Cured/Discharged/Migrated"],
-          keralaTdeath: res["kerala"]["Death"],
+          keralaRecover:parseInt( res["kerala"]["Cured/Discharged/Migrated"]),
+          keralaTdeath: parseInt(res["kerala"]["Death"]),
           indiaRecover: res["india"]["TotalRecovered"],
           indiaTdeath: res["india"]["TotalDeaths"],
           worldRecover: res["global"]["recovered"],
           worldTdeath: res["global"]["deaths"],
-          keralaTCases: ksumreccover,
+          keralaTCases: res['kerala']['Total Confirmed cases *'],
           worldTcases: res["global"]["cases"],
-          indiaTcases: res["india"]["TotalCases"],
+          indiaTcases: res["india"]["ActiveCases"],
           isLoading: true,
           keralaCurrent: {
             deaths: parseInt(res["keralaLive"]["deaths"]),
@@ -74,8 +69,7 @@ export default class News extends Component {
   }
 
   render() {
-    let day = new Date();
-    day = day.toDateString();
+
 
     return (
       <>
@@ -83,159 +77,111 @@ export default class News extends Component {
           <div>
             {window.innerWidth > 800 ? (
               <div style={{ marginTop: 100, width: "100%" }}>
-                <div style={{ display: "flex", marginLeft: "25%" }}>
-                  <MaterialUI.Paper
-                    elevation={10}
-                    style={{ width: 200, height: 250, lineHeight: 0.5 }}
-                  >
-                    <Animated animationIn="fadeIn" animationInDuration={6000}>
-                      <br />
-                      <br />
-                      <center>
-                        <h3 style={{ color: " #117cb9" }}>Active Cases</h3>
-                      </center>
-                      <br />
-                      <b style={{ marginLeft: 15 }}>Kerala :</b>
-                      <p style={{ fontSize: 15, marginLeft: 30 }}>
-                        Current : <b> {this.state.keralaCurrent.confirmed}</b>
-                      </p>
-                      <p style={{ fontSize: 15, marginLeft: 30 }}>
-                        From MoHFW :<b> {this.state.keralaTCases}</b>
-                      </p>
-                      <br />
-                      <b style={{ marginLeft: 15 }}>
-                        India : {this.state.indiaTcases}
-                      </b>
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <b style={{ marginLeft: 15 }}>
-                        World : {this.state.worldTcases}
-                      </b>
-                      <br />
-                      <br />
-                      <p
-                        style={{
-                          fontFamily: "Lato",
-                          fontSize: 12,
-                          color: "gray",
-                          textAlign: "center",
-                          lineHeight: 1
-                        }}
-                      >
-                        *data updated in reference with MoHFW and
-                        covid19india.org
-                      </p>
-                    </Animated>
-                  </MaterialUI.Paper>
-                  <MaterialUI.Paper
-                    elevation={10}
-                    style={{
-                      width: 200,
-                      height: 250,
-                      marginLeft: "5%",
-                      lineHeight: 0.5
-                    }}
-                  >
-                    <Animated animationIn="fadeIn" animationInDuration={6000}>
-                      <br />
-                      <br />
-                      <center>
-                        <h3 style={{ color: "#d13838" }}>Total Deaths</h3>
-                      </center>
-                      <br />
-                      <b style={{ marginLeft: 15 }}>Kerala :</b>
-                      <p style={{ fontSize: 15, marginLeft: 30 }}>
-                        Current : <b> {this.state.keralaCurrent.deaths}</b>
-                      </p>
-                      <p style={{ fontSize: 15, marginLeft: 30 }}>
-                        From MoHFW :<b> {this.state.keralaTdeath}</b>
-                      </p>
-                      <br />
-                      <b style={{ marginLeft: 15 }}>
-                        India : {this.state.indiaTdeath}
-                      </b>
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <b style={{ marginLeft: 15 }}>
-                        World : {this.state.worldTdeath}
-                      </b>
-                      <br />
-                      <br />
-                      <p
-                        style={{
-                          fontFamily: "Lato",
-                          fontSize: 12,
-                          color: "gray",
-                          textAlign: "center",
-                          lineHeight: 1
-                        }}
-                      >
-                        *data updated in reference with MoHFW and
-                        covid19india.org
-                      </p>
-                    </Animated>
-                  </MaterialUI.Paper>
-                  <MaterialUI.Paper
-                    elevation={10}
-                    style={{
-                      width: 200,
-                      height: 250,
-                      marginLeft: "5%",
-                      lineHeight: 0.5
-                    }}
-                  >
-                    <Animated animationIn="fadeIn" animationInDuration={6000}>
-                      <br />
-                      <br />
-                      <center>
-                        <h3 style={{ color: "#35dd81" }}>Total Recover</h3>
-                      </center>
-                      <br />
-                      <b style={{ marginLeft: 15 }}>Kerala :</b>
-                      <p style={{ fontSize: 15, marginLeft: 30 }}>
-                        Current : <b> {this.state.keralaCurrent.recovered}</b>
-                      </p>
-                      <p style={{ fontSize: 15, marginLeft: 30 }}>
-                        From MoHFW :<b> {this.state.keralaRecover}</b>
-                      </p>
-                      <br />
-                      <b style={{ marginLeft: 15 }}>
-                        India : {this.state.indiaRecover}
-                      </b>
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <b style={{ marginLeft: 15 }}>
-                        World : {this.state.worldRecover}
-                      </b>
-                      <br />
-                      <br />
-                      <p
-                        style={{
-                          fontFamily: "Lato",
-                          fontSize: 12,
-                          color: "gray",
-                          textAlign: "center",
-                          lineHeight: 1
-                        }}
-                      >
-                        *data updated in reference with MoHFW and
-                        covid19india.org
-                      </p>
-                    </Animated>
-                  </MaterialUI.Paper>
-                </div>
-
+                <div className="Card-status">
+                <MaterialUI.Paper className="statusBoard" elevation={10}>
+                    <h3>Kerala</h3>
+                    <div>
+                            <p style={{ color: "#3792cf" }}>Active Cases</p>
+                            <b
+                              style={{ fontSize: 25, color: "#3792cf" }}
+                              
+                            >
+                              {this.state.keralaTCases -
+                                this.state.keralaTdeath -
+                                this.state.keralaRecover}
+                            </b>
+                          </div>
+                          <div>
+                            <p style={{ color: "#cf3737" }}>Deaths</p>
+                            <b
+                              style={{ fontSize: 25, color: "#cf3737" }}
+                             
+                            >
+                              {this.state.keralaCurrent.deaths}
+                            </b>
+                          </div>
+                          <div >
+                            <p style={{ color: "#239c5a" }}>Recovered</p>
+                            <b
+                              style={{ fontSize: 25, color: "#239c5a" }}
+                              className="dataP"
+                            >
+                              {this.state.keralaRecover}
+                            </b>
+                           
+                          </div>
+                          <br/>
+                    </MaterialUI.Paper>
+                    <MaterialUI.Paper className="statusBoard" elevation={10}>
+                    <h3>India</h3>
+                    <div>
+                            <p style={{ color: "#3792cf" }}>Active Cases</p>
+                            <b
+                              style={{ fontSize: 25, color: "#3792cf" }}
+                              
+                            >
+                              {this.state.indiaTcases}
+                            </b>
+                          </div>
+                          <div>
+                            <p style={{ color: "#cf3737" }}>Deaths</p>
+                            <b
+                              style={{ fontSize: 25, color: "#cf3737" }}
+                            
+                            >
+                              {this.state.indiaTdeath}
+                            </b>
+                          </div>
+                          <div>
+                            <p style={{ color: "#239c5a" }}>Recovered</p>
+                            <b
+                              style={{ fontSize: 25, color: "#239c5a" }}
+                             
+                            >
+                              {this.state.indiaRecover}
+                            </b>
+                          </div>
+                    </MaterialUI.Paper>
+                    <MaterialUI.Paper className="statusBoard" elevation={10}>
+                    <h3>World</h3>
+                    <div>
+                            <p style={{ color: "#3792cf" }}>Active Cases</p>
+                            <b
+                              style={{ fontSize: 25, color: "#3792cf" }}
+                              
+                            >
+                              {this.state.worldTcases -
+                                this.state.worldTdeath -
+                                this.state.worldRecover}
+                            </b>
+                          </div>
+                          <div >
+                            <p style={{ color: "#cf3737" }}>Deaths</p>
+                            <b
+                              style={{ fontSize: 25, color: "#cf3737" }}
+                              
+                            >
+                              {this.state.worldTdeath}
+                            </b>
+                          </div>
+                          <div>
+                            <p style={{ color: "#239c5a" }}>Recovered</p>
+                            <b
+                              style={{ fontSize: 25, color: "#239c5a" }}
+                              
+                            >
+                              {this.state.worldRecover}
+                            </b>
+                          </div>
+                    </MaterialUI.Paper>
+               </div>
+                
+                
                 <br />
                 <h3 style={{ marginLeft: window.innerWidth * 0.4 }}>
                   StateWise Reports(India)
                 </h3>
-                {/* <div style={{display:"flex"}}> */}
+                
                 <center>
                   <StateWise />
                 </center>
@@ -294,6 +240,7 @@ export default class News extends Component {
                     <a href="http://sscollege.ac.in">
                       {" "}
                       <img
+                      alt='lgosm'
                         src={logosm}
                         style={{
                           width: "75px",
@@ -319,6 +266,7 @@ export default class News extends Component {
                     <a href="http://iedc.sscollege.ac.in">
                       {" "}
                       <img
+                      alt='sm'
                         src={iedclog}
                         style={{
                           width: "100px",
@@ -333,185 +281,176 @@ export default class News extends Component {
                 </footer>
               </div>
             ) : (
-              <div>
-                {/*Mobile View is below*/}
-                <br /> <br /> <br />
                 <div>
-                  <Animated animationIn="fadeIn" animationInDuration={2500}>
-                    <MaterialUI.Paper
-                      style={{
-                        textAlign: "center",
-                        margin: "auto"
-                      }}
-                    >
-                      <br />
-                      <center>
-                        <h2>Kerala</h2>
-                      </center>
-                      <div className="liveUpdates">
-                        <div className="Status">
-                          <p style={{ color: "#3792cf" }}>Active Cases</p>
-                          <b
-                            style={{ fontSize: 25, color: "#3792cf" }}
-                            className="dataP"
-                          >
-                            {this.state.keralaCurrent.confirmed -
-                              this.state.keralaCurrent.deaths -
-                              this.state.keralaCurrent.recovered}
-                          </b>
-                        </div>
-                        <div className="Status">
-                          <p style={{ color: "#cf3737" }}>Deaths</p>
-                          <b
-                            style={{ fontSize: 25, color: "#cf3737" }}
-                            className="dataP"
-                          >
-                            {this.state.keralaCurrent.deaths}
-                          </b>
-                        </div>
-                        <div className="Status">
-                          <p style={{ color: "#239c5a" }}>Recovered</p>
-                          <b
-                            style={{ fontSize: 25, color: "#239c5a" }}
-                            className="dataP"
-                          >
-                            {this.state.keralaCurrent.recovered}
-                          </b>
-                        </div>
-                      </div>
-                    </MaterialUI.Paper>
-                  </Animated>
-                  <Animated animationIn="fadeIn" animationInDuration={2500}>
-                    <MaterialUI.Paper
-                      style={{
-                        textAlign: "center",
-                        margin: "auto"
-                      }}
-                    >
-                      <h2>India</h2>
-
-                      <div className="liveUpdates">
-                        <div className="Status">
-                          <p style={{ color: "#3792cf" }}>Active Cases</p>
-                          <b
-                            style={{ fontSize: 25, color: "#3792cf" }}
-                            className="dataP"
-                          >
-                            {this.state.indiaTcases -
-                              this.state.indiaTdeath -
-                              this.state.indiaRecover}
-                          </b>
-                        </div>
-                        <div className="Status">
-                          <p style={{ color: "#cf3737" }}>Deaths</p>
-                          <b
-                            style={{ fontSize: 25, color: "#cf3737" }}
-                            className="dataP"
-                          >
-                            {this.state.indiaTdeath}
-                          </b>
-                        </div>
-                        <div className="Status">
-                          <p style={{ color: "#239c5a" }}>Recovered</p>
-                          <b
-                            style={{ fontSize: 25, color: "#239c5a" }}
-                            className="dataP"
-                          >
-                            {this.state.indiaRecover}
-                          </b>
-                        </div>
-                      </div>
-                    </MaterialUI.Paper>
-                  </Animated>
-                  <Animated animationIn="fadeIn" animationInDuration={2500}>
-                    <MaterialUI.Paper
-                      style={{
-                        textAlign: "center",
-                        margin: "auto"
-                      }}
-                    >
-                      <center>
-                        <h2>World</h2>
-                      </center>
-                      <div className="liveUpdates">
-                        <div className="Status">
-                          <p style={{ color: "#3792cf" }}>Active Cases</p>
-                          <b
-                            style={{ fontSize: 25, color: "#3792cf" }}
-                            className="dataP"
-                          >
-                            {this.state.worldTcases -
-                              this.state.worldTdeath -
-                              this.state.worldRecover}
-                          </b>
-                        </div>
-                        <div className="Status">
-                          <p style={{ color: "#cf3737" }}>Deaths</p>
-                          <b
-                            style={{ fontSize: 25, color: "#cf3737" }}
-                            className="dataP"
-                          >
-                            {this.state.worldTdeath}
-                          </b>
-                        </div>
-                        <div className="Status">
-                          <p style={{ color: "#239c5a" }}>Recovered</p>
-                          <b
-                            style={{ fontSize: 25, color: "#239c5a" }}
-                            className="dataP"
-                          >
-                            {this.state.worldRecover}
-                          </b>
-                        </div>
-                      </div>
-                      <p
+                  {/*Mobile View is below*/}
+                  <br /> <br /> <br />
+                  <div>
+                    <Animated animationIn="fadeIn" animationInDuration={2500}>
+                      <MaterialUI.Paper
                         style={{
-                          fontFamily: "Lato",
-                          fontSize: 12,
-                          color: "gray"
+                          textAlign: "center",
+                          margin: "auto"
                         }}
                       >
-                        *data updated in reference with MoHFW
-                      </p>
-                      <p
+                        <br />
+                        <center>
+                          <h2>Kerala</h2>
+                        </center>
+                        <div className="liveUpdates">
+                          <div className="Status">
+                            <p style={{ color: "#3792cf" }}>Active Cases</p>
+                            <b
+                              style={{ fontSize: 25, color: "#3792cf" }}
+                              className="dataP"
+                            >
+                              {this.state.keralaTCases -
+                                this.state.keralaTdeath -
+                                this.state.keralaRecover}
+                            </b>
+                          </div>
+                          <div className="Status">
+                            <p style={{ color: "#cf3737" }}>Deaths</p>
+                            <b
+                              style={{ fontSize: 25, color: "#cf3737" }}
+                              className="dataP"
+                            >
+                              {this.state.keralaCurrent.deaths}
+                            </b>
+                          </div>
+                          <div className="Status">
+                            <p style={{ color: "#239c5a" }}>Recovered</p>
+                            <b
+                              style={{ fontSize: 25, color: "#239c5a" }}
+                              className="dataP"
+                            >
+                              {this.state.keralaRecover}
+                            </b>
+                          </div>
+                        </div>
+                      </MaterialUI.Paper>
+                    </Animated>
+                    <Animated animationIn="fadeIn" animationInDuration={2500}>
+                      <MaterialUI.Paper
                         style={{
-                          fontFamily: "Lato",
-                          fontSize: 12,
-                          color: "gray"
+                          textAlign: "center",
+                          margin: "auto"
                         }}
                       >
-                        *Kerala data updated in reference with covid19india.org
-                      </p>
-                      <br />
-                    </MaterialUI.Paper>
-                  </Animated>
-                </div>
-                <Animated animationIn="fadeInUp" animationInDuration={8500}>
-                  <h3>Statewise Reports (India)</h3>
-                  <StateWise />
-                </Animated>
-                <MaterialUI.Paper elevation={10}>
-                  <h3>Districtwise Confirmed Reports (Kerala)</h3>
-                  <DistrictWiseBar />
+                        <h2>India</h2>
 
-                  <p
-                    style={{
-                      fontFamily: "Lato",
-                      fontSize: 12,
-                      color: "gray",
-                      textAlign: "center"
-                    }}
-                  >
-                    *data updated in reference with covid19india.org
+                        <div className="liveUpdates">
+                          <div className="Status">
+                            <p style={{ color: "#3792cf" }}>Active Cases</p>
+                            <b
+                              style={{ fontSize: 25, color: "#3792cf" }}
+                              className="dataP"
+                            >
+                              {this.state.indiaTcases -
+                                this.state.indiaTdeath -
+                                this.state.indiaRecover}
+                            </b>
+                          </div>
+                          <div className="Status">
+                            <p style={{ color: "#cf3737" }}>Deaths</p>
+                            <b
+                              style={{ fontSize: 25, color: "#cf3737" }}
+                              className="dataP"
+                            >
+                              {this.state.indiaTdeath}
+                            </b>
+                          </div>
+                          <div className="Status">
+                            <p style={{ color: "#239c5a" }}>Recovered</p>
+                            <b
+                              style={{ fontSize: 25, color: "#239c5a" }}
+                              className="dataP"
+                            >
+                              {this.state.indiaRecover}
+                            </b>
+                          </div>
+                        </div>
+                      </MaterialUI.Paper>
+                    </Animated>
+                    <Animated animationIn="fadeIn" animationInDuration={2500}>
+                      <MaterialUI.Paper
+                        style={{
+                          textAlign: "center",
+                          margin: "auto"
+                        }}
+                      >
+                        <center>
+                          <h2>World</h2>
+                        </center>
+                        <div className="liveUpdates">
+                          <div className="Status">
+                            <p style={{ color: "#3792cf" }}>Active Cases</p>
+                            <b
+                              style={{ fontSize: 25, color: "#3792cf" }}
+                              className="dataP"
+                            >
+                              {this.state.worldTcases -
+                                this.state.worldTdeath -
+                                this.state.worldRecover}
+                            </b>
+                          </div>
+                          <div className="Status">
+                            <p style={{ color: "#cf3737" }}>Deaths</p>
+                            <b
+                              style={{ fontSize: 25, color: "#cf3737" }}
+                              className="dataP"
+                            >
+                              {this.state.worldTdeath}
+                            </b>
+                          </div>
+                          <div className="Status">
+                            <p style={{ color: "#239c5a" }}>Recovered</p>
+                            <b
+                              style={{ fontSize: 25, color: "#239c5a" }}
+                              className="dataP"
+                            >
+                              {this.state.worldRecover}
+                            </b>
+                          </div>
+                        </div>
+                        <p
+                          style={{
+                            fontFamily: "Lato",
+                            fontSize: 12,
+                            color: "gray"
+                          }}
+                        >
+                          *data updated in reference with MoHFW
+                      </p>
+                        <br />
+                      </MaterialUI.Paper>
+                    </Animated>
+                  </div>
+                  <Animated animationIn="fadeInUp" animationInDuration={8500}>
+                    <h3>Statewise Reports (India)</h3>
+                    <StateWise />
+                  </Animated>
+                  <MaterialUI.Paper elevation={10}>
+                    <h3>Districtwise Confirmed Reports (Kerala)</h3>
+                    <DistrictWiseBar />
+
+                    <p
+                      style={{
+                        fontFamily: "Lato",
+                        fontSize: 12,
+                        color: "gray",
+                        textAlign: "center"
+                      }}
+                    >
+                      *data updated in reference with covid19india.org
                   </p>
-                  <p
-                    style={{ fontFamily: "Lato", fontSize: 12, color: "white" }}
-                  >
-                    *Kerala data updated in reference with covid19india.org
+                    <p
+                      style={{ fontFamily: "Lato", fontSize: 12, color: "white" }}
+                    >
+                      *Kerala data updated in reference with covid19india.org
                   </p>
-                  <br />
-                </MaterialUI.Paper>
-                {/* <MaterialUI.Paper elevation={10} style={{
+                    <br />
+                  </MaterialUI.Paper>
+                  {/* <MaterialUI.Paper elevation={10} style={{
         backgroundColor:"#4f5a90",
         width:window.innerWidth,height:280,
         alignSelf:"center",
@@ -539,15 +478,15 @@ export default class News extends Component {
         <br/><br/>
         </center>
     </MaterialUI.Paper> */}
-                <br />
-                <br />
-                <br />
-              </div>
-            )}
+                  <br />
+                  <br />
+                  <br />
+                </div>
+              )}
           </div>
         ) : (
-          <Loader />
-        )}
+            <Loader />
+          )}
       </>
     );
   }

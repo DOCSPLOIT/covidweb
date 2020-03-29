@@ -80,7 +80,7 @@ class StateWise extends Component {
     let res = await response.json();
     let ds = res["stateWiseData"];
     ds.pop();
-    ds.pop();
+   
     this.setState({ data: ds });
 
     this.setData();
@@ -116,8 +116,8 @@ class StateWise extends Component {
 
     const totalDeaths = this.state.data.map(c => {
       const [f, b] = c["Death"].split(",");
-      if (f == "") return 0;
-      if (b == undefined) {
+      if (f === "") return 0;
+      if (b === undefined) {
         return parseInt(f);
       } else {
         return parseInt(f + b);
@@ -125,8 +125,8 @@ class StateWise extends Component {
     });
     const discharged = this.state.data.map(c => {
       const [f, b] = c["Cured/Discharged/Migrated"].split(",");
-      if (f == "") return 0;
-      if (b == undefined) {
+      if (f === "") return 0;
+      if (b === undefined) {
         return parseInt(f);
       } else {
         return parseInt(f + b);
@@ -134,23 +134,16 @@ class StateWise extends Component {
     });
 
     const totalCases = this.state.data.map(c => {
-      let [f, b] = c["Total Confirmed cases (Indian National)"].split(",");
+    
 
-      let i = 0;
-      if (b == undefined) {
-        i = parseInt(f);
-      } else {
-        i = parseInt(f + b);
-      }
-
-      [f, b] = c["Total Confirmed cases ( Foreign National )"].split(",");
+     let [f, b] = c["Total Confirmed cases *"].split(",");
       let fr = 0;
-      if (b == undefined) {
+      if (b === undefined) {
         fr = parseInt(f);
       } else {
         fr = parseInt(f + b);
       }
-      return i + fr;
+      return   fr;
     });
 
     this.setState({

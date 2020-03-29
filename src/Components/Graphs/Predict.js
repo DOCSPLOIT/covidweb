@@ -57,9 +57,7 @@ export default class Predict extends Component {
       .then(res => {
         const oneDay = 1000 * 3600 * 24;
         let today = Date.now();
-        let idata = [],
-          gdata = [],
-          kdata = [];
+        let idata = []
         const n = res["arr"].length;
         for (let i = 0; i < n; i++) {
           let d = today + i * oneDay;

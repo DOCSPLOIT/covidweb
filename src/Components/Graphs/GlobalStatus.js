@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { url } from "../Configure";
 import Chart from "react-apexcharts";
 
 export default class GlobalStatus extends Component {

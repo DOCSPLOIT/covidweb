@@ -96,7 +96,7 @@ export default class PredictText extends Component {
               <MaterialUI.TableRow
                 key={item[0]}
                 style={{
-                  backgroundColor: index % 2 == 0 ? "white" : "#66b0ff"
+                  backgroundColor: index % 2 === 0 ? "white" : "#66b0ff"
                 }}
               >
                 <MaterialUI.TableCell

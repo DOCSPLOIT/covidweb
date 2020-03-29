@@ -168,6 +168,7 @@ export default class News extends Component {
                       {" "}
                       <img
                         src={logosm}
+                        alt='@type/logosm'
                         style={{
                           width: "75px",
                           height: "75px",
@@ -195,6 +196,7 @@ export default class News extends Component {
                     {" "}
                     <img
                       src={iedclog}
+                      alt='@type/png/loged'
                       style={{
                         width: "100px",
                         height: "100px",

@@ -41,8 +41,14 @@ background: #001F3A;
    margin: 0 5%;
 }
 
-@media only screen and (max-width:900px){
-.g{
-    color: #ffd2d2a2;
+.Card-status{
+    display: flex;
+    justify-content: center;
+    line-height: 10px;
 }
+.statusBoard{
+    text-align: center;
+    height: auto;
+    width: 200px;
+    margin:0 10px;
 }
