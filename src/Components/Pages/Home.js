@@ -32,7 +32,12 @@ export default class News extends Component{
        keralaTCases:0,
        keralaRecover:0,
        stateWiseRecover:0,
-       isLoading:false
+       isLoading:false,
+       keralaCurrent:{
+           deaths:0,
+           confirmed:0,
+           recovered:0
+       }
     }    
     }
     componentDidMount(){
@@ -56,7 +61,12 @@ export default class News extends Component{
                    keralaTCases:ksumreccover,
                    worldTcases:res['global']['cases'],
                    indiaTcases:res['india']['TotalCases'],
-                   isLoading:true
+                   isLoading:true,
+                   keralaCurrent:{
+                       deaths:parseInt(res['keralaLive']['deaths']),
+                       recovered:parseInt(res['keralaLive']['recovered']),
+                       confirmed:parseInt(res['keralaLive']['confirmed'])
+                   }
                })
              const sdata=res['stateWiseData'];
              
@@ -76,9 +86,7 @@ export default class News extends Component{
     render(){
         let day=new Date();
         day=day.toDateString();
-        let kd=this.state.keralaTdeath
-        let kr=this.state.keralaRecover
-        let kc=this.state.keralaTCases
+      
         
         
         return(
@@ -88,47 +96,68 @@ export default class News extends Component{
                <div style={{marginTop:100,width:"100%"}} >
                   
                 <div style={{display:"flex",marginLeft:"25%"}}>
-              
+               
                     
-                    <MaterialUI.Paper elevation={10} style={{width:200,height:250}}>
-                        <center>
-                            <Animated animationIn="fadeIn" animationInDuration={2000}>
-                <h5 className="tdeath" style={{color:"#117cb9"}}>Total Cases</h5>
-<p className="text">Kerala   :  {this.state.keralaTCases}</p>
-<p className="text">India   :  {this.state.indiaTcases}</p>
-<p className="text">World:  {this.state.worldTcases}</p>
-<p style={{fontFamily:'Lato',fontSize:12,color:'gray'}}>*data updated in reference with MoHFW</p>
-</Animated>
-</center>
+                    <MaterialUI.Paper elevation={10} style={{width:200,height:250,lineHeight:0.5}}>
+                    <Animated animationIn="fadeIn" animationInDuration={6000}>
+        <br/><br/>
+        <center>
+            <h3 style={{color:' #117cb9'}}>Active Cases</h3>
+        </center>
+        <br/>
+        <b style={{marginLeft:15}}>Kerala :</b>
+         <p style={{fontSize:15,marginLeft:30}}>Current  : <b> {this.state.keralaCurrent.confirmed}</b></p>
+           <p style={{fontSize:15,marginLeft:30}}>From MoHFW :<b> {this.state.keralaTCases}</b></p>
+        <br/>
+           <b style={{marginLeft:15}}>India : {this.state.indiaTcases}</b>
+           <br/><br/><br/><br/>
+           <b style={{marginLeft:15,}}>World : {this.state.worldTcases}</b>
+           <br/><br/>
+           <p style={{fontFamily:'Lato',fontSize:12,color:'gray',textAlign:"center",lineHeight:1}}>*data updated in reference with MoHFW and covid19india.org</p>
+        </Animated>
 </MaterialUI.Paper>
-<MaterialUI.Paper elevation={10} style={{width:200,height:250,marginLeft:"5%"}} >
-    <center><Animated animationIn="fadeIn" animationInDuration={4000}>
-            <h5 className="tdeath" style={{color:"#d13838"}}>Total Deaths</h5>
-        <p className="text">Kerala   :  {this.state.keralaTdeath}</p>
-        <p className="text">India   :  {this.state.indiaTdeath}</p>
-        <p className="text">World:  {this.state.worldTdeath}</p>
-        <p style={{fontFamily:'Lato',fontSize:12,color:'gray'}}>*data updated in reference with MoHFW</p>
-        </Animated>
-        
+<MaterialUI.Paper elevation={10} style={{width:200,height:250,marginLeft:"5%",lineHeight:.5}} >
+<Animated animationIn="fadeIn" animationInDuration={6000}>
+        <br/><br/>
+        <center>
+            <h3 style={{color:'#d13838'}}>Total Deaths</h3>
         </center>
+        <br/>
+        <b style={{marginLeft:15}}>Kerala :</b>
+         <p style={{fontSize:15,marginLeft:30}}>Current  : <b> {this.state.keralaCurrent.deaths}</b></p>
+           <p style={{fontSize:15,marginLeft:30}}>From MoHFW :<b> {this.state.keralaTdeath}</b></p>
+        <br/>
+           <b style={{marginLeft:15}}>India : {this.state.indiaTdeath}</b>
+           <br/><br/><br/><br/>
+           <b style={{marginLeft:15,}}>World : {this.state.worldTdeath}</b>
+           <br/><br/>
+           <p style={{fontFamily:'Lato',fontSize:12,color:'gray',textAlign:"center",lineHeight:1}}>*data updated in reference with MoHFW and covid19india.org</p>
+        </Animated>
         </MaterialUI.Paper>
-        <MaterialUI.Paper elevation={10} style={{width:200,height:250,marginLeft:"5%"}} >
-            <center><Animated animationIn="fadeIn" animationInDuration={6000}>
-            <h5 className="tdeath" style={{color:"#35dd81"}}>Total Recovered</h5>
-
-        <p className="text">Kerala:  {this.state.keralaRecover}</p>
-        <p className="text">India   :  {this.state.indiaRecover}</p>
-        <p className="text">World:  {this.state.worldRecover}</p>
-        <p style={{fontFamily:'Lato',fontSize:12,color:'gray'}}>*data updated in reference with MoHFW</p>
-        </Animated>
+        <MaterialUI.Paper elevation={10} style={{width:200,height:250,marginLeft:"5%",lineHeight:.5}} >
+        <Animated animationIn="fadeIn" animationInDuration={6000}>
+        <br/><br/>
+        <center>
+            <h3 style={{color:'#35dd81'}}>Total Recover</h3>
         </center>
+        <br/>
+        <b style={{marginLeft:15}}>Kerala :</b>
+         <p style={{fontSize:15,marginLeft:30}}>Current  : <b> {this.state.keralaCurrent.recovered}</b></p>
+           <p style={{fontSize:15,marginLeft:30}}>From MoHFW :<b> {this.state.keralaRecover}</b></p>
+        <br/>
+           <b style={{marginLeft:15}}>India : {this.state.indiaRecover}</b>
+           <br/><br/><br/><br/>
+           <b style={{marginLeft:15,}}>World : {this.state.worldRecover}</b>
+           <br/><br/>
+           <p style={{fontFamily:'Lato',fontSize:12,color:'gray',textAlign:"center",lineHeight:1}}>*data updated in reference with MoHFW and covid19india.org</p>
+        </Animated>
         </MaterialUI.Paper>
             </div>
            
             <div style={{display:"flex",marginTop:window.innerHeight*.1}}>
             <h2 style={{marginLeft:window.innerHeight*.05}}>Kerala</h2>
             <div style={{marginTop:-window.innerHeight*.2,marginLeft:-window.innerHeight*.25}}>
-            <KeralaStatus cases={kc} deaths={parseInt(kd)} recovered={parseInt(kr)} />
+            <KeralaStatus cases={parseInt(this.state.keralaCurrent.confirmed)} deaths={parseInt(this.state.keralaCurrent.deaths)} recovered={parseInt(this.state.keralaCurrent.recovered)} />
             </div>
             <h2 style={{textAlign:"center"}}>India</h2>
             <div style={{marginTop:window.innerHeight*.05,marginLeft:-window.innerHeight*.05}}>
@@ -143,11 +172,12 @@ export default class News extends Component{
                 
                 <br/>
                 <h3 style={{marginLeft:window.innerWidth*.4}}>StateWise Reports(India)</h3>
-               <div style={{display:"flex"}}>
+               {/* <div style={{display:"flex"}}> */}
+               <center>
                 <StateWise/>
-               
-                <center>
-    <MaterialUI.Paper  elevation={10} style={{
+                </center>
+                
+    {/* <MaterialUI.Paper  elevation={10} style={{
         backgroundColor:"#4f5a90",
         width:200,
        position:"absolute",
@@ -166,10 +196,10 @@ export default class News extends Component{
         <a style={{color:"white",fontSize:15}} href="/predict">More</a>
           <br/>  <br/><br/>
        
-    </MaterialUI.Paper>
-    </center>
+    </MaterialUI.Paper> */}
+   
     
-    </div>
+    {/* </div> */}
     <br/>
     <center>
     <MaterialUI.Paper style={{width:window.innerWidth*.8}} elevation={10}>
@@ -185,20 +215,20 @@ export default class News extends Component{
                 <footer>
                  <div className="footer">
                      <br/>
-                     <img src={logosm} style={{
+                  <a href='http://sscollege.ac.in'>   <img src={logosm} style={{
                          width:'75px',
                          height:'75px',
                          position:'absolute',
                          marginLeft:"20px"
-                     }}/>
-                     <center><p style={{color:"white"}}><b style={{fontSize:20}}>Sullamussalam Science College |</b><l style={{fontSize:14}}>Powered By IEDC </l></p></center>
-                     <img src={iedclog} style={{
+                     }}/></a>
+                     <center><a href='http://sscollege.ac.in' style={{textDecoration:'none'}}><p style={{color:"white"}}><b style={{fontSize:20}}>Sullamussalam Science College |</b><l style={{fontSize:14}}>Powered By IEDC </l></p></a></center>
+                   <a href='http://iedc.sscollege.ac.in' > <img src={iedclog} style={{
                          width:'100px',
                          height:'100px',
                          position:'absolute',
                          marginLeft:window.innerWidth*.9,
                          marginTop:-75
-                     }}/>
+                     }}/></a>
                  </div>
              </footer>
             </div>:
@@ -206,83 +236,75 @@ export default class News extends Component{
             <div>
                 {/*Mobile View is below*/}
                 
-                <center>
-                    <br/> <br/> <br/> <br/> <br/>
+               
+                    <br/> <br/> <br/>
             <div>
                 <Animated animationIn="fadeIn" animationInDuration={2500}>
             <MaterialUI.Paper style={{
-                    backgroundColor:"#117cb9",
-
+                    
+                    textAlign:'center',
+                    margin:'auto'
                 }}>
                     <br/>
-            <h3 style={{
+               <center>
+               <h2 >Kerala</h2>
+                   </center> 
+                       <div className="liveUpdates">
+                 <div className='Status'>
+            <p style={{color:'#3792cf'}} >Active Cases</p>
+            <b style={{fontSize:25,color:'#3792cf'}} className="dataP" >{this.state.keralaCurrent.confirmed-this.state.keralaCurrent.deaths-this.state.keralaCurrent.recovered}</b></div>
+            <div className='Status'>
+            <p style={{color:'#cf3737'}}>Deaths</p>
+            <b style={{fontSize:25,color:'#cf3737'}} className="dataP" >{this.state.keralaCurrent.deaths}</b></div>
+            <div className='Status'>
+            <p style={{color:'#239c5a'}} >Recovered</p>
+            <b style={{fontSize:25,color:'#239c5a'}} className="dataP" >{this.state.keralaCurrent.recovered}</b>
+            </div></div>
+            </MaterialUI.Paper></Animated>
+            <Animated animationIn="fadeIn" animationInDuration={2500}>
+            <MaterialUI.Paper style={{
                     
-                   color:"white"
-                }} >Total Cases</h3>
-                <div style={{display:"flex"}}>
-                <p style={{color:"white",marginRight:window.innerWidth*.1,marginLeft:window.innerWidth*.23}}>Kerala</p>
-                <p style={{ color:"white",marginRight:window.innerWidth*.1}}>India</p>
-                <p style={{ color:"white"}} >World</p>
-                </div>
-                <div style={{display:"flex"}}>
-                <b style={{color:"white",marginRight:window.innerWidth*.1,
-                marginLeft:window.innerWidth*.22,fontSize:25}}>{this.state.keralaTCases}</b>
-                <b style={{fontSize:25, color:"white",marginRight:window.innerWidth*.09}}>{this.state.indiaTcases}</b>
-                <b style={{fontSize:25, color:"white"}} >{this.state.worldTcases}</b>
-                </div>
-                <p style={{fontFamily:'Lato',fontSize:12,color:'white'}}>*data updated in reference with MoHFW</p>
-                <br/>
-                </MaterialUI.Paper>
-                </Animated>
-                <br/>
-                <Animated animationIn="fadeInUp" animationInDuration={4500}>
-                <MaterialUI.Paper style={{
-                    backgroundColor:"#d13838",
-
+                    textAlign:'center',
+                    margin:'auto'
                 }}>
-                    <br/>
-            <h3 style={{
+               <h2>India</h2>
+                  
+                       <div className="liveUpdates">
+                       <div className='Status'>
+            <p style={{color:'#3792cf'}} >Active Cases</p>
+            <b style={{fontSize:25,color:'#3792cf'}} className="dataP" >{this.state.indiaTcases-this.state.indiaTdeath-this.state.indiaRecover}</b></div>
+            <div className='Status'>
+            <p style={{color:'#cf3737'}}>Deaths</p>
+            <b style={{fontSize:25,color:'#cf3737'}} className="dataP" >{this.state.indiaTdeath}</b></div>
+            <div className='Status'>
+            <p style={{color:'#239c5a'}} >Recovered</p>
+            <b style={{fontSize:25,color:'#239c5a'}} className="dataP" >{this.state.indiaRecover}</b>
+            </div>
+              </div>
+              </MaterialUI.Paper></Animated>
+              <Animated animationIn="fadeIn" animationInDuration={2500}>
+            <MaterialUI.Paper style={{
                     
-                   color:"white"
-                }} >Total Death</h3>
-                <div style={{display:"flex"}}>
-                <p style={{color:"white",marginRight:window.innerWidth*.1,marginLeft:window.innerWidth*.23}}>Kerala</p>
-                <p style={{ color:"white",marginRight:window.innerWidth*.1}}>India</p>
-                <p style={{ color:"white"}} >World</p>
-                </div>
-                <div style={{display:"flex"}}>
-                <b style={{color:"white",marginRight:window.innerWidth*.15,
-                marginLeft:window.innerWidth*.25,fontSize:25}}>{this.state.keralaTdeath}</b>
-                <b style={{fontSize:25, color:"white",marginRight:window.innerWidth*.09}}>{this.state.indiaTdeath}</b>
-                <b style={{fontSize:25, color:"white"}} >{this.state.worldTdeath}</b>
-                </div>
-                <p style={{fontFamily:'Lato',fontSize:12,color:'white'}}>*data updated in reference with MoHFW</p>
-                <br/>
-                </MaterialUI.Paper>
-                </Animated>
-                <br/>
-                <Animated animationIn="fadeInUp" animationInDuration={6500}>
-                <MaterialUI.Paper style={{
-                    backgroundColor:"#07552a",
-
+                    textAlign:'center',
+                    margin:'auto'
                 }}>
-                    <br/>
-            <h3 style={{
-                    
-                   color:"white"
-                }} >Total Recovered</h3>
-                <div style={{display:"flex"}}>
-                <p style={{color:"white",marginRight:window.innerWidth*.1,marginLeft:window.innerWidth*.23}}>Kerala</p>
-                <p style={{ color:"white",marginRight:window.innerWidth*.1}}>India</p>
-                <p style={{ color:"white"}} >World</p>
-                </div>
-                <div style={{display:"flex"}}>
-                <b style={{color:"white",marginRight:window.innerWidth*.15,
-                marginLeft:window.innerWidth*.25,fontSize:25}}>{this.state.keralaRecover}</b>
-                <b style={{fontSize:25, color:"white",marginRight:window.innerWidth*.09}}>{this.state.indiaRecover}</b>
-                <b style={{fontSize:25, color:"white"}} >{this.state.worldRecover}</b>
-                </div>
-                <p style={{fontFamily:'Lato',fontSize:12,color:'white'}}>*data updated in reference with MoHFW</p>
+               <center>
+               <h2>World</h2>
+                   </center> 
+                       <div className="liveUpdates">
+                       <div className='Status'>
+            <p style={{color:'#3792cf'}} >Active Cases</p>
+            <b style={{fontSize:25,color:'#3792cf'}} className="dataP" >{this.state.worldTcases-this.state.worldTdeath-this.state.worldRecover}</b></div>
+            <div className='Status'>
+            <p style={{color:'#cf3737'}}>Deaths</p>
+            <b style={{fontSize:25,color:'#cf3737'}} className="dataP" >{this.state.worldTdeath}</b></div>
+            <div className='Status'>
+            <p style={{color:'#239c5a'}} >Recovered</p>
+            <b style={{fontSize:25,color:'#239c5a'}} className="dataP" >{this.state.worldRecover}</b>
+            </div>
+            </div>
+            <p style={{fontFamily:'Lato',fontSize:12,color:'gray'}}>*data updated in reference with MoHFW</p>
+                <p style={{fontFamily:'Lato',fontSize:12,color:'gray'}}>*Kerala data updated in reference with covid19india.org</p>
                 <br/>
                 </MaterialUI.Paper>
                 </Animated>
@@ -296,17 +318,18 @@ export default class News extends Component{
                 <DistrictWiseBar/>
                 
                 <p style={{fontFamily:'Lato',fontSize:12,color:'gray',textAlign:"center"}}>*data updated in reference with covid19india.org</p>
+                <p style={{fontFamily:'Lato',fontSize:12,color:'white'}}>*Kerala data updated in reference with covid19india.org</p>
                 <br/>
               </MaterialUI.Paper>
-            </center>
+            
             <h3 style={{textAlign:"center",fontSize:25}}>Kerala</h3>
-            <center><KeralaStatus cases={kc} deaths={parseInt(kd)} recovered={parseInt(kr)}/> </center> 
+            <center><KeralaStatus cases={parseInt(this.state.keralaCurrent.confirmed)} deaths={parseInt(this.state.keralaCurrent.deaths)} recovered={parseInt(this.state.keralaCurrent.recovered)}/> </center> 
             <h3 style={{textAlign:"center",fontSize:25}}>India</h3>
             <center> <IndiaStatus cases={parseInt(this.state.indiaTcases)} deaths={parseInt(this.state.indiaTdeath)} recovered={parseInt(this.state.indiaRecover)}/></center> 
             <h3 style={{textAlign:"center",fontSize:25}}>World</h3>
             <center><GlobalStatus cases={parseInt(this.state.worldTcases)} deaths={parseInt(this.state.worldTdeath)} recovered={parseInt(this.state.worldRecover)}/></center>
             
-            <MaterialUI.Paper elevation={10} style={{
+            {/* <MaterialUI.Paper elevation={10} style={{
         backgroundColor:"#4f5a90",
         width:window.innerWidth,height:280,
         alignSelf:"center",
@@ -333,7 +356,7 @@ export default class News extends Component{
         <a style={{color:"white",fontSize:15}} href="/predict">More</a>
         <br/><br/>
         </center>
-    </MaterialUI.Paper>
+    </MaterialUI.Paper> */}
     <br/><br/><br/>
             </div>
             }

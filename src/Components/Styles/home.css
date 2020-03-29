@@ -1,7 +1,7 @@
 .tdeath{
-font-family: Roboto;
+
 font-style: normal;
-font-weight: 500;
+font-weight: bold;
 font-size: 22px;
 /* identical to box height */
 color: #000000;
@@ -9,9 +9,9 @@ color: #000000;
 }
 .text{
     text-align: center;
-    font-family: Roboto;
+   
     font-style: normal;
-    font-weight: 500;
+    font-weight: bold;
     font-size: 17px;
     /* identical to box height */
     
@@ -25,10 +25,22 @@ position: absolute;
 width: 100%;
 height: 100px;
 left: 0px;
-
-
 background: #001F3A;
 }
+.liveUpdates{
+    display: flex;
+    justify-content: center;
+    
+
+}
+.Status{
+    text-align: center;
+    display: flex;  
+   justify-content: center;
+   flex-direction: column;
+   margin: 0 5%;
+}
+
 @media only screen and (max-width:900px){
 .g{
     color: #ffd2d2a2;

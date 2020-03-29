@@ -9,9 +9,10 @@ export default class News extends Component {
             
         }
     }
+  
 
     render() {
-
+    
         if ((this.props.showedIndex === this.props.index)) {
             return (
                 <center>
@@ -31,7 +32,7 @@ export default class News extends Component {
                     <MaterialUI.Button color="primary"  href={this.props.url}>More Details</MaterialUI.Button>
                     <br/>
                    Published On :
-                    <div>{new Date().toLocaleString(this.props.time)}</div>
+                    <div>{new Date(this.props.time).toLocaleString()}</div>
                     <br/><br/>
                 </MaterialUI.Paper>
                 </Animated>
@@ -56,7 +57,7 @@ export default class News extends Component {
                         {this.props.title}
                     </h4>
                     Published On:
-                    <div>{new Date().toLocaleString(this.props.time)}</div>
+                    <div>{new Date(this.props.time).toLocaleString()}</div>
 
                     <br/>
                     </MaterialUI.Paper>

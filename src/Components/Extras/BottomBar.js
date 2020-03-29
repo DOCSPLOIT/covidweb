@@ -11,14 +11,10 @@ import {  useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
-    width:"100%",
-    marginTop:window.innerHeight,
+    
+    width:window.innerWidth,
     color:"black",
-    position:"fixed",
-    zIndex:99,
-    backgroundColor:"rgb(0, 31, 58)"
-    
-    
+    backgroundColor:"rgb(0, 31, 58)",
   },
 });
 
@@ -36,10 +32,11 @@ export default function SimpleBottomNavigation() {
       }}
       showLabels
       className={classes.root}
+      
     >
       <BottomNavigationAction onClick={()=>navigate.push("/")} style={{color:"white"}} label="Home" icon={<HomeIcon style={{color:"white"}} />} />
       <BottomNavigationAction onClick={()=>navigate.push("/news")} style={{color:"white"}} label="Updates" icon={<NewsIcon />} />
-      <BottomNavigationAction onClick={()=>navigate.push("/predict")} style={{color:"white"}} label="Prediction" icon={<PredictIcon/>} />
+      {/* <BottomNavigationAction onClick={()=>navigate.push("/predict")} style={{color:"white"}} label="Prediction" icon={<PredictIcon/>} /> */}
       <BottomNavigationAction onClick={()=>navigate.push("/status")} style={{color:"white"}} label="Status" icon={<StatusIcon />} />
 
       <BottomNavigationAction onClick={()=>navigate.push("/source")} style={{color:"white"}} label="Sources" icon={<MediaIcon/>} />

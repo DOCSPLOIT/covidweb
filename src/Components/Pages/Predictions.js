@@ -15,7 +15,7 @@ export default class Predications extends Component{
         }
     }
    componentDidMount(){
-       fetch(`${url}/PredictionPage`).then(r=>r.json())
+       fetch(`${url}/predictionPage`).then(r=>r.json())
        .then(res=>{
            this.setState({isLoading:true})
        })
@@ -56,20 +56,20 @@ export default class Predications extends Component{
                     <footer>
                     <div className="footer">
                         <br/>
-                        <img src={logosm} style={{
+                     <a href='http://sscollege.ac.in'>  <img src={logosm} style={{
                             width:'75px',
                             height:'75px',
                             position:'absolute',
                             marginLeft:"20px"
-                        }}/>
-                        <center><p style={{color:"white"}}><b style={{fontSize:20}}>Sullamussalam Science College |</b><l style={{fontSize:14}}>Powered By IEDC </l></p></center>
-                        <img src={iedclog} style={{
+                        }}/></a>
+                        <center><a href='http://sscollege.ac.in' style={{textDecoration:'none'}}><p style={{color:"white"}}><b style={{fontSize:20}}>Sullamussalam Science College |</b><l style={{fontSize:14}}>Powered By IEDC </l></p></a></center>
+                      <a href='http://iedc.sscollege.ac.in'>  <img src={iedclog} style={{
                             width:'100px',
                             height:'100px',
                             position:'absolute',
                             marginLeft:window.innerWidth*.9,
                             marginTop:-75
-                        }}/>
+                        }}/></a>
                     </div>
                 </footer>
                 :

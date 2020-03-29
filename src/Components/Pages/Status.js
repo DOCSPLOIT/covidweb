@@ -67,21 +67,21 @@ export default class News extends Component{
                 <footer>
                 <div className="footer">
                      <br/>
-                     <img src={logosm} style={{
+                 <a href='http://sscollege.ac.in'>  <img src={logosm} style={{
                          width:'75px',
                          height:'75px',
                          position:'absolute',
                          marginLeft:"20px"
-                     }}/>
-                     <center><p style={{color:"white"}}><b style={{fontSize:20}}>Sullamussalam Science College |</b><l style={{fontSize:14}}>Powered By IEDC </l></p></center>
+                     }}/></a>
+                     <center><a href='http://sscollege.ac.in' style={{textDecoration:'none'}}><p style={{color:"white"}}><b style={{fontSize:20}}>Sullamussalam Science College |</b><l style={{fontSize:14}}>Powered By IEDC </l></p></a></center>
                  </div>
                 
-                 <img src={iedclog} style={{
+               <a href='http://iedc.sscollege.ac.in'>  <img src={iedclog} style={{
                          width:'100px',
                          height:'100px',
                          position:'absolute',
                          marginLeft:window.innerWidth*.9
-                     }}/>
+                     }}/></a>
              </footer> 
             </div>:
             <div>

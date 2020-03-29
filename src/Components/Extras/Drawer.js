@@ -19,6 +19,8 @@ import InfoIcon from '@material-ui/icons/InfoOutlined'
 const useStyles = makeStyles({
   list: {
     width: 250,
+    height:window.innerHeight,
+    
   },
   fullList: {
     width: 'auto',
@@ -48,7 +50,16 @@ export default function TemporaryDrawer() {
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
-    >
+      
+    > <footer>
+    <div  style={{position:'absolute',
+    backgroundColor: "#001F3A",
+    marginTop:window.innerHeight*.9
+    }}>
+        
+        <center><a href="http://sscollege.ac.in" style={{textDecoration:'none'}} ><p style={{color:"white"}}><b style={{fontSize:15}}>Sullamussalam Science College </b><l style={{fontSize:14}}>Powered By IEDC </l></p></a></center>
+    </div>
+</footer>
       <h3 style={{
          textAlign:"center",
          fontSize:25,
@@ -56,25 +67,19 @@ export default function TemporaryDrawer() {
       }}>Covid Updates</h3>
       <Divider />
       <List>
-        {['Home','Updates','Prediction','Status','Sources','About'].map((text, index) => (
+        {['Home','Updates','Status','Sources','About'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index===0?<HomeIcon style={{color:"rgb(0, 31, 58)"}}/>:index===2?<PredictIcon style={{color:"rgb(0, 31, 58)"}} />:index===3?<StatusIcon style={{color:"rgb(0, 31, 58)"}}/>:
+            <ListItemIcon>{index===0?<HomeIcon style={{color:"rgb(0, 31, 58)"}}/>:index===2?<StatusIcon style={{color:"rgb(0, 31, 58)"}}/>:
             index===1?<NewsIcon style={{color:"rgb(0, 31, 58)"}}/>
-        :index===4?<SourceIcon style={{color:"rgb(0, 31, 58)"}} />:<InfoIcon style={{color:"rgb(0, 31, 58)"}}/>}</ListItemIcon>
+        :index===3?<SourceIcon style={{color:"rgb(0, 31, 58)"}} />:<InfoIcon style={{color:"rgb(0, 31, 58)"}}/>}</ListItemIcon>
            <Link style={{textDecoration:'none',}} to={
-             index===0?'/':index===2?'/predict':index===3?'/status':index===1?'/news':index===4?'/source':'/about'
+             index===0?'/':index===2?'/status':index===3?'/source':index===1?'/news':'/about'
            }> <ListItemText style={{color:"rgb(0, 31, 58)"}} primary={text}  /></Link>
           </ListItem>
         ))}
       </List>
-      <footer>
-                    <div className="footer" style={{
-                      marginTop:window.innerHeight*.23
-                    }}>
-                        <br/>
-                        <center><p style={{color:"white"}}><b style={{fontSize:15}}>Sullamussalam Science College </b><l style={{fontSize:14}}>Powered By IEDC </l></p></center>
-                    </div>
-                </footer>
+      
+     
     </div>
   );
 
@@ -90,7 +95,8 @@ export default function TemporaryDrawer() {
         }
          }/>
  
-          <Drawer anchor='left' open={state['left']} onClose={toggleDrawer('left', false)}>
+          <Drawer 
+           style={{height:10}} anchor='left' open={state['left']} onClose={toggleDrawer('left', false)}>
             {list('left')}
           </Drawer>  
     </div>

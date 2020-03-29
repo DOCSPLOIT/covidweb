@@ -15,7 +15,7 @@ background: #001F3A;
 .title{
     position: absolute;
     left: 20px;
-    font-family: Roboto;
+    font-family: 'arch';
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -28,7 +28,7 @@ background: #001F3A;
 }
 
  .navitem{
-        margin:10px;
+        margin:8px;
         color: rgb(255, 255, 255);
         text-decoration: wavy;
         
@@ -43,8 +43,13 @@ background: #001F3A;
 width: auto;
 height: auto;
 flex-direction: row;
-margin-left: 60%;
+margin-left: 65%;
 margin-top: 30px;
+
+}
+.bottomBar{
+    position: fixed;
+    bottom: 0%;
 
 }
 
@@ -60,7 +65,5 @@ margin-top: 30px;
         align-self: center;
         
     }
-    .w{
-     color:;
-    }
+    
 }

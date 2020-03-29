@@ -19,10 +19,12 @@ export default class AllNews extends Component {
         fetch('https://covid19newsapi.herokuapp.com/news')
             .then(response => response.json())
             .then(res => {
+              res['all'].sort((a,b)=>{
+                  let ad=new Date(a.pubdate), bd=new Date(b.pubdate);
+                  return bd-ad
+                })
                 this.setState({
-                    gok: res.gok,
-                    who: res.who,
-                    all: res.gok.concat(res.who),
+                    all:res['all'],
                     isLoading:true
                 })
 
@@ -30,6 +32,8 @@ export default class AllNews extends Component {
 
     }
     render() {
+        
+        
         return (
             <>
             {this.state.isLoading===true?<div>
@@ -48,20 +52,20 @@ export default class AllNews extends Component {
                 <footer>
                  <div className="footer">
                      <br/>
-                     <img src={logosm} style={{
+                  <a href='http://sscollege.ac.in'>   <img src={logosm} style={{
                          width:'75px',
                          height:'75px',
                          position:'absolute',
                          marginLeft:"20px"
-                     }}/>
-                     <center><p style={{color:"white"}}><b style={{fontSize:20}}>Sullamussalam Science College |</b><l style={{fontSize:14}}>Powered By IEDC </l></p></center>
-                     <img src={iedclog} style={{
+                     }}/></a>
+                     <center><a href='http://sscollege.ac.in' style={{textDecoration:'none'}}><p style={{color:"white"}}><b style={{fontSize:20}}>Sullamussalam Science College |</b><l style={{fontSize:14}}>Powered By IEDC </l></p></a></center>
+                   <a href='http://iedc.sscollege.ac.in'>  <img src={iedclog} style={{
                          width:'100px',
                          height:'100px',
                          position:'absolute',
                          marginLeft:window.innerWidth*.9,
                          marginTop:-75
-                     }}/>
+                     }}/></a>
                 </div>
              </footer>
              :

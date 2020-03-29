@@ -42,9 +42,10 @@ export default class KeralaStatus extends Component{
   
   componentDidUpdate(prevProps,prevState){
     
+    console.log(this.props);
     
      if(this.state.series[0]!=prevProps.cases){
-       this.setState({series:[this.props.cases,this.props.recovered,this.props.deaths]})
+       this.setState({series:[parseInt(this.props.cases),this.props.recovered,this.props.deaths]})
      }
      
    

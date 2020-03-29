@@ -18,7 +18,7 @@ export default class PredictText extends Component {
     }
 
     componentDidMount() {
-        fetch(`${url}/PredictionPage`)
+        fetch(`${url}/predictionPage`)
             .then(response => response.json())
             .then(res => {
             

@@ -51,21 +51,21 @@ export default class Sources extends Component{
                  <footer>
                  <div className="footer">
                      
-                     <img src={logosm} style={{
+                  <a href='http://sscollege.ac.in'>   <img src={logosm} style={{
                          width:'75px',
                          height:'75px',
                          position:'absolute',
                          marginLeft:"20px",
                          marginTop:'20px'
-                     }}/>
-                     <center><p style={{color:"white",marginTop:'40px'}}><b style={{fontSize:20}}>Sullamussalam Science College |</b><l style={{fontSize:14}}>Powered By IEDC </l></p></center>
-                     <img src={iedclog} style={{
+                     }}/></a>
+                     <center><a href='http://sscollege.ac.in' style={{textDecoration:'none'}}><p style={{color:"white",marginTop:'40px'}}><b style={{fontSize:20}}>Sullamussalam Science College |</b><l style={{fontSize:14}}>Powered By IEDC </l></p></a></center>
+                 <a href='http://iedc.sscollege.ac.in'>    <img src={iedclog} style={{
                          width:'100px',
                          height:'100px',
                          position:'absolute',
                          marginLeft:window.innerWidth*.9,
                          marginTop:-75
-                     }}/>
+                     }}/></a>
                  </div>
              </footer>
              :
