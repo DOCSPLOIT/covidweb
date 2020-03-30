@@ -58,6 +58,9 @@ class KeralaMap extends Component {
                                 if (st) {
                                     geo.properties.active_cases = st.active_cases;
                                     geo.properties.observation = st.observation;
+                                    geo.properties.death=st.death;
+                                    geo.properties.recovered=st.recovered;
+                                    geo.properties.confirmed=st.confirmed;
                                 }
                                 let col = (st ? colorScale(st["active_cases"]) : "#F5F4F6");
                                 return (
@@ -66,11 +69,14 @@ class KeralaMap extends Component {
                                         geography={geo}
                                         fill={col}
                                         onMouseEnter={() => {
-                                            const { district, active_cases, observation } = geo.properties;
+                                            const { district, active_cases, observation,death,recovered,confirmed } = geo.properties;
                                             this.setContent({
                                                 observation: observation,
                                                 district: district,
-                                                active_cases: active_cases
+                                                active_cases: active_cases,
+                                                death:death,
+                                                recovered:recovered,
+                                                confirmed:confirmed
                                             });
                                            
                                             

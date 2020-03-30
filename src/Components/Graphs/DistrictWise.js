@@ -68,24 +68,24 @@ export default class DistrictWise extends Component {
     fetch(`${url}/statusPage`)
       .then(res => res.json())
       .then(res => {
-        console.log(res);
+        
         
         this.setState({
           series: [
-            res["keralaDistrictWise"]["Thrissur"]["active_cases"],
-            res["keralaDistrictWise"]["Alappuzha"]["active_cases"],
-            res["keralaDistrictWise"]["Kasaragod"]["active_cases"],
-            res["keralaDistrictWise"]["Pathanamthitta"]["active_cases"],
-            res["keralaDistrictWise"]["Kannur"]["active_cases"],
-            res["keralaDistrictWise"]["Ernakulam"]["active_cases"],
-            res["keralaDistrictWise"]["Kottayam"]["active_cases"],
-            res["keralaDistrictWise"]["Thiruvananthapuram"]["active_cases"],
-            res["keralaDistrictWise"]["Idukki"]["active_cases"],
-            res["keralaDistrictWise"]["Malappuram"]["active_cases"],
-            res["keralaDistrictWise"]["Kozhikode"]["active_cases"],
-            res["keralaDistrictWise"]["Palakkad"]["active_cases"],
-            res["keralaDistrictWise"]["Wayanad"]["active_cases"],
-            res["keralaDistrictWise"]["Kollam"]["active_cases"]
+           parseInt( res["keralaDistrictWise"]["Thrissur"]["active_cases"]),
+           parseInt( res["keralaDistrictWise"]["Alappuzha"]["active_cases"]),
+           parseInt( res["keralaDistrictWise"]["Kasaragod"]["active_cases"]),
+           parseInt( res["keralaDistrictWise"]["Pathanamthitta"]["active_cases"]),
+           parseInt( res["keralaDistrictWise"]["Kannur"]["active_cases"]),
+           parseInt( res["keralaDistrictWise"]["Ernakulam"]["active_cases"]),
+           parseInt( res["keralaDistrictWise"]["Kottayam"]["active_cases"]),
+           parseInt( res["keralaDistrictWise"]["Thiruvananthapuram"]["active_cases"]),
+           parseInt( res["keralaDistrictWise"]["Idukki"]["active_cases"]),
+           parseInt( res["keralaDistrictWise"]["Malappuram"]["active_cases"]),
+           parseInt( res["keralaDistrictWise"]["Kozhikode"]["active_cases"]),
+           parseInt( res["keralaDistrictWise"]["Palakkad"]["active_cases"]),
+           parseInt( res["keralaDistrictWise"]["Wayanad"]["active_cases"]),
+           parseInt( res["keralaDistrictWise"]["Kollam"]["active_cases"])
           ]
         });
       });
