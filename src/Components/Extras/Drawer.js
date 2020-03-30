@@ -12,7 +12,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import NewsIcon from "@material-ui/icons/AnnouncementOutlined";
 import StatusIcon from "@material-ui/icons/Equalizer";
 import SourceIcon from "@material-ui/icons/PermMediaOutlined";
-// import PredictIcon from "@material-ui/icons/ShowChart";
+import PredictIcon from "@material-ui/icons/ShowChart";
 import DrawerIcon from "@material-ui/icons/Menu";
 import InfoIcon from "@material-ui/icons/InfoOutlined";
 const useStyles = makeStyles({
@@ -80,34 +80,38 @@ export default function TemporaryDrawer() {
       </h3>
       <Divider />
       <List>
-        {["Home", "Updates", "Status", "Sources", "About"].map(
+        {["Home", "Updates",'Projection', "Status", "Sources", "About"].map(
           (text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
-                {index === 0 ? (
-                  <HomeIcon style={{ color: "rgb(0, 31, 58)" }} />
-                ) : index === 2 ? (
-                  <StatusIcon style={{ color: "rgb(0, 31, 58)" }} />
-                ) : index === 1 ? (
-                  <NewsIcon style={{ color: "rgb(0, 31, 58)" }} />
-                ) : index === 3 ? (
-                  <SourceIcon style={{ color: "rgb(0, 31, 58)" }} />
-                ) : (
-                  <InfoIcon style={{ color: "rgb(0, 31, 58)" }} />
-                )}
+                {
+                  index===0?
+                  <HomeIcon/>:
+                  index===1?
+                  <NewsIcon/>:
+                  index===2?
+                  <PredictIcon/>:
+                  index===3?
+                  <StatusIcon/>:
+                  index===4?
+                  <SourceIcon/>:
+                  <InfoIcon/>
+                }
               </ListItemIcon>
               <Link
                 style={{ textDecoration: "none" }}
                 to={
-                  index === 0
-                    ? "/"
-                    : index === 2
-                    ? "/status"
-                    : index === 3
-                    ? "/source"
-                    : index === 1
-                    ? "/news"
-                    : "/about"
+                  index===0?
+                  '/':
+                  index===1?
+                  '/news':
+                  index===2?
+                  '/predict':
+                  index===3?
+                  '/status':
+                  index===4?
+                  '/sources':
+                  '/about'
                 }
               >
                 {" "}

@@ -1,54 +1,64 @@
-.tdeath{
-
-font-style: normal;
-font-weight: bold;
-font-size: 22px;
-/* identical to box height */
-color: #000000;
-
+.tdeath {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  /* identical to box height */
+  color: #000000;
 }
-.text{
-    text-align: center;
-   
-    font-style: normal;
-    font-weight: bold;
-    font-size: 17px;
-    /* identical to box height */
-    
-    text-align: center;
-    
-    color: #000000;
-}  
+.text {
+  text-align: center;
 
-.footer{
-position: absolute;
-width: 100%;
-height: 100px;
-left: 0px;
-background: #001F3A;
-}
-.liveUpdates{
-    display: flex;
-    justify-content: center;
-    
+  font-style: normal;
+  font-weight: bold;
+  font-size: 17px;
+  /* identical to box height */
 
-}
-.Status{
-    text-align: center;
-    display: flex;  
-   justify-content: center;
-   flex-direction: column;
-   margin: 0 5%;
+  text-align: center;
+
+  color: #000000;
 }
 
-.Card-status{
-    display: flex;
-    justify-content: center;
-    line-height: 10px;
+.footer {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  left: 0px;
+  background: #001f3a;
 }
-.statusBoard{
-    text-align: center;
-    height: auto;
-    width: 200px;
-    margin:0 10px;
+.liveUpdates {
+  display: flex;
+  justify-content: center;
+}
+.Status {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 5%;
+}
+
+.Card-status {
+  display: flex;
+  justify-content: center;
+  line-height: 10px;
+}
+.statusBoard {
+  text-align: center;
+  height: auto;
+  width: 200px;
+  margin: 0 10px;
+}
+.mapView {
+  width: 60%;
+  margin: 0 20%;
+  height: 10%;
+}
+.mapView.div {
+  display: flex;
+}
+.props {
+  margin: 0 10px;
+}
+.c{
+    color: #337aff;
 }

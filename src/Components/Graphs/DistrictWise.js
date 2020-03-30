@@ -68,22 +68,24 @@ export default class DistrictWise extends Component {
     fetch(`${url}/statusPage`)
       .then(res => res.json())
       .then(res => {
+        console.log(res);
+        
         this.setState({
           series: [
-            res["keralaDistrictWise"]["Thrissur"]["confirmed"],
-            res["keralaDistrictWise"]["Alappuzha"]["confirmed"],
-            res["keralaDistrictWise"]["Kasaragod"]["confirmed"],
-            res["keralaDistrictWise"]["Pathanamthitta"]["confirmed"],
-            res["keralaDistrictWise"]["Kannur"]["confirmed"],
-            res["keralaDistrictWise"]["Ernakulam"]["confirmed"],
-            res["keralaDistrictWise"]["Kottayam"]["confirmed"],
-            res["keralaDistrictWise"]["Thiruvananthapuram"]["confirmed"],
-            res["keralaDistrictWise"]["Idukki"]["confirmed"],
-            res["keralaDistrictWise"]["Malappuram"]["confirmed"],
-            res["keralaDistrictWise"]["Kozhikode"]["confirmed"],
-            res["keralaDistrictWise"]["Palakkad"]["confirmed"],
-            res["keralaDistrictWise"]["Wayanad"]["confirmed"],
-            res["keralaDistrictWise"]["Kollam"]["confirmed"]
+            res["keralaDistrictWise"]["Thrissur"]["active_cases"],
+            res["keralaDistrictWise"]["Alappuzha"]["active_cases"],
+            res["keralaDistrictWise"]["Kasaragod"]["active_cases"],
+            res["keralaDistrictWise"]["Pathanamthitta"]["active_cases"],
+            res["keralaDistrictWise"]["Kannur"]["active_cases"],
+            res["keralaDistrictWise"]["Ernakulam"]["active_cases"],
+            res["keralaDistrictWise"]["Kottayam"]["active_cases"],
+            res["keralaDistrictWise"]["Thiruvananthapuram"]["active_cases"],
+            res["keralaDistrictWise"]["Idukki"]["active_cases"],
+            res["keralaDistrictWise"]["Malappuram"]["active_cases"],
+            res["keralaDistrictWise"]["Kozhikode"]["active_cases"],
+            res["keralaDistrictWise"]["Palakkad"]["active_cases"],
+            res["keralaDistrictWise"]["Wayanad"]["active_cases"],
+            res["keralaDistrictWise"]["Kollam"]["active_cases"]
           ]
         });
       });

@@ -99,18 +99,6 @@ export default class Sources extends Component {
               </a>
               <br />
               <br />
-              <p>Kerala Live Updates from</p>{" "}
-              <a
-                style={{
-                  fontFamily: "Poppins,sans-serif",
-                  textDecoration: "none"
-                }}
-                href="api.covid19india.org"
-              >
-                api.covid19india.org
-              </a>
-              <br />
-              <br />
             </MaterialUI.Paper>
           </center>
           <br />

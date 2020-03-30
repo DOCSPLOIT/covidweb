@@ -26,7 +26,7 @@ export default class Router extends Component{
                 window.innerWidth>800?<div className="navlink">
                 <Link className="navitem"  to="/">HOME</Link>
                 <Link className="navitem" to="/news">UPDATES</Link>
-                {/* <Link className="navitem" to="/predict">PREDICTION</Link> */}
+                <Link className="navitem" to="/predict">PROJECTION</Link>
                 <Link className="navitem" to="/status" >STATUS</Link>
                 <Link className="navitem"  to="/source">SOURCES</Link>
                 <Link className="navitem" to="/about">ABOUT US</Link>

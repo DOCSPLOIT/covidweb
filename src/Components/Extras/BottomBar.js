@@ -6,7 +6,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import NewsIcon from "@material-ui/icons/AnnouncementOutlined";
 import StatusIcon from "@material-ui/icons/Equalizer";
 import MediaIcon from "@material-ui/icons/PermMediaOutlined";
-// import PredictIcon from "@material-ui/icons/ShowChart";
+import PredictIcon from "@material-ui/icons/ShowChart";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
@@ -44,7 +44,12 @@ export default function SimpleBottomNavigation() {
         label="Updates"
         icon={<NewsIcon />}
       />
-      {/* <BottomNavigationAction onClick={()=>navigate.push("/predict")} style={{color:"white"}} label="Prediction" icon={<PredictIcon/>} /> */}
+      <BottomNavigationAction 
+      onClick={() => navigate.push("/predict")} 
+      style={{ color: "white" }} 
+      label="Projection" 
+      icon={<PredictIcon />}
+       />
       <BottomNavigationAction
         onClick={() => navigate.push("/status")}
         style={{ color: "white" }}

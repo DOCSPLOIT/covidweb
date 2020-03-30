@@ -39,8 +39,9 @@ export default class Predications extends Component {
             <>
                 {this.state.isLoading === true ? <div>
                     <div style={{ marginTop: window.innerHeight * .2 }}>
-
+                        
                         <center>
+                        <h1>Statistical Projection</h1>
                             {window.innerWidth < 800 ? para : null}
                             <br />
                             <PredictText />

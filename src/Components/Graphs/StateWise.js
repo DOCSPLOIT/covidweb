@@ -116,7 +116,7 @@ class StateWise extends Component {
 
     const totalDeaths = this.state.data.map(c => {
       const [f, b] = c["Death"].split(",");
-      if (f === "") return 0;
+     
       if (b === undefined) {
         return parseInt(f);
       } else {
@@ -125,7 +125,7 @@ class StateWise extends Component {
     });
     const discharged = this.state.data.map(c => {
       const [f, b] = c["Cured/Discharged/Migrated"].split(",");
-      if (f === "") return 0;
+      
       if (b === undefined) {
         return parseInt(f);
       } else {

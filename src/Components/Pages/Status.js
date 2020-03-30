@@ -35,13 +35,15 @@ export default class News extends Component {
     fetch(`${url}/homePage`)
       .then(r => r.json())
       .then(res => {
+        let [a,b]=res['india']['TotalCases'].split(',');
+        let cases=parseInt(a+b)
         this.setState({
           indiaRecover: res["india"]["TotalRecovered"],
           indiaTdeath: res["india"]["TotalDeaths"],
           worldRecover: res["global"]["recovered"],
           worldTdeath: res["global"]["deaths"],
           worldTcases: res["global"]["cases"],
-          indiaTcases: res["india"]["TotalCases"],
+          indiaTcases: cases,
           keralaCurrent: {
             deaths: res["keralaLive"]["deaths"],
             recovered: res["keralaLive"]["recovered"],
@@ -53,6 +55,8 @@ export default class News extends Component {
   }
 
   render() {
+    
+    
     return (
       <>
         {this.state.isLoading === true ? (

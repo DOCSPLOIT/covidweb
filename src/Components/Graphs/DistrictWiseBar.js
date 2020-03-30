@@ -47,20 +47,21 @@ export default class DistrictWiseBar extends Component {
           series: [
             {
               data: [
-                res["keralaDistrictWise"]["Thiruvananthapuram"]["confirmed"],
-                res["keralaDistrictWise"]["Kollam"]["confirmed"],
-                res["keralaDistrictWise"]["Pathanamthitta"]["confirmed"],
-                res["keralaDistrictWise"]["Alappuzha"]["confirmed"],
-                res["keralaDistrictWise"]["Kottayam"]["confirmed"],
-                res["keralaDistrictWise"]["Idukki"]["confirmed"],
-                res["keralaDistrictWise"]["Ernakulam"]["confirmed"],
-                res["keralaDistrictWise"]["Thrissur"]["confirmed"],
-                res["keralaDistrictWise"]["Palakkad"]["confirmed"],
-                res["keralaDistrictWise"]["Malappuram"]["confirmed"],
-                res["keralaDistrictWise"]["Kozhikode"]["confirmed"],
-                res["keralaDistrictWise"]["Wayanad"]["confirmed"],
-                res["keralaDistrictWise"]["Kannur"]["confirmed"],
-                res["keralaDistrictWise"]["Kasaragod"]["confirmed"]
+                
+                parseInt(res["keralaDistrictWise"]["Thiruvananthapuram"]["active_cases"]),
+                parseInt(res["keralaDistrictWise"]["Kollam"]["active_cases"]),
+                parseInt(res["keralaDistrictWise"]["Pathanamthitta"]["active_cases"]),
+                parseInt(res["keralaDistrictWise"]["Alappuzha"]["active_cases"]),
+                parseInt(res["keralaDistrictWise"]["Kottayam"]["active_cases"]),
+                parseInt(res["keralaDistrictWise"]["Idukki"]["active_cases"]),
+                parseInt(res["keralaDistrictWise"]["Ernakulam"]["active_cases"]),
+                parseInt(res["keralaDistrictWise"]["Thrissur"]["active_cases"]),
+                parseInt(res["keralaDistrictWise"]["Palakkad"]["active_cases"]),
+                parseInt(res["keralaDistrictWise"]["Malappuram"]["active_cases"]),
+                parseInt(res["keralaDistrictWise"]["Kozhikode"]["active_cases"]),
+                parseInt(res["keralaDistrictWise"]["Wayanad"]["active_cases"]),
+                parseInt(res["keralaDistrictWise"]["Kannur"]["active_cases"]),
+                parseInt(res["keralaDistrictWise"]["Kasaragod"]["active_cases"])
               ]
             }
           ]
