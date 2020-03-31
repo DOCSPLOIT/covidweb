@@ -21,7 +21,7 @@ export default class Router extends Component{
                 fontSize:25,
                 color:'white',
                 position:'absolute'
-            }:{}}>Covid Updates</h3>
+            }:{}}>Covid-19 Updates</h3>
             {
                 window.innerWidth>800?<div className="navlink">
                 <Link className="navitem"  to="/">HOME</Link>

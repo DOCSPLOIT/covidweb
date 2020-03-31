@@ -3,12 +3,12 @@ import "../Styles/status.css";
 import IndiaHistory from "../Graphs/IndiaHistory";
 import GlobalHistory from "../Graphs/GlobalHistory";
 import DeathChange from "../Graphs/DeathsChange";
-import GIFFB from "../Media/giffb.gif";
+
 import { Paper } from "@material-ui/core";
 import logosm from "../Media/logosm.png";
 import iedclog from "../Media/iedcw.png";
 import DistrictWise from "../Graphs/DistrictWise";
-import { url } from "../Configure";
+import { url, mapGit_LINK } from "../Configure";
 import Loader from "../Extras/Loader";
 import KeralaStatus from "../Graphs/KeralaStatus";
 import IndiaStatus from "../Graphs/IndiaStatus";
@@ -82,17 +82,19 @@ export default class News extends Component {
                   <h3> Total World Death </h3>
                   <DeathChange />
                 </center>
-                <br /> <br />
+                <br /> 
+               
                 <Paper
                   elevation={10}
                   style={{
-                    marginLeft: window.innerWidth * 0.25,
-                    width: window.innerWidth * 0.52
+                    marginLeft: window.innerWidth * 0.20,
+                    width: window.innerWidth * 0.52,
+                    marginRight:window.innerWidth*.05
                   }}
                 >
                   <br />
                   <h3 style={{ textAlign: "center" }}>
-                    Kerala DistrictWise Confirmed Cases
+                    Kerala DistrictWise Active Cases
                   </h3>
                   <DistrictWise />
                   <br />
@@ -104,10 +106,11 @@ export default class News extends Component {
                       textAlign: "center"
                     }}
                   >
-                    *data updated in reference with covid19india.com
+                    
                   </p>
                   <br />
                 </Paper>
+           
                 <div
                   style={{
                     display: "flex",
@@ -156,14 +159,15 @@ export default class News extends Component {
                     />
                   </div>
                 </div>
-                <br />
-                <br />
                 <center>
-                  <Paper elevation={4} style={{ width: 350 }}>
-                    <img src={GIFFB} alt="autedecatre" />
+                <Paper elevation={10} style={{display:'flex',flexDirection:'column',alignSelf:'center',width:'60%',textAlign:'center'}}>
+                    <h3>Choropleth Maps</h3>
+                    <img src={mapGit_LINK} alt="git%%TODAY&&do.item.prop.LINK" height={550} />
+                  <p>For more maps  <a style={{color:'black',textDecoration:'none'}} href='https://github.com/m3tasploit/projectfiles/tree/master/choropleth'>Click Here</a></p>
+                  <br/>
+                  <b style={{fontFamily:'lato',fontSize:12,color:'black'}}>GIS MAP Courtesy : Shimod KP , Kannur University</b>
                   </Paper>
-                </center>
-                <br />
+                  </center>
                 <br />
                 <footer>
                   <div className="footer">
@@ -244,7 +248,7 @@ export default class News extends Component {
                   >
                     <br />
                     <h3 style={{ textAlign: "center" }}>
-                      Kerala DistrictWise Confirmed Cases
+                      Kerala DistrictWise Active Cases
                     </h3>
                     <br />
                     <DistrictWise />
@@ -257,7 +261,7 @@ export default class News extends Component {
                         color: "gray"
                       }}
                     >
-                      *data updated in reference with covid19india.com
+                      
                     </p>
                   </Paper>
                   <h3 style={{ textAlign: "center", fontSize: 25 }}>Kerala</h3>
@@ -285,11 +289,14 @@ export default class News extends Component {
                       recovered={parseInt(this.state.worldRecover)}
                     />
                   </center>
-                  <div>
-                    <br />
-                    <br />
-                    <img src={GIFFB} alt="autedecatre" />
-                  </div>
+                  <br/>
+                  <Paper elevation={10} style={{display:'flex',flexDirection:'column',textAlign:'center'}}>
+                    <h3>Choropleth Maps</h3>
+                    <img src={mapGit_LINK} height={350} alt="mapCurrent" />
+                     <p>For more maps <a style={{color:'black',textDecoration:'none'}} href='https://github.com/m3tasploit/projectfiles/tree/master/choropleth'>Click Here</a></p>
+                  <br/>
+                  <p style={{fontFamily:'lato',fontSize:14,color:'black',}}>GIS MAP Courtesy : Shimod KP , Kannur University</p>
+                  </Paper>
                 </center>
                 <br />
                 <br />

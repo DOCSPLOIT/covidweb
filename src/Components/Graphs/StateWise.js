@@ -79,7 +79,6 @@ class StateWise extends Component {
 
     let res = await response.json();
     let ds = res["stateWiseData"];
-    ds.pop();
    
     this.setState({ data: ds });
 

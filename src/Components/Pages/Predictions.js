@@ -31,7 +31,9 @@ export default class Predications extends Component {
                 intelligence to predict future cases of positive confirmation of covid-19
                 by automatically learning the case histories, pattern of various cases and trends.
                 The algorithm shall predict daily probabilities by updating with Worldometer, WHO,
-                Ministry of Health and Family Welfare.
+                Ministry of Health and Family Welfare.<b>This system is equipped with polynomial regression(from sklearn)
+                    and machine learning regression algorithm.
+                </b>
             </p>
         )
 

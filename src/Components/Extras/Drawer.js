@@ -110,7 +110,7 @@ export default function TemporaryDrawer() {
                   index===3?
                   '/status':
                   index===4?
-                  '/sources':
+                  '/source':
                   '/about'
                 }
               >

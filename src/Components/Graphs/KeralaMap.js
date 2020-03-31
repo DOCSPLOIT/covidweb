@@ -20,6 +20,7 @@ class KeralaMap extends Component {
             maxValue: 0,
         }
         this.setContent = this.props.setContent;
+        
     }
 
     componentDidMount() {

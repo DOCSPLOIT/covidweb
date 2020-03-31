@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import logosm from "../Media/logosm.png";
 import iedclog from "../Media/iedcw.png";
+import '../Styles/about.css'
+import jasirpic from '../Media/jasir.jpeg'
+import ashifpic from '../Media/ashif.jpg'
+import ansithpic from '../Media/ansith.jpg'
+import amanpic from '../Media/aman.jpg'
+import muneerpic from '../Media/muneer.jpg'
+import munupic from '../Media/munu.jpg'
+import ropic from '../Media/robert.jpg'
+import shabeerpic from '../Media/shabeer.jpg'
 export default class About extends Component {
   constructor(props) {
     super(props);
-    this.state={
+    this.state = {
 
     }
   }
@@ -20,9 +29,10 @@ export default class About extends Component {
         >
           About Us
         </h1>
+        <center>
         <b
           style={{
-            marginLeft: window.innerWidth * 0.08,
+            
             fontFamily: "arch",
             fontSize: 25
           }}
@@ -31,47 +41,96 @@ export default class About extends Component {
         </b>
         <p
           style={{
-            marginLeft: window.innerWidth > 800 ? window.innerWidth * 0.1 : 0,
+            
             fontFamily: "arch",
             width: window.innerWidth > 800 ? "50%" : window.innerWidth
           }}
         >
           We are a group of dedicated volunteers of IEDC of Kerala Startup
           Mission at Sullumussalam Science College, Areekode. We try to provide
-          latest updates about Covid19 from MoHFW, WHO, GoK Direct and
-          covid19inda.org.{" "}
+          latest updates about Covid19 from MoHFW, WHO, GoK Direct.{" "}
         </p>
         <b
           style={{
-            marginLeft: window.innerWidth * 0.08,
+        
             fontFamily: "arch",
-            fontSize: 25
+            fontSize: 25,
+            textAlign:"center",
+            justifyContent:"center"
           }}
         >
           Meet Our Team
         </b>
+        <br />
+        <br />
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            marginLeft:
-              window.innerWidth < 800
-                ? window.innerWidth * 0.05
-                : window.innerWidth * 0.1,
+            flexDirection:window.innerWidth>800?'row':'column',
             fontFamily: "arch",
-            lineHeight: 0
+            justifyContent:'center'
+            // lineHeight: 0
           }}
         >
-          <p>Robert Devasia </p>
-          <p>Mohammed Faris UM </p>
+          <div className="image-container">
+          <img src={ropic}/>
+          <p>Robert Devasia</p></div>
+          <div className="image-container">
+          <img src={munupic}/>
           <p>Abdul Muhaimin</p>
-          <p>Shabeerali </p>
-          <p>Jasir</p>
-          <p>Abdulla Aman</p>
-          <p>Ashif</p>
-          <p>Ansith Mohammed</p>
-          <p>Muneer Hussain</p>
+          </div>
+          <div className="image-container">
+          <img src={shabeerpic}/>
+          <p>Shabeerali</p>
+          </div>
+
         </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent:'center',
+            flexDirection:window.innerWidth>800?'row':'column',
+            fontFamily: "arch",
+            // lineHeight: 0
+          }}
+        >
+          <img src={ashifpic}/>
+          <div className="image-container">
+          <img src={muneerpic}/>
+          <p>Muneer Hussain</p>
+          </div>
+          <div className="image-container">
+          <img src={ashifpic}/>
+          <p>Ashif</p>
+          </div>
+         
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection:window.innerWidth>800?'row':'column',
+            justifyContent:'center',
+            fontFamily: "arch",
+            // lineHeight: 0
+          }}
+        >
+          
+          
+          <div className="image-container">
+          <img src={jasirpic}/>
+          <p>Jasir</p></div>
+          <div className="image-container">
+          <img src={amanpic}/>
+          <p>Abdulla Aman</p>
+          </div>
+          <div className="image-container">
+          <img src={ansithpic}/>
+        <p>Ansith Mohammed</p>
+        </div>
+
+          <p>Muneer Hussain</p> */}
+        </div>
+        </center>
         <br />
         <br />
         <br />
@@ -123,10 +182,10 @@ export default class About extends Component {
             </div>
           </footer>
         ) : (
-          <>
-            <br />
-          </>
-        )}
+            <>
+              <br />
+            </>
+          )}
       </>
     );
   }

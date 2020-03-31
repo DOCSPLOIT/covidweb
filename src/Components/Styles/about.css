@@ -1,0 +1,17 @@
+
+img{
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+    margin: 40px;
+    justify-content: center;
+}
+.image-container{
+    display: flex;
+    flex-direction: column;
+}
+@media only screen and (max-width: 00px) {
+   
+  }
+  

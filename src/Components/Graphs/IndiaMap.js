@@ -7,8 +7,8 @@ import {
 } from "react-simple-maps"
 import { scaleLinear } from "d3-scale"
 
-const minColor = "#dff7da"
-const maxColor = "#167a00"
+const minColor = "#a4a9d1"
+const maxColor = "#384191"
 
 const url = 'https://raw.githubusercontent.com/m3tasploit/projectfiles/master/india.json';
 
@@ -20,13 +20,14 @@ class IndiaMap extends Component {
             maxValue: 0,
         }
         this.setContent = this.props.setContent;
+       
     }
 
     componentDidMount() {
         fetch('https://covid19apiss.herokuapp.com/stateWiseData')
             .then(res => res.json())
             .then(data => {
-                data.pop();
+               
                 data.forEach(element => {
                     element.active_cases = parseInt(element['Total Confirmed cases *']) - parseInt(element['Death']) - parseInt(element['Cured/Discharged/Migrated']);
                 });
@@ -51,7 +52,7 @@ class IndiaMap extends Component {
                 .range([minColor, maxColor])
             return (
                 <div style={window.innerWidth > 800 ? { width: '60%' } : { width: '100%' }}>
-                    <ComposableMap width={100} height={100} projection='geoMercator' projectionConfig={window.innerWidth > 800 ? { center: [80, 25], scale: 150 } : { center: [80, 20], scale: 150 }}>
+                    <ComposableMap width={100} height={100} projection='geoMercator' projectionConfig={window.innerWidth > 800 ? { center: [80, 25], scale: 150 } : { center: [80, 22], scale: 150 }}>
                         <Geographies geography={url}>
                             {({ geographies }) => geographies.map((geo, i) => {
                                 /* console.log(geo) */
@@ -89,18 +90,18 @@ class IndiaMap extends Component {
                                         // projection={projection}
                                         style={{
                                             default: {
-                                                stroke: "#5a3333",
+                                                stroke: "#22285e",
                                                 strokeWidth: .1,
                                                 outline: "none",
                                             },
                                             hover: {
-                                                stroke: "#167b00",
+                                                stroke: "#22285e",
                                                 strokeWidth: .5,
                                                 outline: "none",
                                             },
                                             pressed: {
-                                                stroke: "#167b00",
-                                                strokeWidth: 1,
+                                                stroke: "#22285e",
+                                                strokeWidth: .8,
                                                 outline: "none",
                                             }
                                         }}

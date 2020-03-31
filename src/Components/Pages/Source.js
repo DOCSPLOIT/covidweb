@@ -87,16 +87,31 @@ export default class Sources extends Component {
               </a>
               <br />
               <br />
-              <h4>GoK Direct (Goverment of Kerala)</h4>
+              <h4>GoK Direct App (Goverment of Kerala)</h4>
               <a
                 style={{
                   fontFamily: "Poppins,sans-serif",
                   textDecoration: "none"
                 }}
-                href="http://prdlive.kerala.gov.in"
+                href="https://play.google.com/store/apps/details?id=com.qkopy.prdkerala"
               >
-                http://prdlive.kerala.gov.in
+                https://play.google.com/store/apps/details?id=com.qkopy.prdkerala
               </a>
+            
+              <h4>Disha Helpline : 1056</h4>
+           
+             <h4>Directorate of Health Services</h4>
+              <a
+                style={{
+                  fontFamily: "Poppins,sans-serif",
+                  textDecoration: "none"
+                }}
+                href="http://dhs.kerala.gov.in"
+              >
+                http://dhs.kerala.gov.in
+              </a>
+              <br/><br/>
+              <b style={{fontFamily:'Poppins,sans-serif',fontSize:14,color:'black',}}>GIS MAP Courtesy : Shimod KP , Kannur University</b>
               <br />
               <br />
             </MaterialUI.Paper>
