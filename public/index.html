@@ -47,4 +47,27 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAIIkHgVGFDzPpGnQYV-uXdmafGTnaoxbU",
+    authDomain: "covid19-updates.firebaseapp.com",
+    databaseURL: "https://covid19-updates.firebaseio.com",
+    projectId: "covid19-updates",
+    storageBucket: "covid19-updates.appspot.com",
+    messagingSenderId: "18662598",
+    appId: "1:18662598:web:d7a0e5e45b1df4363143c7",
+    measurementId: "G-3JYL4GQ6Z5"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
 </html>
