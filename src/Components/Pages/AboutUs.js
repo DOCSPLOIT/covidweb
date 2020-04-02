@@ -10,6 +10,9 @@ import muneerpic from '../Media/muneer.jpg'
 import munupic from '../Media/munu.jpg'
 import ropic from '../Media/robert.jpg'
 import shabeerpic from '../Media/shabeer.jpg'
+import farispic from '../Media/faris.jpg'
+
+
 export default class About extends Component {
   constructor(props) {
     super(props);
@@ -20,121 +23,139 @@ export default class About extends Component {
   render() {
     return (
       <>
-        <h1
-          style={{
-            fontFamily: "arch",
-            marginTop: window.innerHeight * 0.15,
-            textAlign: "center"
-          }}
-        >
-          About Us
-        </h1>
+
         <center>
-        <b
-          style={{
-            
-            fontFamily: "arch",
-            fontSize: 25
-          }}
-        >
-          Who we are ?
+          <div style={{ marginTop: window.innerHeight * .15 }}>
+            <b
+              style={{
+
+                fontFamily: "arch",
+                fontSize: 25
+              }}
+            >
+              Who we are ?
         </b>
-        <p
-          style={{
-            
-            fontFamily: "arch",
-            width: window.innerWidth > 800 ? "50%" : window.innerWidth
-          }}
-        >
-          We are a group of dedicated volunteers of IEDC of Kerala Startup
-          Mission at Sullumussalam Science College, Areekode. We try to provide
+            <p
+              style={{
+
+                fontFamily: "arch",
+                width: window.innerWidth > 800 ? "50%" : window.innerWidth
+              }}
+            >
+              We are a group of dedicated volunteers of IEDC of Kerala Startup
+              Mission at Sullumussalam Science College, Areekode. We try to provide
           latest updates about Covid19 from MoHFW, WHO, GoK Direct.{" "}
-        </p>
-        <b
-          style={{
-        
-            fontFamily: "arch",
-            fontSize: 25,
-            textAlign:"center",
-            justifyContent:"center"
-          }}
-        >
-          Meet Our Team
+            </p>
+            <b
+              style={{
+
+                fontFamily: "arch",
+                fontSize: 25,
+                textAlign: "center",
+                justifyContent: "center"
+              }}
+            >
+              Meet Our Team
         </b>
-        <br />
-        <br />
-        <div
-          style={{
-            display: "flex",
-            flexDirection:window.innerWidth>800?'row':'column',
-            fontFamily: "arch",
-            justifyContent:'center'
-            // lineHeight: 0
-          }}
-        >
-          <div className="image-container">
-          <img src={ropic}/>
-          <p>Robert Devasia</p></div>
-          <div className="image-container">
-          <img src={munupic}/>
-          <p>Abdul Muhaimin</p>
-          </div>
-          <div className="image-container">
-          <img src={shabeerpic}/>
-          <p>Shabeerali</p>
+            <br />
+            <br />
+            <div
+              style={{
+                display: "flex",
+
+                fontFamily: "arch",
+                justifyContent: 'center'
+                // lineHeight: 0
+              }}
+            >
+              <div className="image-container">
+                <img src={ropic} />
+                <b>Robert Devasia</b>
+                <p className="desig">UI Design</p>
+              </div>
+              <div className="image-container">
+                <img src={munupic} />
+                <b>Abdul Muhaimin</b>
+                <p className="desig">Back-End</p>
+              </div>
+              <div className="image-container">
+                <img src={shabeerpic} />
+                <b>Shabeerali</b>
+                <p className="desig">AI</p>
+              </div>
+
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: 'center',
+
+                fontFamily: "arch",
+                // lineHeight: 0
+              }}
+            >
+              <div className="image-container">
+                <img src={farispic} />
+                <b>Muhammed Faris</b>
+                <p className="desig">UI Design</p>
+              </div>
+              <div className="image-container">
+                <img src={muneerpic} />
+                <b>Muneer Hussain</b>
+                <p className={'desig'}>Coordinator</p>
+              </div>
+              <div className="image-container">
+                <img src={ashifpic} />
+                <b>Ashif</b>
+                <p className="desig">Data Processing</p>
+              </div>
+
+            </div>
+            <div
+              style={{
+                display: "flex",
+
+                justifyContent: 'center',
+                fontFamily: "arch",
+                // lineHeight: 0
+              }}
+            >
+
+
+              <div className="image-container">
+                <img src={jasirpic} />
+                <b>Jasir</b>
+                <p className="desig">Data Processing</p>
+              </div>
+              <div className="image-container">
+                <img src={amanpic} />
+                <b>Abdulla Aman</b>
+                <p className="desig">Data Processing</p>
+              </div>
+              <div className="image-container">
+                <img src={ansithpic} />
+                <b>Ansith MOHD</b>
+                <p className="desig">Data Processing</p>
+              </div>
+
+            </div>
           </div>
 
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent:'center',
-            flexDirection:window.innerWidth>800?'row':'column',
-            fontFamily: "arch",
-            // lineHeight: 0
-          }}
-        >
-          <img src={ashifpic}/>
-          <div className="image-container">
-          <img src={muneerpic}/>
-          <p>Muneer Hussain</p>
-          </div>
-          <div className="image-container">
-          <img src={ashifpic}/>
-          <p>Ashif</p>
-          </div>
-         
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection:window.innerWidth>800?'row':'column',
-            justifyContent:'center',
-            fontFamily: "arch",
-            // lineHeight: 0
-          }}
-        >
-          
-          
-          <div className="image-container">
-          <img src={jasirpic}/>
-          <p>Jasir</p></div>
-          <div className="image-container">
-          <img src={amanpic}/>
-          <p>Abdulla Aman</p>
-          </div>
-          <div className="image-container">
-          <img src={ansithpic}/>
-        <p>Ansith Mohammed</p>
-        </div>
+              <h3>Contact Us</h3>
+              <p><i className="fa fa-envelope" ></i> Mail us : iedcsscollege@gmail.com</p>
+              <p><i className="fa fa-phone"/>  Phone : +91 97447 94110</p>
 
-          <p>Muneer Hussain</p> */}
-        </div>
+
+          <div >
+            <a className="fa fa-facebook" style={{ margin: 20, color: ' #3b5998', fontSize: 30, textDecoration: 'none' }} href="https://m.facebook.com/iedcsscollege" />
+            <a className="fa fa-instagram" style={{ margin: 20, fontSize: 30, textDecoration: 'none' }} href="https://www.instagram.com/iedcsscollege/" />
+            <a className="fa fa-youtube" style={{ margin: 20, color: ' #000', fontSize: 30, textDecoration: 'none' }} href="https://www.youtube.com/channel/UChYMaX62qlvPSNgenUbiVbw" />
+
+          </div>
         </center>
-        <br />
-        <br />
-        <br />
-        <br />
+              <br/>
+
+
         {window.innerWidth > 800 ? (
           <footer>
             <div className="footer">

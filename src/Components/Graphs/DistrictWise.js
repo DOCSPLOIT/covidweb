@@ -11,22 +11,10 @@ export default class DistrictWise extends Component {
           width: 380,
           type: "pie"
         },
-        labels: [
-          "Thrissur",
-          "Alappuzha",
-          "Kasargod",
-          "Pathanamthitta",
-          "Kannur",
-          "ErnaKulam",
-          "Kottayam",
-          "Thiruvananthapuram",
-          "Idukki",
-          "Malappuram",
-          "Kozhikode",
-          "Palakkad",
-          "Wayanad",
-          "Kollam"
-        ],
+        legend:{
+          position:'bottom'
+        },
+        labels: ["Thrissur","Alappuzha","Kasargod","Pathanamthitta","Kannur","ErnaKulam","Kottayam","Thiruvananthapuram","Idukki","Malappuram","Kozhikode","Palakkad","Wayanad","Kollam"],
         responsive: [
           {
             breakpoint: 480,

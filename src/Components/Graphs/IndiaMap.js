@@ -29,7 +29,7 @@ class IndiaMap extends Component {
             .then(data => {
                
                 data.forEach(element => {
-                    element.active_cases = parseInt(element['Total Confirmed cases *']) - parseInt(element['Death']) - parseInt(element['Cured/Discharged/Migrated']);
+                    element.active_cases = parseInt(element['Total Confirmed cases']) - parseInt(element['Death']) - parseInt(element['Cured/Discharged/Migrated']);
                 });
                 let cases = data.map(elt => elt.active_cases)
                 let max = Math.max(...cases);
@@ -62,7 +62,7 @@ class IndiaMap extends Component {
                                     geo.properties.active_cases = st.active_cases;
                                     geo.properties.death = st['Death'];
                                     geo.properties.recovered = st['Cured/Discharged/Migrated'];
-                                    geo.properties.confirmed = st['Total Confirmed cases *'];
+                                    geo.properties.confirmed = st['Total Confirmed cases'];
                                 } else {
                                     geo.properties.active_cases = "0";
                                     geo.properties.death = "0";

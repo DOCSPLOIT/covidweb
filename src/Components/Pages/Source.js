@@ -111,7 +111,7 @@ export default class Sources extends Component {
                 http://dhs.kerala.gov.in
               </a>
               <br/><br/>
-              <b style={{fontFamily:'Poppins,sans-serif',fontSize:14,color:'black',}}>GIS MAP Courtesy : Shimod KP , Kannur University</b>
+              <b style={{fontFamily:'Poppins,sans-serif',fontSize:14,color:'black',}}>GIS Map Courtesy: Shimod KP, Geographical Research Forum , Kannur University</b>
               <br />
               <br />
             </MaterialUI.Paper>

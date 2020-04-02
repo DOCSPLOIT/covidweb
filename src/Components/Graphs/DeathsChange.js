@@ -87,10 +87,12 @@ export default class DeathChange extends Component {
           window.innerWidth > 800
             ? { width: window.innerWidth * 0.8 }
             : {
-                width: window.innerWidth
-              }
+              width: window.innerWidth
+            }
         }
       >
+        <br />
+        <h3>Global Death Rate Caused By Covid-19</h3>
         <Chart
           options={this.state.options}
           series={this.state.series}

@@ -10,6 +10,7 @@ import Loader from "../Extras/Loader";
 import DistrictWiseBar from "../Graphs/DistrictWiseBar";
 import KeralaMap from "../Graphs/KeralaMap";
 import IndiaMap from "../Graphs/IndiaMap";
+import SlideShow from "../Graphs/SlideShow";
 
 export default class News extends Component {
   constructor(props) {
@@ -74,12 +75,12 @@ export default class News extends Component {
           indiaTdeath: res["india"]["TotalDeaths"],
           worldRecover: res["global"]["recovered"],
           worldTdeath: res["global"]["deaths"],
-          keralaTCases: res['kerala']['Total Confirmed cases *'],
+          keralaTCases: res['kerala']['Total Confirmed cases'],
           worldTcases: res["global"]["cases"],
           indiaTcases: res["india"]["TotalCases"],
           isLoading: true,
           keralaActive: res['kerala']['active_cases'],
-          keralaConfirmed: res['kerala']['Total Confirmed cases *'],
+          keralaConfirmed: res['kerala']['Total Confirmed cases'],
           indiaActive: res['india']['ActiveCases'],
           worldActive: res['global']['active_cases']['currently_infected_patients']
         });
@@ -196,9 +197,11 @@ export default class News extends Component {
                         </b>
 
                       </div>
+                     
                       <br /><br />
                     </div>
                     <br />
+                    <p style={{fontSize:12,fontFamily:'lato'}} >Reference : dhs.kerala.gov.in</p>
                   </MaterialUI.Paper>
                   <MaterialUI.Paper className="statusBoard" elevation={10}>
                     <h3>India</h3>
@@ -271,6 +274,7 @@ export default class News extends Component {
                       <br /><br />
                     </div>
                     <br />
+                    <p style={{fontSize:12,fontFamily:'lato'}}>Reference: mohfw.gov.in</p>
                   </MaterialUI.Paper>
                   <MaterialUI.Paper className="statusBoard" elevation={10}>
                     <h3>World</h3>
@@ -343,6 +347,7 @@ export default class News extends Component {
                       <br /><br />
                     </div>
                     <br />
+                    <p style={{fontSize:12,fontFamily:'lato'}}>Reference: www.worldometer.info</p>
                   </MaterialUI.Paper>
                 </div>
                 <br />
@@ -486,7 +491,6 @@ export default class News extends Component {
                 </center>
 
 
-
                 {/* <MaterialUI.Paper  elevation={10} style={{
         backgroundColor:"#4f5a90",
         width:200,
@@ -521,6 +525,8 @@ export default class News extends Component {
                     <br />
 
                   </MaterialUI.Paper>
+                  <SlideShow/>
+
                 </center>
                 <br />
                 <br />
@@ -575,10 +581,10 @@ export default class News extends Component {
                 <div>
                   {/*Mobile View is below*/}
                   <br /> <br /> <br />
-                  <div>
+                  
                     <Animated animationIn="fadeIn" animationInDuration={2500}>
-                      <MaterialUI.Paper style={{ width: window.innerWidth, margin: 0 }} className="statusBoard" elevation={10}>
-                        <br />
+                      <MaterialUI.Paper style={{ width: window.innerWidth, margin: 0 }} className="statusBoard" elevation={1}>
+                      
                         <h2>Kerala</h2>
                         <center>
                           <div style={{ display: 'flex' }}>
@@ -649,10 +655,11 @@ export default class News extends Component {
                             <br /><br />
                           </div>
                         </center>
-                        <br />
+                        <p style={{fontSize:12,fontFamily:'lato'}}>Reference : dhs.kerala.gov.in</p>
+                       
                       </MaterialUI.Paper>
-                      <MaterialUI.Paper style={{ width: window.innerWidth, margin: 0 }} className="statusBoard" elevation={10}>
-                        <br />
+                      <MaterialUI.Paper style={{ width: window.innerWidth, margin: 0 }} className="statusBoard" elevation={1}>
+                        
                         <h2>India</h2>
                         <div style={{ display: 'flex',width:window.innerWidth }}>
                           <div style={{
@@ -701,7 +708,7 @@ export default class News extends Component {
                             >
                               {this.state.indiaRecover}
                             </b>
-                            <br /><br /><br />
+                           
                           </div>
 
                           <div style={{
@@ -720,12 +727,14 @@ export default class News extends Component {
                             </b>
 
                           </div>
-                          <br /><br />
+                        
                         </div>
-                        <br />
+                       
+                        <p style={{fontSize:12,fontFamily:'lato'}}>Reference : www.mohfw.gov.in</p>
+                       
                       </MaterialUI.Paper>
-                      <MaterialUI.Paper style={{ width: window.innerWidth, margin: 0 }} className="statusBoard" elevation={10}>
-                        <br />
+                      <MaterialUI.Paper style={{ width: window.innerWidth, margin: 0 }} className="statusBoard" elevation={1}>
+                        
                         <h2>World</h2>
                         <div style={{ display: 'flex',width:window.innerWidth }}>
                           <div style={{
@@ -793,12 +802,14 @@ export default class News extends Component {
                             </b>
 
                           </div>
-                          <br /><br />
+                        
                         </div>
-                        <br />
+                        
+                        <p style={{fontSize:12,fontFamily:'lato'}}>Reference : www.worldometer.info</p>
+                        
                       </MaterialUI.Paper>
                     </Animated>
-                  </div>
+                 
                   <MaterialUI.Paper elevation={10} style={{ width: window.innerWidth, margin: 0 }} className="mapView">
                     <br />
                    
@@ -844,7 +855,7 @@ export default class News extends Component {
                       <KeralaMap setContent={(obj) => {
 
 
-                        console.log(obj['death']);
+                        
 
                         this.setState({
                           KeralaMapProps: {
@@ -934,7 +945,7 @@ export default class News extends Component {
                     <DistrictWiseBar />
                     <br />
                   </MaterialUI.Paper>
-
+                  <SlideShow/>
                   {/* <MaterialUI.Paper elevation={10} style={{
         backgroundColor:"#4f5a90",
         width:window.innerWidth,height:280,

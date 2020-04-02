@@ -59,6 +59,35 @@
 .props {
   margin: 0 10px;
 }
-.c{
-    color: #21b463;
+
+.slide-container {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+.each-slide div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  align-self: center;
+
+  height: 500px;
+ 
+  
+}
+@media only screen and (max-width: 800px) {
+  .each-slide div {
+   
+    height: 300px;
+  }
+  .slide-container {
+    width: 100%;
+    margin:0px;
+    background-position: center;
+   
+  }
 }

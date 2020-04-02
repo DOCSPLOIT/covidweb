@@ -50,6 +50,8 @@ export default class GlobalHistory extends Component {
   render() {
     return (
       <MaterialUI.Paper elevation={10}>
+        <br/>
+        <h3>Global Cases Till Today</h3>
         <Chart
           options={this.state.options}
           series={this.state.series}

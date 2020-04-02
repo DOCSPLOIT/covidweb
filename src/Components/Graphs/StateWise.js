@@ -29,7 +29,8 @@ class StateWise extends Component {
         },
         chart: {
           type: "bar",
-          height: 350,
+          height: 800,
+          
           stacked: true
         },
         plotOptions: {
@@ -38,7 +39,7 @@ class StateWise extends Component {
           }
         },
         stroke: {
-          width: 1,
+          width: 10,
           colors: ["#fff"]
         },
         title: {
@@ -70,7 +71,7 @@ class StateWise extends Component {
       legend: {
         position: "top",
         horizontalAlign: "left",
-        offsetX: 40
+        offsetX: 100
       }
     };
   }
@@ -79,7 +80,7 @@ class StateWise extends Component {
 
     let res = await response.json();
     let ds = res["stateWiseData"];
-   
+
     this.setState({ data: ds });
 
     this.setData();
@@ -91,18 +92,19 @@ class StateWise extends Component {
         style={
           window.innerWidth > 800
             ? {
-                width: window.innerWidth * 0.8
-              }
+              width: window.innerWidth * 0.8
+            }
             : {
-                width: window.innerWidth
-              }
+              width: window.innerWidth
+            }
         }
       >
         <Chart
           options={this.state.options}
           series={this.state.series}
           type="bar"
-          height={window.innerWidth > 800 ? "800" : "500"}
+          height={window.innerWidth > 800 ? "1000" : "1000"}
+         
         />
       </MaterialUI.Paper>
     );
@@ -115,7 +117,7 @@ class StateWise extends Component {
 
     const totalDeaths = this.state.data.map(c => {
       const [f, b] = c["Death"].split(",");
-     
+
       if (b === undefined) {
         return parseInt(f);
       } else {
@@ -124,7 +126,7 @@ class StateWise extends Component {
     });
     const discharged = this.state.data.map(c => {
       const [f, b] = c["Cured/Discharged/Migrated"].split(",");
-      
+
       if (b === undefined) {
         return parseInt(f);
       } else {
@@ -133,22 +135,22 @@ class StateWise extends Component {
     });
 
     const totalCases = this.state.data.map(c => {
-    
 
-     let [f, b] = c["Total Confirmed cases *"].split(",");
+
+      let [f, b] = c["Total Confirmed cases"].split(",");
       let fr = 0;
       if (b === undefined) {
         fr = parseInt(f);
       } else {
         fr = parseInt(f + b);
       }
-      return   fr;
+      return fr;
     });
 
     this.setState({
       options: {
         dataLabels: {
-          enabled: window.innerWidth > 800 ? true : false
+          enabled: true
         },
         chart: {
           type: "bar",
@@ -167,28 +169,30 @@ class StateWise extends Component {
         title: {
           text: "State wise data"
         },
+       
         xaxis: {
-          categories: states
-          // labels: {
-          //     formatter: function (val) {
-          //         return val
-          //     }
-          // }
-        },
-        yaxis: {
-          title: {
-            text: undefined
+          
+          categories: states,
+           
+          labels: {
+            
+            show: true,
+            align: 'right',
+          
+            style: {
+                colors: [],
+                fontSize: '12px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 400,
+                cssClass: 'apexcharts-yaxis-label',
+            }
           }
-        }
+        },
       },
       fill: {
         opacity: 1
       },
-      legend: {
-        position: "top",
-        horizontalAlign: "left",
-        offsetX: 40
-      },
+     
       series: [
         {
           name: "Cases",

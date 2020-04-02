@@ -1,17 +1,42 @@
 
-img{
+
+.image-container{
+    display: flex;
+    flex-direction: column;
+    line-height: 50px;
+    margin: 0  0 50px 0px;
+}
+.image-container img{
     object-fit: cover;
     width: 250px;
     height: 250px;
     border-radius: 100%;
-    margin: 40px;
+    margin:5px 40px;
     justify-content: center;
 }
-.image-container{
-    display: flex;
-    flex-direction: column;
+.desig{
+    line-height: 0;
+    color: gray;
+    margin:5px 0px;
 }
-@media only screen and (max-width: 00px) {
-   
+.fa-instagram{
+    background-clip: text;
+    background: -webkit-linear-gradient(right bottom,#833ab4,#fd1d1d,#fcb045);
+    background-color: white;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-radius: 25%;
+  }
+@media only screen and (max-width: 800px) {
+   .image-container img{
+    object-fit: cover;
+    width: 125px;
+    height: 125px;
+    border-radius: 100%;
+    margin:0 5px 0 5px;
+}
+.desig{
+    font-size: 15px;
+}
   }
   

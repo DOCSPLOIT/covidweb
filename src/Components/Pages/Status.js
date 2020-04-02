@@ -13,6 +13,7 @@ import Loader from "../Extras/Loader";
 import KeralaStatus from "../Graphs/KeralaStatus";
 import IndiaStatus from "../Graphs/IndiaStatus";
 import GlobalStatus from "../Graphs/GlobalStatus";
+import KeralaHistory from "../Graphs/KeralaHistory";
 export default class News extends Component {
   constructor(props) {
     super(props);
@@ -35,15 +36,15 @@ export default class News extends Component {
     fetch(`${url}/homePage`)
       .then(r => r.json())
       .then(res => {
-        let [a,b]=res['india']['TotalCases'].split(',');
-        let cases=parseInt(a+b)
+        
+       
         this.setState({
           indiaRecover: res["india"]["TotalRecovered"],
           indiaTdeath: res["india"]["TotalDeaths"],
           worldRecover: res["global"]["recovered"],
           worldTdeath: res["global"]["deaths"],
           worldTcases: res["global"]["cases"],
-          indiaTcases: cases,
+          indiaTcases: res['india']['TotalCases'],
           keralaCurrent: {
             deaths: res["keralaLive"]["deaths"],
             recovered: res["keralaLive"]["recovered"],
@@ -64,32 +65,25 @@ export default class News extends Component {
             {window.innerWidth > 800 ? (
               <div>
                 <center>
-                  <div
-                    style={{
-                      width: window.innerWidth * 0.8,
-                      marginTop: window.innerHeight * 0.15
-                    }}
-                  >
-                    <h3>India Cases Till Today</h3>
-                    <div style={{ marginTop: window.innerHeight * 0.1 }}>
+                  <KeralaHistory/>
+                  <br />
                       <IndiaHistory />
-                    </div>
-                  </div>
+                  <br />
                   <div style={{ width: window.innerWidth * 0.8 }}>
-                    <h3>World Cases Till Today</h3>
+                   
                     <GlobalHistory />
                   </div>
-                  <h3> Total World Death </h3>
+                 <br/>
                   <DeathChange />
                 </center>
                 <br /> 
-               
+               <center>
                 <Paper
                   elevation={10}
                   style={{
-                    marginLeft: window.innerWidth * 0.20,
-                    width: window.innerWidth * 0.52,
-                    marginRight:window.innerWidth*.05
+                    
+                    width: window.innerWidth * 0.8,
+                   
                   }}
                 >
                   <br />
@@ -98,19 +92,18 @@ export default class News extends Component {
                   </h3>
                   <DistrictWise />
                   <br />
-                  <p
-                    style={{
-                      fontFamily: "Lato",
-                      fontSize: 12,
-                      color: "gray",
-                      textAlign: "center"
-                    }}
-                  >
-                    
-                  </p>
-                  <br />
                 </Paper>
-           
+                </center>
+                <br/>
+                <center>
+                <Paper elevation={10} style={{display:'flex',flexDirection:'column',alignSelf:'center',width:'60%',textAlign:'center'}}>
+                    <h3>Choropleth Maps</h3>
+                    <img src={mapGit_LINK} alt="git%%TODAY&&do.item.prop.LINK" height={550} />
+                  <p>For more maps  <a style={{color:'black',textDecoration:'none'}} href='https://github.com/m3tasploit/projectfiles/tree/master/choropleth'>Click Here</a></p>
+                  <br/>
+                  <b style={{fontFamily:'lato',fontSize:12,color:'black'}}>GIS MAP Courtesy : Shimod KP, Geographical Research Forum, Kannur University</b>
+                  </Paper>
+                  </center>
                 <div
                   style={{
                     display: "flex",
@@ -159,15 +152,7 @@ export default class News extends Component {
                     />
                   </div>
                 </div>
-                <center>
-                <Paper elevation={10} style={{display:'flex',flexDirection:'column',alignSelf:'center',width:'60%',textAlign:'center'}}>
-                    <h3>Choropleth Maps</h3>
-                    <img src={mapGit_LINK} alt="git%%TODAY&&do.item.prop.LINK" height={550} />
-                  <p>For more maps  <a style={{color:'black',textDecoration:'none'}} href='https://github.com/m3tasploit/projectfiles/tree/master/choropleth'>Click Here</a></p>
-                  <br/>
-                  <b style={{fontFamily:'lato',fontSize:12,color:'black'}}>GIS MAP Courtesy : Shimod KP , Kannur University</b>
-                  </Paper>
-                  </center>
+               
                 <br />
                 <footer>
                   <div className="footer">
@@ -219,24 +204,20 @@ export default class News extends Component {
               <div>
                 {/* Mobile View */}
                 <center>
-                  <div
-                    style={{
-                      width: window.innerWidth,
-                      height: 10,
-                      marginTop: window.innerHeight * 0.15
-                    }}
-                  >
-                    <h3>India Cases By Day</h3>
+                  <KeralaHistory/>
+                
+                    
                     <IndiaHistory />
-                  </div>
+                  
+                  
                   <div
                     style={{
                       width: window.innerWidth,
                       height: 10,
-                      marginTop: window.innerHeight * 0.6
+                      // marginTop: window.innerHeight * 0.1
                     }}
                   >
-                    <h3>World Cases By Day</h3>
+                  
                     <GlobalHistory />
                   </div>
                   <Paper
@@ -264,6 +245,13 @@ export default class News extends Component {
                       
                     </p>
                   </Paper>
+                  <Paper elevation={10} style={{display:'flex',flexDirection:'column',textAlign:'center'}}>
+                    <h3>Choropleth Maps</h3>
+                    <img src={mapGit_LINK} height={350} alt="mapCurrent" />
+                     <p>For more maps <a style={{color:'black',textDecoration:'none'}} href='https://github.com/m3tasploit/projectfiles/tree/master/choropleth'>Click Here</a></p>
+                  <br/>
+                  <p style={{fontFamily:'lato',fontSize:14,color:'black',}}>GIS MAP Courtesy : Shimod KP,Geographical Research Forum , Kannur University</p>
+                  </Paper>
                   <h3 style={{ textAlign: "center", fontSize: 25 }}>Kerala</h3>
                   <center>
                     <KeralaStatus
@@ -290,13 +278,7 @@ export default class News extends Component {
                     />
                   </center>
                   <br/>
-                  <Paper elevation={10} style={{display:'flex',flexDirection:'column',textAlign:'center'}}>
-                    <h3>Choropleth Maps</h3>
-                    <img src={mapGit_LINK} height={350} alt="mapCurrent" />
-                     <p>For more maps <a style={{color:'black',textDecoration:'none'}} href='https://github.com/m3tasploit/projectfiles/tree/master/choropleth'>Click Here</a></p>
-                  <br/>
-                  <p style={{fontFamily:'lato',fontSize:14,color:'black',}}>GIS MAP Courtesy : Shimod KP , Kannur University</p>
-                  </Paper>
+                 
                 </center>
                 <br />
                 <br />

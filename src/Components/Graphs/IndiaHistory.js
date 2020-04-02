@@ -50,7 +50,9 @@ class IndiaHistory extends Component {
   render() {
     return (
       <>
-        <MaterialUI.Paper elevation={10}>
+        <MaterialUI.Paper elevation={10} style={{width:window.innerWidth>800?window.innerWidth*.8:window.innerWidth}}>
+          <br/>
+          <h3>India Cases Till Today</h3>
           <Chart
             options={this.state.options}
             series={this.state.series}
