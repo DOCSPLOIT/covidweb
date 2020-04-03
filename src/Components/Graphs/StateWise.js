@@ -80,6 +80,9 @@ class StateWise extends Component {
 
     let res = await response.json();
     let ds = res["stateWiseData"];
+    ds.sort((a,b)=>{
+      return(b["Total Confirmed cases"] - a["Total Confirmed cases"])
+    });
 
     this.setState({ data: ds });
 
