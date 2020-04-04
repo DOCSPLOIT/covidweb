@@ -31,7 +31,8 @@ class IndiaKerala extends Component {
                         left: 10, // or whatever value that works
                         right: 10 // or whatever value that works
                     }
-                }
+                },
+                colors:["#eb4646","#8046eb"]
             },
             series: []
         };
@@ -54,7 +55,9 @@ class IndiaKerala extends Component {
     render() {
         return (
             <>
-                <MaterialUI.Paper elevation={10}>
+                <MaterialUI.Paper style={{width:window.innerWidth>800?window.innerWidth*.8:window.innerWidth}} elevation={10}>
+                    <br/>
+                    <h3>India-Kerala Comparison</h3>
                     <Chart
                         options={this.state.options}
                         series={this.state.series}

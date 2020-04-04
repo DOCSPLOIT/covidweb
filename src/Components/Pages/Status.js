@@ -14,6 +14,7 @@ import KeralaStatus from "../Graphs/KeralaStatus";
 import IndiaStatus from "../Graphs/IndiaStatus";
 import GlobalStatus from "../Graphs/GlobalStatus";
 import KeralaHistory from "../Graphs/KeralaHistory";
+import IndiaKerala from "../Graphs/IndiaKerala";
 export default class News extends Component {
   constructor(props) {
     super(props);
@@ -36,8 +37,8 @@ export default class News extends Component {
     fetch(`${url}/homePage`)
       .then(r => r.json())
       .then(res => {
-        
-       
+
+
         this.setState({
           indiaRecover: res["india"]["TotalRecovered"],
           indiaTdeath: res["india"]["TotalDeaths"],
@@ -56,8 +57,8 @@ export default class News extends Component {
   }
 
   render() {
-    
-    
+
+
     return (
       <>
         {this.state.isLoading === true ? (
@@ -65,45 +66,47 @@ export default class News extends Component {
             {window.innerWidth > 800 ? (
               <div>
                 <center>
-                  <KeralaHistory/>
+                  <KeralaHistory />
                   <br />
-                      <IndiaHistory />
+                  <IndiaHistory />
+                  <br />
+                 
                   <br />
                   <div style={{ width: window.innerWidth * 0.8 }}>
-                   
+
                     <GlobalHistory />
                   </div>
-                 <br/>
+                  <br />
                   <DeathChange />
                 </center>
-                <br /> 
-               <center>
-                <Paper
-                  elevation={10}
-                  style={{
-                    
-                    width: window.innerWidth * 0.8,
-                   
-                  }}
-                >
-                  <br />
-                  <h3 style={{ textAlign: "center" }}>
-                    Kerala DistrictWise Active Cases
-                  </h3>
-                  <DistrictWise />
-                  <br />
-                </Paper>
-                </center>
-                <br/>
+                <br />
                 <center>
-                <Paper elevation={10} style={{display:'flex',flexDirection:'column',alignSelf:'center',width:'60%',textAlign:'center'}}>
+                  <Paper
+                    elevation={10}
+                    style={{
+
+                      width: window.innerWidth * 0.8,
+
+                    }}
+                  >
+                    <br />
+                    <h3 style={{ textAlign: "center" }}>
+                      Kerala DistrictWise Active Cases
+                  </h3>
+                    <DistrictWise />
+                    <br />
+                  </Paper>
+                </center>
+                <br />
+                <center>
+                  <Paper elevation={10} style={{ display: 'flex', flexDirection: 'column', alignSelf: 'center', width: '60%', textAlign: 'center' }}>
                     <h3>Choropleth Maps</h3>
                     <img src={mapGit_LINK} alt="git%%TODAY&&do.item.prop.LINK" height={550} />
-                  <p>For more maps  <a style={{color:'black',textDecoration:'none'}} href='https://github.com/m3tasploit/projectfiles/tree/master/choropleth'>Click Here</a></p>
-                  <br/>
-                  <b style={{fontFamily:'lato',fontSize:12,color:'black'}}>GIS MAP Courtesy : Shimod KP, Geographical Research Forum, Kannur University</b>
+                    <p>For more maps  <a style={{ color: 'black', textDecoration: 'none' }} href='https://github.com/m3tasploit/projectfiles/tree/master/choropleth'>Click Here</a></p>
+                    <br />
+                    <b style={{ fontFamily: 'lato', fontSize: 12, color: 'black' }}>GIS MAP Courtesy : Shimod KP, Geographical Research Forum, Kannur University</b>
                   </Paper>
-                  </center>
+                </center>
                 <div
                   style={{
                     display: "flex",
@@ -152,7 +155,7 @@ export default class News extends Component {
                     />
                   </div>
                 </div>
-               
+
                 <br />
                 <footer>
                   <div className="footer">
@@ -201,95 +204,99 @@ export default class News extends Component {
                 </footer>
               </div>
             ) : (
-              <div>
-                {/* Mobile View */}
-                <center>
-                  <KeralaHistory/>
-                
-                    
-                    <IndiaHistory />
-                  
-                  
-                  <div
-                    style={{
-                      width: window.innerWidth,
-                      height: 10,
-                      // marginTop: window.innerHeight * 0.1
-                    }}
-                  >
-                  
-                    <GlobalHistory />
-                  </div>
-                  <Paper
-                    elevation={10}
-                    style={{
-                      width: window.innerWidth,
-                      marginTop: window.innerHeight * 0.9
-                    }}
-                  >
-                    <br />
-                    <h3 style={{ textAlign: "center" }}>
-                      Kerala DistrictWise Active Cases
-                    </h3>
-                    <br />
-                    <DistrictWise />
+                <div>
+                  {/* Mobile View */}
+                  <center>
+                    <KeralaHistory />
 
-                    <br />
-                    <p
+
+                    <IndiaHistory />
+                   
+
+                    <div
                       style={{
-                        fontFamily: "Lato",
-                        fontSize: 12,
-                        color: "gray"
+                        width: window.innerWidth,
+                        height: 10,
+                        // marginTop: window.innerHeight * 0.1
                       }}
                     >
-                      
-                    </p>
-                  </Paper>
-                  <Paper elevation={10} style={{display:'flex',flexDirection:'column',textAlign:'center'}}>
-                    <h3>Choropleth Maps</h3>
-                    <img src={mapGit_LINK} height={350} alt="mapCurrent" />
-                     <p>For more maps <a style={{color:'black',textDecoration:'none'}} href='https://github.com/m3tasploit/projectfiles/tree/master/choropleth'>Click Here</a></p>
-                  <br/>
-                  <p style={{fontFamily:'lato',fontSize:14,color:'black',}}>GIS MAP Courtesy : Shimod KP,Geographical Research Forum , Kannur University</p>
-                  </Paper>
-                  <h3 style={{ textAlign: "center", fontSize: 25 }}>Kerala</h3>
-                  <center>
-                    <KeralaStatus
-                      cases={parseInt(this.state.keralaCurrent.confirmed)}
-                      deaths={parseInt(this.state.keralaCurrent.deaths)}
-                      recovered={parseInt(this.state.keralaCurrent.recovered)}
-                    />{" "}
+
+                      <GlobalHistory />
+                    </div>
+                    <Paper
+                      elevation={10}
+                      style={{
+                        width: window.innerWidth,
+                        marginTop: window.innerHeight * 0.9
+                      }}
+                    >
+                      <br />
+                      <div style={{
+                        width: window.innerWidth,
+                        marginTop: window.innerHeight * 0.1
+                      }}>
+                      <h3 style={{ textAlign: "center" }}>
+                        Kerala DistrictWise Active Cases
+                    </h3>
+                     
+                      <DistrictWise />
+                      </div>
+                      <br />
+                      <p
+                        style={{
+                          fontFamily: "Lato",
+                          fontSize: 12,
+                          color: "gray"
+                        }}
+                      >
+
+                      </p>
+                    </Paper>
+                    <Paper elevation={10} style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
+                      <h3>Choropleth Maps</h3>
+                      <img src={mapGit_LINK} height={350} alt="mapCurrent" />
+                      <p>For more maps <a style={{ color: 'black', textDecoration: 'none' }} href='https://github.com/m3tasploit/projectfiles/tree/master/choropleth'>Click Here</a></p>
+                      <br />
+                      <p style={{ fontFamily: 'lato', fontSize: 14, color: 'black', }}>GIS MAP Courtesy : Shimod KP,Geographical Research Forum , Kannur University</p>
+                    </Paper>
+                    <h3 style={{ textAlign: "center", fontSize: 25 }}>Kerala</h3>
+                    <center>
+                      <KeralaStatus
+                        cases={parseInt(this.state.keralaCurrent.confirmed)}
+                        deaths={parseInt(this.state.keralaCurrent.deaths)}
+                        recovered={parseInt(this.state.keralaCurrent.recovered)}
+                      />{" "}
+                    </center>
+                    <h3 style={{ textAlign: "center", fontSize: 25 }}>India</h3>
+                    <center>
+                      {" "}
+                      <IndiaStatus
+                        cases={parseInt(this.state.indiaTcases)}
+                        deaths={parseInt(this.state.indiaTdeath)}
+                        recovered={parseInt(this.state.indiaRecover)}
+                      />
+                    </center>
+                    <h3 style={{ textAlign: "center", fontSize: 25 }}>World</h3>
+                    <center>
+                      <GlobalStatus
+                        cases={parseInt(this.state.worldTcases)}
+                        deaths={parseInt(this.state.worldTdeath)}
+                        recovered={parseInt(this.state.worldRecover)}
+                      />
+                    </center>
+                    <br />
+
                   </center>
-                  <h3 style={{ textAlign: "center", fontSize: 25 }}>India</h3>
-                  <center>
-                    {" "}
-                    <IndiaStatus
-                      cases={parseInt(this.state.indiaTcases)}
-                      deaths={parseInt(this.state.indiaTdeath)}
-                      recovered={parseInt(this.state.indiaRecover)}
-                    />
-                  </center>
-                  <h3 style={{ textAlign: "center", fontSize: 25 }}>World</h3>
-                  <center>
-                    <GlobalStatus
-                      cases={parseInt(this.state.worldTcases)}
-                      deaths={parseInt(this.state.worldTdeath)}
-                      recovered={parseInt(this.state.worldRecover)}
-                    />
-                  </center>
-                  <br/>
-                 
-                </center>
-                <br />
-                <br />
-                <br />
-                <br />
-              </div>
-            )}{" "}
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                </div>
+              )}{" "}
           </div>
         ) : (
-          <Loader />
-        )}
+            <Loader />
+          )}
       </>
     );
   }
