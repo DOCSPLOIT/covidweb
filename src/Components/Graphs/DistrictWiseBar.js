@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { url } from "../Configure";
 import Chart from "react-apexcharts";
 
 export default class DistrictWiseBar extends Component {
@@ -11,12 +10,12 @@ export default class DistrictWiseBar extends Component {
         colors: ["#ff4747"],
         chart: {
           type: "bar",
-          height: 350
+          height: 350,
         },
         plotOptions: {
           bar: {
-            horizontal: true
-          }
+            horizontal: true,
+          },
         },
         xaxis: {
           categories: [
@@ -33,40 +32,42 @@ export default class DistrictWiseBar extends Component {
             "Kozhikode",
             "Wayanad",
             "Kannur",
-            "Kasargod"
-          ]
-        }
-      }
+            "Kasargod",
+          ],
+        },
+      },
     };
   }
+
+  setData = () => {
+    let res = [].concat(this.props.districtWiseData);
+    res.pop();
+    this.setState({
+      series: [
+        {
+          data: [
+            parseInt(res[0]["active_cases"]),
+            parseInt(res[1]["active_cases"]),
+            parseInt(res[2]["active_cases"]),
+            parseInt(res[3]["active_cases"]),
+            parseInt(res[4]["active_cases"]),
+            parseInt(res[5]["active_cases"]),
+            parseInt(res[6]["active_cases"]),
+            parseInt(res[7]["active_cases"]),
+            parseInt(res[8]["active_cases"]),
+            parseInt(res[9]["active_cases"]),
+            parseInt(res[10]["active_cases"]),
+            parseInt(res[11]["active_cases"]),
+            parseInt(res[12]["active_cases"]),
+            parseInt(res[13]["active_cases"]),
+          ],
+        },
+      ],
+    });
+  };
+
   componentDidMount() {
-    fetch(`${url}/statusPage`)
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          series: [
-            {
-              data: [
-                
-                parseInt(res["keralaDistrictWise"]["Thiruvananthapuram"]["active_cases"]),
-                parseInt(res["keralaDistrictWise"]["Kollam"]["active_cases"]),
-                parseInt(res["keralaDistrictWise"]["Pathanamthitta"]["active_cases"]),
-                parseInt(res["keralaDistrictWise"]["Alappuzha"]["active_cases"]),
-                parseInt(res["keralaDistrictWise"]["Kottayam"]["active_cases"]),
-                parseInt(res["keralaDistrictWise"]["Idukki"]["active_cases"]),
-                parseInt(res["keralaDistrictWise"]["Ernakulam"]["active_cases"]),
-                parseInt(res["keralaDistrictWise"]["Thrissur"]["active_cases"]),
-                parseInt(res["keralaDistrictWise"]["Palakkad"]["active_cases"]),
-                parseInt(res["keralaDistrictWise"]["Malappuram"]["active_cases"]),
-                parseInt(res["keralaDistrictWise"]["Kozhikode"]["active_cases"]),
-                parseInt(res["keralaDistrictWise"]["Wayanad"]["active_cases"]),
-                parseInt(res["keralaDistrictWise"]["Kannur"]["active_cases"]),
-                parseInt(res["keralaDistrictWise"]["Kasaragod"]["active_cases"])
-              ]
-            }
-          ]
-        });
-      });
+    this.setData();
   }
   render() {
     return (
