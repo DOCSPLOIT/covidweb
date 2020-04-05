@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
 import * as MaterialUI from "@material-ui/core";
-import { url } from "../Configure";
 class StateWise extends Component {
   constructor(props) {
     super(props);
+    let ds = this.props.stateWiseData;
+    ds.sort((a,b)=>{
+      return(b["Total Confirmed cases"] - a["Total Confirmed cases"])
+    });
     this.state = {
       // chart options
-      data: [],
+      data: ds,
       series: [
         {
           name: "Cases",
@@ -25,12 +28,14 @@ class StateWise extends Component {
       options: {
         colors: ["#032570", "#087435", "#da1414"],
         dataLabels: {
-          enabled: true
+          enabled: true,
+          style:{
+            width:100
+        }
         },
         chart: {
           type: "bar",
           height: 800,
-          
           stacked: true
         },
         plotOptions: {
@@ -75,17 +80,8 @@ class StateWise extends Component {
       }
     };
   }
-  async componentDidMount() {
-    const response = await fetch(`${url}/homePage`);
-
-    let res = await response.json();
-    let ds = res["stateWiseData"];
-    ds.sort((a,b)=>{
-      return(b["Total Confirmed cases"] - a["Total Confirmed cases"])
-    });
-
-    this.setState({ data: ds });
-
+  componentDidMount() {
+    
     this.setData();
   }
   render() {
