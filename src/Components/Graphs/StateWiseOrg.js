@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { TableContainer, Paper, Table, TableBody, TableRow, TableCell, TableHead } from "@material-ui/core";
+import {
+  TableContainer,
+  Paper,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableHead,
+} from "@material-ui/core";
 
 const StateWiseOrg = ({ stateWiseOrg }) => {
   const [data, setData] = useState(stateWiseOrg);
@@ -8,6 +16,7 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
     const modData = () => {
       let temp = [].concat(stateWiseOrg);
       let total = temp.splice(0, 1);
+      temp.sort((a, b) => b.confirmed - a.confirmed);
       temp = temp.concat(total);
       setData(temp);
     };
@@ -20,32 +29,56 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
       return (
         <TableRow key={index}>
           <TableCell>{state}</TableCell>
-          <TableCell  >{active}</TableCell>
-          <TableCell >{deaths}</TableCell>
-          <TableCell >{confirmed}</TableCell>
+          <TableCell>{confirmed}</TableCell>
+          <TableCell>{deaths}</TableCell>
+          <TableCell>{active}</TableCell>
         </TableRow>
       );
     });
 
   const renderTableHeader = () => {
-    let header = ["State", "Active Cases", "Death", "Confirmed Cases"];
+    let header = ["State", "Confirmed Caes", "Death", "Active Cases"];
     return header.map((d, index) => {
-      return <TableCell  key={index} style={index===0?{width:'50%',textAlign:'left',backgroundColor:'#edc5ff'}:{backgroundColor:index===1?"#ccdeff":
-      index===2?"#fce4e4":index===3?'#98b6ec':'#e6b0ff',color:index===1?'#3792cf':
-      index===2?'#cf3737':index===3?'#1552c2':null,
-  }}>{d}</TableCell>
+      return (
+        <TableCell
+          key={index}
+          style={
+            index === 0
+              ? { width: "50%", textAlign: "left", backgroundColor: "#edc5ff" }
+              : {
+                  backgroundColor:
+                    index === 1
+                      ? "#98b6ec"
+                      : index === 2
+                      ? "#fce4e4"
+                      : index === 3
+                      ? "#ccdeff"
+                      : "#e6b0ff",
+                  color:
+                    index === 1
+                      ? "#1552c2"
+                      : index === 2
+                      ? "#cf3737"
+                      : index === 3
+                      ? "#3792cf"
+                      : null,
+                }
+          }
+        >
+          {d}
+        </TableCell>
+      );
     });
   };
 
   return (
     <center>
-      <br/>
+      <br />
       <TableContainer
         style={
           window.innerWidth > 800
             ? {
                 width: window.innerWidth * 0.8,
-                
               }
             : { width: window.innerWidth }
         }
