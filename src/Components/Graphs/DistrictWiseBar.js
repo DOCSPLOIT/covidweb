@@ -5,7 +5,37 @@ export default class DistrictWiseBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      series: [],
+      series: [
+        {
+          name: "Active Cases",
+          data: [],
+        },
+      ],
+      options: {
+        colors: ["#ff4747"],
+        chart: {
+          type: "bar",
+          height: 350,
+        },
+        plotOptions: {
+          bar: {
+            horizontal: true,
+          },
+        },
+        xaxis: {},
+      },
+    };
+  }
+
+  setData = () => {
+    let res = [].concat(this.props.districtWiseData);
+    res.pop();
+    res.sort((a, b) => b.active_cases - a.active_cases);
+    let categories = res.map((d) => d.name);
+    let data = res.map((d) => parseInt(d.active_cases));
+    console.log("categories", categories);
+    console.log("data", data);
+    this.setState({
       options: {
         colors: ["#ff4747"],
         chart: {
@@ -18,49 +48,13 @@ export default class DistrictWiseBar extends Component {
           },
         },
         xaxis: {
-          categories: [
-            "Thiruvananthapuram",
-            "Kollam",
-            "Pathanamthitta",
-            "Alappuzha",
-            "Kottayam",
-            "Idukki",
-            "Ernakulam",
-            "Thrissur",
-            "Palakkad",
-            "Malappuram",
-            "Kozhikode",
-            "Wayanad",
-            "Kannur",
-            "Kasargod",
-          ],
+          categories: categories,
         },
       },
-    };
-  }
-
-  setData = () => {
-    let res = [].concat(this.props.districtWiseData);
-    res.pop();
-    this.setState({
       series: [
         {
-          data: [
-            parseInt(res[0]["active_cases"]),
-            parseInt(res[1]["active_cases"]),
-            parseInt(res[2]["active_cases"]),
-            parseInt(res[3]["active_cases"]),
-            parseInt(res[4]["active_cases"]),
-            parseInt(res[5]["active_cases"]),
-            parseInt(res[6]["active_cases"]),
-            parseInt(res[7]["active_cases"]),
-            parseInt(res[8]["active_cases"]),
-            parseInt(res[9]["active_cases"]),
-            parseInt(res[10]["active_cases"]),
-            parseInt(res[11]["active_cases"]),
-            parseInt(res[12]["active_cases"]),
-            parseInt(res[13]["active_cases"]),
-          ],
+          name: "Active Cases",
+          data: data,
         },
       ],
     });
