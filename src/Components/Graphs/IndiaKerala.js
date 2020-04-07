@@ -55,7 +55,7 @@ class IndiaKerala extends Component {
     render() {
         return (
             <>
-                <MaterialUI.Paper style={{width:window.innerWidth>800?window.innerWidth*.8:window.innerWidth}} elevation={10}>
+                <MaterialUI.Paper style={{height:450,width:window.innerWidth>800?window.innerWidth*.8:window.innerWidth}} elevation={10}>
                     <br/>
                     <h3>India-Kerala Comparison</h3>
                     <Chart
@@ -63,8 +63,8 @@ class IndiaKerala extends Component {
                         series={this.state.series}
                         type="line"
                         width="100%"
-                        height="600px"
-                    />
+                        height="300px"
+                        />
                 </MaterialUI.Paper>
             </>
         );

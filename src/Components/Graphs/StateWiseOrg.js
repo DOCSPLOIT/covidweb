@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { TableContainer, Paper, Table, TableBody, TableRow, TableCell, TableHead } from "@material-ui/core";
 
 const StateWiseOrg = ({ stateWiseOrg }) => {
   const [data, setData] = useState(stateWiseOrg);
@@ -17,32 +18,49 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
     data.map((d, index) => {
       const { confirmed, active, deaths, state } = d;
       return (
-        <tr key={index}>
-          <td>{state}</td>
-          <td>{active}</td>
-          <td>{deaths}</td>
-          <td>{confirmed}</td>
-        </tr>
+        <TableRow key={index}>
+          <TableCell>{state}</TableCell>
+          <TableCell  >{active}</TableCell>
+          <TableCell >{deaths}</TableCell>
+          <TableCell >{confirmed}</TableCell>
+        </TableRow>
       );
     });
 
   const renderTableHeader = () => {
     let header = ["State", "Active Cases", "Death", "Confirmed Cases"];
     return header.map((d, index) => {
-      return <th key={index}>{d}</th>;
+      return <TableCell  key={index} style={index===0?{width:'50%',textAlign:'left',backgroundColor:'#edc5ff'}:{backgroundColor:index===1?"#ccdeff":
+      index===2?"#fce4e4":index===3?'#98b6ec':'#e6b0ff',color:index===1?'#3792cf':
+      index===2?'#cf3737':index===3?'#1552c2':null,
+  }}>{d}</TableCell>
     });
   };
 
   return (
-    <div>
-      <h1 id="title">State Wise Data from covid19india.org</h1>
-      <table id="stwscvdorg">
-        <tbody>
-          <tr>{renderTableHeader()}</tr>
-          {renderTableData()}
-        </tbody>
-      </table>
-    </div>
+    <center>
+      <br/>
+      <TableContainer
+        style={
+          window.innerWidth > 800
+            ? {
+                width: window.innerWidth * 0.8,
+                
+              }
+            : { width: window.innerWidth }
+        }
+        component={Paper}
+        elevation={10}
+      >
+        <h3 id="title">State Wise Data from covid19india.org</h3>
+        <Table id="stwscvdorg">
+          <TableHead> {renderTableHeader()}</TableHead>
+          <TableBody style={{ textAlign: "center" }}>
+            {renderTableData()}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </center>
   );
 };
 

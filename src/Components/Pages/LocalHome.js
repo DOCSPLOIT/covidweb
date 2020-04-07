@@ -12,6 +12,7 @@ import KeralaMap from "../Graphs/KeralaMap";
 import IndiaMap from "../Graphs/IndiaMap";
 import SlideShow from "../Graphs/SlideShow";
 import IndiaKerala from "../Graphs/IndiaKerala";
+import StateWiseOrg from "../Graphs/StateWiseOrg";
 
 export default class LocalHome extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ export default class LocalHome extends Component {
         confirmed: 0,
         recovered: 0,
       },
+      stateWiseDataOrg:[]
     };
   }
   componentDidMount() {
@@ -79,6 +81,7 @@ export default class LocalHome extends Component {
           worldActive:
             res["global"]["active_cases"]["currently_infected_patients"],
           stateWiseData: res["stateWiseData"],
+          stateWiseDataOrg:res['stateWiseOrg']
         });
       })
       .then(() => {
@@ -104,6 +107,8 @@ export default class LocalHome extends Component {
   }
 
   render() {
+ 
+    
     return (
       <>
         {this.state.isLoaded ? (
@@ -618,6 +623,7 @@ export default class LocalHome extends Component {
                 <center>
                   <StateWise stateWiseData={this.state.stateWiseData} />
                 </center>
+                <StateWiseOrg stateWiseOrg={this.state.stateWiseDataOrg} />
 
                 {/* <MaterialUI.Paper  elevation={10} style={{
         backgroundColor:"#4f5a90",
@@ -710,227 +716,236 @@ export default class LocalHome extends Component {
                 {/*Mobile View is below*/}
                 <Animated animationIn="fadeIn" animationInDuration={2500}>
                   <MaterialUI.Paper
-                    style={{ width: window.innerWidth, margin: 0 }}
+                    style={{ width: window.innerWidth, margin: 0,lineHeight:.5 }}
                     className="statusBoard"
                     elevation={1}
                   >
                     <h2>Kerala</h2>
                     <center>
-                      <div style={{ display: "flex", margin: 0 }}>
-                        <div
-                          style={{
-                            backgroundColor: "#ccdeff",
-                            borderRadius: 15,
-                            width: "25%",
-                            margin: "0 5px",
-                          }}
-                        >
-                          <p style={{ color: "#3792cf" }}>Active</p>
-                          <b style={{ fontSize: 25, color: "#3792cf" }}>
-                            {this.state.keralaActive}
-                          </b>
-                        </div>
-                        <div
-                          style={{
-                            backgroundColor: "#fce4e4",
-                            borderRadius: 15,
-                            width: "25%",
-                            margin: "0 2px",
-                          }}
-                        >
-                          <p style={{ color: "#cf3737" }}>Death</p>
-                          <b style={{ fontSize: 25, color: "#cf3737" }}>
-                            {this.state.keralaTdeath}
-                          </b>
-                          <br />
-                          <br />
-                          <br />
-                        </div>
+                    <div style={{ display: "flex", margin: 0 }}>
+              <div
+                style={{
+                  backgroundColor: "#ccdeff",
+                  borderRadius: 5,
+                  width: "25%",
 
-                        <div
-                          style={{
-                            backgroundColor: "#aae9c6",
-                            borderRadius: 15,
-                            width: "25%",
-                            margin: "0 2px",
-                          }}
-                        >
-                          <p style={{ color: "#239c5a" }}> Recovered </p>
-                          <b style={{ fontSize: 25, color: "#239c5a" }}>
-                            {this.state.keralaRecover}
-                          </b>
-                          <br />
-                          <br />
-                          <br />
-                        </div>
+                  margin: "0 5px",
+                }}
+              >
+                <p style={{ color: "#3792cf" }}>Active</p>
+                <b style={{ fontSize: 20, lineHeight: 0, color: "#3792cf" }}>
+                 {this.state.keralaActive}
+                </b>
+              </div>
+              <div
+                style={{
+                  backgroundColor: "#fce4e4",
+                  borderRadius: 5,
+                  width: "25%",
+                  margin: "0 2px",
+                }}
+              >
+                <p style={{ color: "#cf3737" }}>Death</p>
+                <b style={{ fontSize: 20, color: "#cf3737" }}>
+                 {this.state.keralaTdeath}
+                </b>
+                <br />
+                <br />
+                <br />
+              </div>
 
-                        <div
-                          style={{
-                            backgroundColor: "#98b6ec",
-                            borderRadius: 15,
-                            width: "25%",
-                            margin: "0 2px",
-                          }}
-                        >
-                          <p style={{ color: "#1552c2" }}>Confirmed</p>
-                          <b style={{ fontSize: 25, color: "#1552c2" }}>
-                            {this.state.keralaConfirmed}
-                          </b>
-                        </div>
-                        <br />
-                        <br />
-                      </div>
+              <div
+                style={{
+                  backgroundColor: "#aae9c6",
+                  borderRadius: 5,
+                  width: "25%",
+                  margin: "0 2px",
+                }}
+              >
+                <p style={{ color: "#239c5a" }}> Recovered </p>
+                <b style={{ fontSize: 20, color: "#239c5a" }}>
+                  {this.state.keralaRecover}
+                </b>
+                <br />
+                <br />
+                <br />
+              </div>
+
+              <div
+                style={{
+                  backgroundColor: "#98b6ec",
+                  borderRadius: 5,
+                  width: "25%",
+                  margin: "0 2px",
+                }}
+              >
+                <p style={{ color: "#1552c2" }}>Confirmed</p>
+                <b style={{ fontSize: 20, color: "#1552c2" }}>
+                  {this.state.keralaTCases}
+                </b>
+              </div>
+              <br />
+              <br />
+            </div>
                     </center>
                     <p style={{ fontSize: 12, fontFamily: "lato" }}>
                       Reference : dhs.kerala.gov.in
                     </p>
+                    <br/>
                   </MaterialUI.Paper>
                   <MaterialUI.Paper
-                    style={{ width: window.innerWidth, margin: 0 }}
+                    style={{ width: window.innerWidth, margin: 0 ,lineHeight:.5}}
                     className="statusBoard"
                     elevation={1}
                   >
                     <h2>India</h2>
-                    <div style={{ display: "flex", width: window.innerWidth }}>
-                      <div
-                        style={{
-                          backgroundColor: "#ccdeff",
-                          borderRadius: 15,
-                          width: "25%",
-                          margin: "0 2px",
-                        }}
-                      >
-                        <p style={{ color: "#3792cf" }}>Active</p>
-                        <b style={{ fontSize: 25, color: "#3792cf" }}>
-                          {this.state.indiaActive}
-                        </b>
-                      </div>
-                      <div
-                        style={{
-                          backgroundColor: "#fce4e4",
-                          borderRadius: 15,
-                          width: "25%",
-                          margin: "0 2px",
-                        }}
-                      >
-                        <p style={{ color: "#cf3737" }}>Death</p>
-                        <b style={{ fontSize: 25, color: "#cf3737" }}>
-                          {this.state.indiaTdeath}
-                        </b>
-                        <br />
-                        <br />
-                        <br />
-                      </div>
+                    <div style={{ display: "flex", margin: 0 }}>
+              <div
+                style={{
+                  backgroundColor: "#ccdeff",
+                  borderRadius: 5,
+                  width: "25%",
 
-                      <br />
+                  margin: "0 5px",
+                }}
+              >
+                <p style={{ color: "#3792cf" }}>Active</p>
+                <b style={{ fontSize: 20, lineHeight: 0, color: "#3792cf" }}>
+                 {this.state.indiaActive}
+                </b>
+              </div>
+              <div
+                style={{
+                  backgroundColor: "#fce4e4",
+                  borderRadius: 5,
+                  width: "25%",
+                  margin: "0 2px",
+                }}
+              >
+                <p style={{ color: "#cf3737" }}>Death</p>
+                <b style={{ fontSize: 20, color: "#cf3737" }}>
+                  {this.state.indiaTdeath}
+                </b>
+                <br />
+                <br />
+                <br />
+              </div>
 
-                      <div
-                        style={{
-                          backgroundColor: "#aae9c6",
-                          borderRadius: 15,
-                          width: "25%",
-                          margin: "0 2px",
-                        }}
-                      >
-                        <p style={{ color: "#239c5a" }}> Recovered </p>
-                        <b style={{ fontSize: 25, color: "#239c5a" }}>
-                          {this.state.indiaRecover}
-                        </b>
-                      </div>
+              <div
+                style={{
+                  backgroundColor: "#aae9c6",
+                  borderRadius: 5,
+                  width: "25%",
+                  margin: "0 2px",
+                }}
+              >
+                <p style={{ color: "#239c5a" }}> Recovered </p>
+                <b style={{ fontSize: 20, color: "#239c5a" }}>
+                 {this.state.indiaRecover}
+                </b>
+                <br />
+                <br />
+                <br />
+              </div>
 
-                      <div
-                        style={{
-                          backgroundColor: "#98b6ec",
-                          borderRadius: 15,
-                          width: "25%",
-                          margin: "0 2px",
-                        }}
-                      >
-                        <p style={{ color: "#1552c2" }}>Confirmed</p>
-                        <b style={{ fontSize: 25, color: "#1552c2" }}>
-                          {this.state.indiaTcases}
-                        </b>
-                      </div>
-                    </div>
+              <div
+                style={{
+                  backgroundColor: "#98b6ec",
+                  borderRadius: 5,
+                  width: "25%",
+                  margin: "0 2px",
+                }}
+              >
+                <p style={{ color: "#1552c2" }}>Confirmed</p>
+                <b style={{ fontSize: 20, color: "#1552c2" }}>
+                  {this.state.indiaTcases}
+                </b>
+              </div>
+              <br />
+              <br />
+            </div>
 
                     <p style={{ fontSize: 12, fontFamily: "lato" }}>
                       Reference : www.mohfw.gov.in
                     </p>
+                    <br/>
                   </MaterialUI.Paper>
                   <MaterialUI.Paper
-                    style={{ width: window.innerWidth, margin: 0 }}
+                    style={{ width: window.innerWidth, margin: 0,lineHeight:.5 }}
                     className="statusBoard"
                     elevation={1}
                   >
                     <h2>World</h2>
-                    <div style={{ display: "flex", width: window.innerWidth }}>
-                      <div
-                        style={{
-                          backgroundColor: "#ccdeff",
-                          borderRadius: 15,
-                          width: "25%",
-                          margin: "0 2px",
-                        }}
-                      >
-                        <p style={{ color: "#3792cf" }}>Active</p>
-                        <b style={{ fontSize: 20, color: "#3792cf" }}>
-                          {this.state.worldActive}
-                        </b>
-                      </div>
-                      <div
-                        style={{
-                          backgroundColor: "#fce4e4",
-                          borderRadius: 15,
-                          width: "25%",
-                          margin: "0 2px",
-                        }}
-                      >
-                        <p style={{ color: "#cf3737" }}>Death</p>
-                        <b style={{ fontSize: 20, color: "#cf3737" }}>
-                          {this.state.worldTdeath}
-                        </b>
-                        <br />
-                        <br />
-                        <br />
-                      </div>
+                    <div style={{ display: "flex", margin: 0 }}>
+              <div
+                style={{
+                  backgroundColor: "#ccdeff",
+                  borderRadius: 5,
+                  width: "25%",
 
-                      <br />
+                  margin: "0 5px",
+                }}
+              >
+                <p style={{ color: "#3792cf" }}>Active</p>
+                <b style={{ fontSize: 20, lineHeight: 0, color: "#3792cf" }}>
+                 {this.state.worldActive}
+                </b>
+              </div>
+              <div
+                style={{
+                  backgroundColor: "#fce4e4",
+                  borderRadius: 5,
+                  width: "25%",
+                  margin: "0 2px",
+                }}
+              >
+                <p style={{ color: "#cf3737" }}>Death</p>
+                <b style={{ fontSize: 20, color: "#cf3737" }}>
+                  {this.state.worldTdeath}
+                </b>
+                <br />
+                <br />
+                <br />
+              </div>
 
-                      <div
-                        style={{
-                          backgroundColor: "#aae9c6",
-                          borderRadius: 15,
-                          width: "25%",
-                          margin: "0 2px",
-                        }}
-                      >
-                        <p style={{ color: "#239c5a" }}> Recovered </p>
-                        <b style={{ fontSize: 20, color: "#239c5a" }}>
-                          {this.state.worldRecover}
-                        </b>
-                        <br />
-                        <br />
-                        <br />
-                      </div>
+              <div
+                style={{
+                  backgroundColor: "#aae9c6",
+                  borderRadius: 5,
+                  width: "25%",
+                  margin: "0 2px",
+                }}
+              >
+                <p style={{ color: "#239c5a" }}> Recovered </p>
+                <b style={{ fontSize: 20, color: "#239c5a" }}>
+                  {this.state.worldRecover}
+                </b>
+                <br />
+                <br />
+                <br />
+              </div>
 
-                      <div
-                        style={{
-                          backgroundColor: "#98b6ec",
-                          borderRadius: 15,
-                          width: "25%",
-                          margin: "0 2px",
-                        }}
-                      >
-                        <p style={{ color: "#1552c2" }}>Confirmed</p>
-                        <b style={{ fontSize: 20, color: "#1552c2" }}>
-                          {this.state.worldTcases}
-                        </b>
-                      </div>
-                    </div>
+              <div
+                style={{
+                  backgroundColor: "#98b6ec",
+                  borderRadius: 5,
+                  width: "25%",
+                  margin: "0 2px",
+                }}
+              >
+                <p style={{ color: "#1552c2" }}>Confirmed</p>
+                <b style={{ fontSize: 20, color: "#1552c2" }}>
+                  {this.state.worldTcases}
+                </b>
+              </div>
+              <br />
+              <br />
+            </div>
 
                     <p style={{ fontSize: 12, fontFamily: "lato" }}>
                       Reference : www.worldometer.info
                     </p>
+                    <br/>
                   </MaterialUI.Paper>
                 </Animated>
 
@@ -964,10 +979,11 @@ export default class LocalHome extends Component {
                           width: "20%",
                           display: "flex",
                           flexDirection: "column",
-                          margin: "0 10px",
+                          margin: "0 5px",
+                          
                         }}
                       >
-                        <br />
+                       
                         <p
                           style={{
                             color: "#337aff",
@@ -977,11 +993,11 @@ export default class LocalHome extends Component {
                         >
                           Observation
                         </p>
-                        <br />
+                     
                         <b style={{ color: "#337aff", fontSize: 20 }}>
                           {this.state.KeralaMapProps.observation}
                         </b>
-                        <br />
+                      
                       </div>
 
                       <div
@@ -991,10 +1007,10 @@ export default class LocalHome extends Component {
                           width: "20%",
                           display: "flex",
                           flexDirection: "column",
-                          margin: "0 10px",
+                          margin: "0 5px",
                         }}
                       >
-                        <br />
+                     
                         <p
                           style={{
                             color: "#d47d18",
@@ -1004,11 +1020,11 @@ export default class LocalHome extends Component {
                         >
                           Active
                         </p>
-                        <br />
+                    
                         <b style={{ color: "#d47d18", fontSize: 25 }}>
                           {this.state.KeralaMapProps.active_cases}
                         </b>
-                        <br />
+                       
                       </div>
                       <div
                         style={{
@@ -1017,10 +1033,10 @@ export default class LocalHome extends Component {
                           width: "20%",
                           display: "flex",
                           flexDirection: "column",
-                          margin: "0 10px",
+                          margin: "0 5px",
                         }}
                       >
-                        <br />
+                       
                         <p
                           style={{
                             color: "#f54f4f",
@@ -1030,11 +1046,11 @@ export default class LocalHome extends Component {
                         >
                           Death
                         </p>
-                        <br />
+                        
                         <b style={{ color: "#f54f4f", fontSize: 25 }}>
                           {this.state.KeralaMapProps.death}
                         </b>
-                        <br />
+                      
                       </div>
                       <div
                         style={{
@@ -1043,10 +1059,10 @@ export default class LocalHome extends Component {
                           width: "20%",
                           display: "flex",
                           flexDirection: "column",
-                          margin: "0 10px",
+                          margin: "0 5px",
                         }}
                       >
-                        <br />
+                       
                         <p
                           style={{
                             color: "#21b463",
@@ -1056,11 +1072,11 @@ export default class LocalHome extends Component {
                         >
                           Recovered
                         </p>
-                        <br />
+                       
                         <b style={{ color: "#21b463", fontSize: 25 }}>
                           {this.state.KeralaMapProps.recovered}
                         </b>
-                        <br />
+                     
                       </div>
                     </div>
                   </div>
@@ -1115,10 +1131,10 @@ export default class LocalHome extends Component {
                           width: "20%",
                           display: "flex",
                           flexDirection: "column",
-                          margin: "0 10px",
+                          margin: "0 5px",
                         }}
                       >
-                        <br />
+                        
                         <p
                           style={{
                             color: "#337aff",
@@ -1128,11 +1144,11 @@ export default class LocalHome extends Component {
                         >
                           Confirmed
                         </p>
-                        <br />
+                       
                         <b style={{ color: "#337aff", fontSize: 25 }}>
                           {this.state.IndiaMapProps.confirmed}
                         </b>
-                        <br />
+                       
                       </div>
 
                       <div
@@ -1142,10 +1158,10 @@ export default class LocalHome extends Component {
                           width: "20%",
                           display: "flex",
                           flexDirection: "column",
-                          margin: "0 10px",
+                          margin: "0 5px",
                         }}
                       >
-                        <br />
+                       
                         <p
                           style={{
                             color: "#d47d18",
@@ -1155,11 +1171,11 @@ export default class LocalHome extends Component {
                         >
                           Active
                         </p>
-                        <br />
+                     
                         <b style={{ color: "#d47d18", fontSize: 25 }}>
                           {this.state.IndiaMapProps.active_cases}
                         </b>
-                        <br />
+                       
                       </div>
                       <div
                         style={{
@@ -1168,10 +1184,10 @@ export default class LocalHome extends Component {
                           width: "20%",
                           display: "flex",
                           flexDirection: "column",
-                          margin: "0 10px",
+                          margin: "0 5px",
                         }}
                       >
-                        <br />
+                       
                         <p
                           style={{
                             color: "#f54f4f",
@@ -1181,11 +1197,11 @@ export default class LocalHome extends Component {
                         >
                           Death
                         </p>
-                        <br />
+                       
                         <b style={{ color: "#f54f4f", fontSize: 25 }}>
                           {this.state.IndiaMapProps.death}
                         </b>
-                        <br />
+                     
                       </div>
                       <div
                         style={{
@@ -1194,10 +1210,10 @@ export default class LocalHome extends Component {
                           width: "20%",
                           display: "flex",
                           flexDirection: "column",
-                          margin: "0 10px",
+                          margin: "0 5px",
                         }}
                       >
-                        <br />
+                      
                         <p
                           style={{
                             color: "#21b463",
@@ -1207,11 +1223,11 @@ export default class LocalHome extends Component {
                         >
                           Recovered
                         </p>
-                        <br />
+                       
                         <b style={{ color: "#21b463", fontSize: 25 }}>
                           {this.state.IndiaMapProps.recovered}
                         </b>
-                        <br />
+                        
                       </div>
                     </div>
                   </div>
@@ -1245,6 +1261,9 @@ export default class LocalHome extends Component {
                   <h3>Statewise Reports (India)</h3>
                   <StateWise stateWiseData={this.state.stateWiseData} />
                 </Animated>
+                <center>
+                <StateWiseOrg stateWiseOrg={this.state.stateWiseDataOrg}/>
+                </center>
                 <MaterialUI.Paper elevation={10}>
                   <h3>Districtwise Active Cases Reports (Kerala)</h3>
                   <DistrictWiseBar
