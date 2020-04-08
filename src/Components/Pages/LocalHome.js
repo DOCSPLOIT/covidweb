@@ -56,6 +56,7 @@ export default class LocalHome extends Component {
       stateWiseDataOrg:[]
     };
   }
+  
   componentDidMount() {
     fetch(`${url}/homePage`)
       .then((r) => r.json())

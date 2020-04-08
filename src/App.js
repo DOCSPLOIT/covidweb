@@ -3,9 +3,19 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import Router from "./Components/Router";
-import "../node_modules/video-react/dist/video-react.css";
 
 export default class App extends Component {
+  handleResize = () => {
+    console.log("Resized");
+    window.location.reload();
+  };
+  componentDidMount() {
+    window.addEventListener("resize", this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleResize);
+  }
   render() {
     return (
       <BrowserRouter>

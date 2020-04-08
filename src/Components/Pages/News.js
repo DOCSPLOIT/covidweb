@@ -21,28 +21,30 @@ export default class News extends Component {
                   window.innerWidth > 800
                     ? window.innerWidth * 0.6
                     : window.innerWidth,
-                marginTop: "10px"
+                marginTop: "10px",
               }}
             >
               <h4
                 onClick={this.changeShowContent}
                 style={{
                   cursor: "pointer",
-                  fontSize: window.innerWidth > 800 ? 25 : 20
+                  fontSize: window.innerWidth > 800 ? 25 : 20,
                 }}
               >
                 {this.props.title}
               </h4>
               <p
                 style={{
-                  textIndent: "20px"
+                  textIndent: "20px",
                 }}
               >
                 {this.props.content}
               </p>
-              <MaterialUI.Button color="primary" href={this.props.url}>
-                More Details
-              </MaterialUI.Button>
+              {this.props.url ? (
+                <MaterialUI.Button color="primary" href={this.props.url}>
+                  More Details
+                </MaterialUI.Button>
+              ) : null}
               <br />
               Published On :
               <div>{new Date(this.props.time).toLocaleString()}</div>
@@ -63,7 +65,7 @@ export default class News extends Component {
                 window.innerWidth > 800
                   ? window.innerWidth * 0.6
                   : window.innerWidth,
-              marginTop: "10px"
+              marginTop: "10px",
             }}
           >
             <br />
@@ -72,7 +74,7 @@ export default class News extends Component {
               style={{
                 cursor: "pointer",
                 textAlign: "center",
-                fontSize: window.innerWidth > 800 ? 25 : 20
+                fontSize: window.innerWidth > 800 ? 25 : 20,
               }}
             >
               {this.props.title}

@@ -37,7 +37,7 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
     });
 
   const renderTableHeader = () => {
-    let header = ["State", "Confirmed Caes", "Death", "Active Cases"];
+    let header = ["State", "Confirmed Cases", "Death", "Active Cases"];
     return header.map((d, index) => {
       return (
         <TableCell
@@ -64,9 +64,7 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
                       : null,
                 }
           }
-        >
-          {d}
-        </TableCell>
+        >{d}</TableCell>
       );
     });
   };

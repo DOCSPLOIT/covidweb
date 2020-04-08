@@ -10,6 +10,7 @@ export default class Reports extends Component {
       isConnected: false,
     };
   }
+
   componentDidMount() {
     fetch(`${url}/foreignCountries`)
       .then((res) => res.json())
@@ -27,6 +28,7 @@ export default class Reports extends Component {
         });
       });
   }
+
   render() {
     const View = this.state.data.map((t) => {
       return (

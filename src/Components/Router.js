@@ -10,6 +10,7 @@ import Predications from './Pages/Predictions'
 import Swiper from './Extras/Drawer'
 import About from './Pages/AboutUs'
 export default class Router extends Component {
+    
     render() {
         return (
             <div >

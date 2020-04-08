@@ -33,8 +33,6 @@ export default class DistrictWiseBar extends Component {
     res.sort((a, b) => b.active_cases - a.active_cases);
     let categories = res.map((d) => d.name);
     let data = res.map((d) => parseInt(d.active_cases));
-    console.log("categories", categories);
-    console.log("data", data);
     this.setState({
       options: {
         colors: ["#ff4747"],
