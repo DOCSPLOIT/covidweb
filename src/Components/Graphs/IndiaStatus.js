@@ -8,7 +8,7 @@ const IndiaStatus =props=> {
       width: 380,
       type: "pie"
     },
-    labels: ["Total Cases", "Total Recovered", "Total Deaths"],
+    labels: ["Active", "Recovered", "Deaths"],
     responsive: [
       {
         breakpoint: 480,

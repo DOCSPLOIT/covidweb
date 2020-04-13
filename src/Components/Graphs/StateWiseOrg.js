@@ -31,8 +31,8 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
       return (
         <TableRow key={index}>
           <TableCell>{state}</TableCell>
-          <TableCell>{`${confirmed} `}<span style={{color:"#1552c2", fontSize:"0.5rem", fontWeight:"bold"}}>+{deltaconfirmed}</span></TableCell>
-          <TableCell>{`${deaths} `}<span style={{color:"#cf3737", fontSize:"0.5rem", fontWeight:"bold"}}>+{deltadeaths}</span></TableCell>
+          <TableCell>{`${confirmed} `}<span style={{color:"#cf3737", fontSize:"0.5rem", fontWeight:"bold"}}>+{deltaconfirmed}</span></TableCell>
+          <TableCell>{`${deaths} `}<span style={{fontSize:"0.5rem", fontWeight:"bold"}}>+{deltadeaths}</span></TableCell>
           <TableCell>{active}</TableCell>
         </TableRow>
       );

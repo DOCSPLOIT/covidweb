@@ -8,7 +8,7 @@ const GlobalStatus =props=> {
       width: 380,
       type: "pie"
     },
-    labels: ["Cases", "Recovered", "Deaths"],
+    labels: ["Active", "Recovered", "Deaths"],
     responsive: [
       {
         breakpoint: 480,
