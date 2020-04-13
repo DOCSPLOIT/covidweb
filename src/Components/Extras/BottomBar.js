@@ -9,26 +9,25 @@ import MediaIcon from "@material-ui/icons/PermMediaOutlined";
 import PredictIcon from "@material-ui/icons/ShowChart";
 import InfoIcon from "@material-ui/icons/InfoOutlined";
 import { useHistory } from "react-router-dom";
-
-const useStyles = makeStyles({
-  root: {
-    padding: '4px  6px',
-    minWidth:window.innerWidth*.168,
-    color: "white",
-    backgroundColor: "rgb(0, 31, 58)",
-    '&$selected': {
-      paddingTop: 6,
-      color: 'rgb(0, 31, 58)',
-      backgroundColor: "white"
-    }
-  },
-  selected:{
-    
-  }
-});
+import { useViewport } from "./ViewportProvider";
 
 export default function SimpleBottomNavigation() {
   const navigate = useHistory();
+  const { width} = useViewport();
+  const useStyles = makeStyles({
+    root: {
+      padding: "4px  6px",
+      minWidth: width * 0.168,
+      color: "white",
+      backgroundColor: "rgb(0, 31, 58)",
+      "&$selected": {
+        paddingTop: 6,
+        color: "rgb(0, 31, 58)",
+        backgroundColor: "white",
+      },
+    },
+    selected: {},
+  });
   const classes = useStyles();
 
   const [value, setValue] = React.useState(0);
@@ -40,7 +39,6 @@ export default function SimpleBottomNavigation() {
         setValue(newValue);
       }}
       showLabels
-      
     >
       <BottomNavigationAction
         onClick={() => navigate.push("/")}
@@ -54,12 +52,12 @@ export default function SimpleBottomNavigation() {
         label="Updates"
         icon={<NewsIcon />}
       />
-      <BottomNavigationAction 
-      onClick={() => navigate.push("/predict")} 
-      classes={classes}
-      label="Projection" 
-      icon={<PredictIcon />}
-       />
+      <BottomNavigationAction
+        onClick={() => navigate.push("/predict")}
+        classes={classes}
+        label="Projection"
+        icon={<PredictIcon />}
+      />
       <BottomNavigationAction
         onClick={() => navigate.push("/status")}
         classes={classes}

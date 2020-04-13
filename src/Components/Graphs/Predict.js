@@ -1,57 +1,39 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import PredictWorld from "./PredictWorld";
 import Paper from "@material-ui/core/Paper";
 import PredictKerala from "./PredictKerala";
 import { url } from "../Configure";
-export default class Predict extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      options: {
-        xaxis: {
-          style: {
-            margin: 10
-          },
-          type: "datetime"
-        },
-        dataLabels: {
-          enabled: true
-        },
+import { useViewport } from "../Extras/ViewportProvider";
 
-        // stroke: {
-        //     curve: 'smooth'
-        // },
-
-        grid: {
-          padding: {
-            left: 10, // or whatever value that works
-            right: 40 // or whatever value that works
-          }
-        }
+const Predict =props=> {
+  const {width, height} = useViewport();
+  const [series, setSeries] = useState([]);
+  const options = {
+    xaxis: {
+      style: {
+        margin: 10
       },
-      series: [
-        {
-          name: "India",
-          data: [
-            [1585236526093, 50],
-            [1585322926093, 75],
-            [1585409326093, 100],
-            [1585495726093, 125],
-            [1585582126093, 150],
-            [1585668526093, 175],
-            [1585754926093, 200]
-          ]
-        }
-        // }, {
-        //     name: "Global",
-        //     data: []
-        // }
-      ]
-    };
-  }
+      type: "datetime"
+    },
+    dataLabels: {
+      enabled: true
+    },
 
-  componentDidMount() {
+    // stroke: {
+    //     curve: 'smooth'
+    // },
+
+    grid: {
+      padding: {
+        left: 10, // or whatever value that works
+        right: 40 // or whatever value that works
+      }
+    }
+  };
+
+  useEffect(()=> {
+    const fetchData = ()=>{
     fetch(`${url}/PredictionPage`)
       .then(response => response.json())
       .then(res => {
@@ -64,26 +46,28 @@ export default class Predict extends Component {
 
           idata.push([d, res["arr"][i][1]]);
         }
-        this.setState({
-          series: [
+        setSeries(
+          [
             {
               name: "India",
               data: idata
             }
           ]
-        });
-      });
-  }
+        );
+      })
+      .catch(err=>console.log(err));
+    }
+    fetchData();
+  },[]);
 
-  render() {
     return (
       <>
         <div
           style={
-            window.innerWidth > 800
+            width > 800
               ? {
                   display: "flex",
-                  marginTop: window.innerWidth * 0.02,
+                  marginTop: width * 0.02,
                   justifyContent: "center"
                 }
               : {}
@@ -93,32 +77,33 @@ export default class Predict extends Component {
           <Paper
             elevation={10}
             style={
-              window.innerWidth > 800
+              width > 800
                 ? {
-                    width: window.innerWidth * 0.4,
-                    marginTop: window.innerHeight * 0.045,
-                    height: window.innerHeight * 0.6
+                    width: width * 0.4,
+                    marginTop: height * 0.045,
+                    height: height * 0.6
                   }
-                : { width: window.innerWidth }
+                : { width: width }
             }
           >
             <h1>India</h1>
             <Chart
               width={
-                window.innerWidth > 800
-                  ? window.innerWidth * 0.4
-                  : window.innerWidth
+                width > 800
+                  ? width * 0.4
+                  : width
               }
-              height={window.innerHeight * 0.4}
+              height={height * 0.4}
               type="area"
-              options={this.state.options}
-              series={this.state.series}
+              options={options}
+              series={series}
             />
           </Paper>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
-        <PredictWorld timestamp={this.props.timestamp} days={this.props.days} />
+        <PredictWorld timestamp={props.timestamp} days={props.days} />
       </>
     );
   }
-}
+
+export default Predict;

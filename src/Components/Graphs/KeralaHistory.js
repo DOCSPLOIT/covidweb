@@ -1,64 +1,68 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import Chart from "react-apexcharts";
 import { url } from "../Configure";
 import * as MaterialUI from "@material-ui/core";
-export default class KeralaHistory extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [],
-            series: [
-                {
-                    name: "",
-                    data: []
-                }
-            ],
-            options: {
-                xaxis: {
-                    style: {
-                        margin: 10
-                    },
-                    type: "datetime"
-                },
-                dataLabels: {
-                    enabled: true
-                },
+import { useViewport } from '../Extras/ViewportProvider';
 
-                stroke: {
-                    width: 2.5
-                },
-
-                grid: {
-                    padding: {
-                        left: 10, // or whatever value that works
-                        right: 10 // or whatever value that works
-                    }
-                }
+const KeralaHistory =()=> {
+    const {width, height} = useViewport();
+    const [series, setSeries] = useState([]);
+    const options = {
+        xaxis: {
+            style: {
+                margin: 10
             },
-        };
-    }
-    componentDidMount() {
+            type: "datetime"
+        },
+        dataLabels: {
+            enabled: true
+        },
+
+        stroke: {
+            width: 2.5
+        },
+
+        grid: {
+            padding: {
+                left: 10, // or whatever value that works
+                right: 10 // or whatever value that works
+            }
+        }
+    };
+
+
+    useEffect(()=>{
+        const fetchData = ()=>{
         fetch(`${url}/statusPage`).then(r => r.json())
             .then(res => {
-                this.setState({ data: res["historyKerala"] });
-                this.setData();
+                let data = res["historyKerala"].map(d => {
+                    return [d.timestamp, d.cases];
+                });
+        
+                setSeries(
+                    [
+                        {
+                            name: "Cases",
+                            data: data
+                        }
+                    ]
+                );
             })
-
-    }
-    render() {
-
-
+            .catch(err=>console.log(err));
+        }
+        fetchData();
+    },[]);
         return (
             <>
                 <MaterialUI.Paper elevation={10} style={{
-                    marginTop: window.innerHeight * .15,
-                    width: window.innerWidth > 800 ? window.innerWidth * .8 : window.innerWidth
+                    marginTop: height * .15,
+                    width: width > 800 ? width * .8 : width
                 }}>
                     <br/>
                     <h3>Kerala Cases Till Today</h3>
                     <Chart
-                        options={this.state.options}
-                        series={this.state.series}
+                        options={options}
+                        series={series}
                         type="area"
                         width="100%"
                         height="300"
@@ -67,18 +71,5 @@ export default class KeralaHistory extends Component {
             </>
         )
     }
-    setData = () => {
-        let data = this.state.data.map(d => {
-            return [d.timestamp, d.cases];
-        });
 
-        this.setState({
-            series: [
-                {
-                    name: "Cases",
-                    data: data
-                }
-            ]
-        });
-    };
-}
+    export default KeralaHistory;

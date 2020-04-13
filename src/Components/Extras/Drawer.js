@@ -15,17 +15,23 @@ import SourceIcon from "@material-ui/icons/PermMediaOutlined";
 import PredictIcon from "@material-ui/icons/ShowChart";
 import DrawerIcon from "@material-ui/icons/Menu";
 import InfoIcon from "@material-ui/icons/InfoOutlined";
-const useStyles = makeStyles({
-  list: {
-    width: 250,
-    height: window.innerHeight
-  },
-  fullList: {
-    width: "auto"
-  }
-});
+import {useViewport} from "./ViewportProvider";
+
 
 export default function TemporaryDrawer() {
+
+  const { width, height } = useViewport();
+
+  const useStyles = makeStyles({
+    list: {
+      width: 250,
+      height: height
+    },
+    fullList: {
+      width: "auto"
+    }
+  });
+
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false
@@ -57,7 +63,7 @@ export default function TemporaryDrawer() {
           style={{
             position: "absolute",
             backgroundColor: "#001F3A",
-            marginTop: window.innerHeight * 0.9
+            marginTop: height * 0.9
           }}
         >
           <center>
@@ -134,8 +140,8 @@ export default function TemporaryDrawer() {
         style={{
           color: "white",
           position: "absolute",
-          marginTop: window.innerHeight * 0.044,
-          marginLeft: window.innerWidth * 0.04,
+          marginTop: height * 0.044,
+          marginLeft: width * 0.04,
           zIndex: 990
         }}
       />

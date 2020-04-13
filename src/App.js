@@ -1,26 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
+import { ViewportProvider } from "./Components/Extras/ViewportProvider";
 import Router from "./Components/Router";
 
-export default class App extends Component {
-  handleResize = () => {
-    console.log("Resized");
-    window.location.reload();
-  };
-  componentDidMount() {
-    window.addEventListener("resize", this.handleResize);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.handleResize);
-  }
-  render() {
-    return (
+const App = () => {
+  return (
+    <ViewportProvider>
       <BrowserRouter>
         <Router />
       </BrowserRouter>
-    );
-  }
-}
+    </ViewportProvider>
+  );
+};
+
+export default App;

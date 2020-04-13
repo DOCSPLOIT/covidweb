@@ -1,52 +1,38 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import { Paper } from "@material-ui/core";
 import { url } from "../Configure";
+import { useViewport } from "../Extras/ViewportProvider";
 
-export default class PredictKerala extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      options: {
-        colors: ["#e73a8b"],
-        xaxis: {
-          style: {
-            margin: 10
-          },
-          type: "datetime"
-        },
-        dataLabels: {
-          enabled: true
-        },
-
-        // stroke: {
-        //     curve: 'smooth'
-        // },
-
-        grid: {
-          padding: {
-            left: 10, // or whatever value that works
-            right: 40 // or whatever value that works
-          }
-        }
+const PredictKerala =()=> {
+  const {width, height} = useViewport();
+  const [series, setSeries] = useState([]);
+  const options = {
+    colors: ["#e73a8b"],
+    xaxis: {
+      style: {
+        margin: 10
       },
-      series: [
-        {
-          name: "Kerala",
-          data: [
-            [1585236526093, 50],
-            [1585322926093, 75],
-            [1585409326093, 100],
-            [1585495726093, 125],
-            [1585582126093, 150],
-            [1585668526093, 175],
-            [1585754926093, 200]
-          ]
-        }
-      ]
-    };
+      type: "datetime"
+    },
+    dataLabels: {
+      enabled: true
+    },
+
+    // stroke: {
+    //     curve: 'smooth'
+    // },
+
+    grid: {
+      padding: {
+        left: 10, // or whatever value that works
+        right: 40 // or whatever value that works
+      }
+    }
   }
-  componentDidMount() {
+
+  useEffect(()=>{
+    const fetchData = ()=>{
     fetch(`${url}/PredictionPage`)
       .then(response => response.json())
       .then(res => {
@@ -58,24 +44,27 @@ export default class PredictKerala extends Component {
           let d = today + i * oneDay;
           kdata.push([d, res["arr"][i][0]]);
         }
-        this.setState({
-          series: [
+        setSeries(
+          [
             {
               name: "Kerala",
               data: kdata
             }
           ]
-        });
-      });
-  }
-  render() {
+        );
+      })
+      .catch(err=>console.log(err));
+    }
+    fetchData();
+  },[]);
+
     return (
       <div
         style={
-          window.innerWidth > 800
+          width > 800
             ? {
                 display: "flex",
-                marginTop: window.innerWidth * 0.02,
+                marginTop: width * 0.02,
                 justifyContent: "center"
               }
             : {}
@@ -84,29 +73,30 @@ export default class PredictKerala extends Component {
         <Paper
           elevation={10}
           style={
-            window.innerWidth > 800
+            width > 800
               ? {
-                  width: window.innerWidth * 0.4,
-                  marginRight: window.innerHeight * 0.2,
-                  height: window.innerHeight * 0.6
+                  width: width * 0.4,
+                  marginRight: height * 0.2,
+                  height: height * 0.6
                 }
-              : { width: window.innerWidth }
+              : { width: width }
           }
         >
           <h1>Kerala</h1>
           <Chart
             width={
-              window.innerWidth > 800
-                ? window.innerWidth * 0.4
-                : window.innerWidth
+              width > 800
+                ? width * 0.4
+                : width
             }
-            height={window.innerHeight * 0.4}
+            height={height * 0.4}
             type="area"
-            options={this.state.options}
-            series={this.state.series}
+            options={options}
+            series={series}
           />
         </Paper>
       </div>
     );
   }
-}
+
+  export default PredictKerala;

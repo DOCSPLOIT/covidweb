@@ -1,24 +1,26 @@
-import React, { Component } from "react";
+import React from "react";
 import { LinearProgress } from "@material-ui/core";
+import { useViewport } from "./ViewportProvider";
 
-export default class Loader extends Component {
-  render() {
+const Loader =()=> {
+    const {width, height} = useViewport();
     return (
       <div
-        style={{ textAlign: "center", marginTop: window.innerHeight * 0.35 }}
+        style={{ textAlign: "center", marginTop: height * 0.35 }}
       >
         <p>Loading...</p>
         <center>
           <LinearProgress
             style={{
               width:
-                window.innerWidth > 800
-                  ? window.innerWidth * 0.5
-                  : window.innerWidth * 0.8
+                width > 800
+                  ? width * 0.5
+                  : width * 0.8
             }}
           />
         </center>
       </div>
     );
   }
-}
+
+  export default Loader;

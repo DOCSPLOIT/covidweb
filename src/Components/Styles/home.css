@@ -19,12 +19,25 @@
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   width: 100%;
-  height: 100px;
-  left: 0px;
+  height: 75px;
+  left: 0;
+  bottom: 0;
   background: #001f3a;
+  z-index: 900;
 }
+
+.footer__div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__div img{
+  margin: 0 1rem;
+}
+
 .liveUpdates {
   display: flex;
   justify-content: center;

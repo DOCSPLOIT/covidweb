@@ -8,9 +8,11 @@ import {
   TableCell,
   TableHead,
 } from "@material-ui/core";
+import { useViewport } from "../Extras/ViewportProvider";
 
 const StateWiseOrg = ({ stateWiseOrg }) => {
   const [data, setData] = useState(stateWiseOrg);
+  const {width} = useViewport();
 
   useEffect(() => {
     const modData = () => {
@@ -25,35 +27,27 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
 
   const renderTableData = () =>
     data.map((d, index) => {
-      const { confirmed, active, deaths, state } = d;
+      const { confirmed, active, deaths, state, deltaconfirmed, deltadeaths, deltarecovered } = d;
       return (
         <TableRow key={index}>
           <TableCell>{state}</TableCell>
-          <TableCell>{confirmed}</TableCell>
-          <TableCell>{deaths}</TableCell>
+          <TableCell>{`${confirmed} `}<span style={{color:"#1552c2", fontSize:"0.5rem", fontWeight:"bold"}}>+{deltaconfirmed}</span></TableCell>
+          <TableCell>{`${deaths} `}<span style={{color:"#cf3737", fontSize:"0.5rem", fontWeight:"bold"}}>+{deltadeaths}</span></TableCell>
           <TableCell>{active}</TableCell>
         </TableRow>
       );
     });
 
   const renderTableHeader = () => {
-    let header = ["State", "Confirmed Cases", "Death", "Active Cases"];
+    let header = ["State", "Confirmed", "Death", "Active"];
     return header.map((d, index) => {
       return (
         <TableCell
           key={index}
           style={
             index === 0
-              ? { width: "50%", textAlign: "left", backgroundColor: "#edc5ff" }
+              ? { width: "40%", textAlign: "left" }
               : {
-                  backgroundColor:
-                    index === 1
-                      ? "#98b6ec"
-                      : index === 2
-                      ? "#fce4e4"
-                      : index === 3
-                      ? "#ccdeff"
-                      : "#e6b0ff",
                   color:
                     index === 1
                       ? "#1552c2"
@@ -74,18 +68,18 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
       <br />
       <TableContainer
         style={
-          window.innerWidth > 800
+          width > 800
             ? {
-                width: window.innerWidth * 0.8,
+                width: width * 0.8,
               }
-            : { width: window.innerWidth }
+            : { width: width }
         }
         component={Paper}
         elevation={10}
       >
         <h3 id="title">State Wise Data from covid19india.org</h3>
         <Table id="stwscvdorg">
-          <TableHead> {renderTableHeader()}</TableHead>
+          <TableHead style={{backgroundColor:"#ededed"}}> {renderTableHeader()}</TableHead>
           <TableBody style={{ textAlign: "center" }}>
             {renderTableData()}
           </TableBody>

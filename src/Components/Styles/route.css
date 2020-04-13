@@ -1,69 +1,59 @@
-.navbar{
-    position: fixed;
-width: 100%;
-height: 75px;
-left: 0px;
-top: 0px;
-z-index: 990;
-background: #001F3A;
+.navbar {
+  position: fixed;
+  width: 100%;
+  height: 75px;
+  left: 0px;
+  top: 0px;
+  z-index: 990;
+  background: #001f3a;
 }
 
+.navbar__nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 1rem;
+}
+
+.spacer {
+    flex:1;
+}
 
 /* Covid Updates */
 
+.title {
+  font-family: "arch";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 34px;
+  /* identical to box height */
 
-.title{
-    position: absolute;
-    left: 20px;
-    font-family: 'arch';
-    font-style: normal;
+  text-align: right;
+
+  color: #ffffff;
+}
+
+.navitem {
+  margin: 8px;
+  color: rgb(255, 255, 255);
+  text-decoration: wavy;
+}
+
+.navlink {
+    display: flex;
+    justify-content: space-around;
+}
+.bottomBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+@media only screen and (max-width: 900px) {
+  .title {
+    text-align: center;
     font-weight: 500;
-    font-size: 24px;
-    line-height: 34px;
-    /* identical to box height */
-    
-    text-align: right;
-    
-    color: #FFFFFF;
-}
-
- .navitem{
-        margin:8px;
-        color: rgb(255, 255, 255);
-        text-decoration: wavy;
-        
-    }
-
-
-
-
-
-.navlink{
-    position: absolute;
-width: auto;
-height: auto;
-flex-direction: row;
-margin-left:55%;
-margin-top: 30px;
-
-}
-.bottomBar{
-    position: fixed;
-    bottom: 0%;
-
-}
-
-
-
-
-
-
-@media only screen and (max-width:900px){
-    .title{
-        text-align: center;
-        font-weight: 500;
-        align-self: center;
-        
-    }
-    
+    align-self: center;
+  }
 }

@@ -1,44 +1,37 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { url } from "../Configure";
 import * as MaterialUI from "@material-ui/core";
 import Loader from "../Extras/Loader";
-export default class Reports extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      isConnected: false,
-    };
-  }
+import logosm from "../Media/logosm.png";
+import iedclog from "../Media/iedcw.png";
+import { useViewport } from "../Extras/ViewportProvider";
 
-  componentDidMount() {
+const Reports = ()=> {
+  const {width} = useViewport();
+    const [data, setData] = useState([]);
+    const [isConnected, setConnected] = useState(false);
+  
+  useEffect(()=>{
+    const fetchData = ()=>{
     fetch(`${url}/foreignCountries`)
       .then((res) => res.json())
       .then((res) => {
-        res.map((t) => {
-          this.setState({
-            data: res,
-            // Country:t['Country,Other'],
-            // Confirmed:t['TotalCases'],
-            // Active:t['ActiveCases'],
-            // Death:t['TotalDeaths'],
-            // Recovered:t['TotalRecovered']
-            isConnected: true,
-          });
-        });
+        setData(res);
+        setConnected(true);
       });
-  }
+    }
+    fetchData();
+  });
 
-  render() {
-    const View = this.state.data.map((t) => {
+    const View = data.map((t) => {
       return (
         <MaterialUI.Paper
           style={{
             lineHeight: 0.5,
             width:
-              window.innerWidth > 800
-                ? window.innerWidth * 0.6
-                : window.innerWidth,
+              width > 800
+                ? width * 0.6
+                : width,
             margin: 0,
           }}
           className="statusBoard"
@@ -113,12 +106,13 @@ export default class Reports extends Component {
             </div>
           </center>
         </MaterialUI.Paper>
+        
       );
     });
 
     return (
       <>
-        {this.state.isConnected === true ? (
+        {isConnected === true ? (
           <center>
             {View}
             <br />
@@ -130,7 +124,49 @@ export default class Reports extends Component {
         ) : (
           <Loader />
         )}
+        {width > 800 ? (
+        <footer className="footer">
+                <div className="footer__div">
+                  <a href="http://sscollege.ac.in">
+                    <img
+                      alt="lgosm"
+                      src={logosm}
+                      style={{
+                        width: "55px",
+                        height: "55px",
+                      }}
+                    />
+                  </a>
+                    <a
+                      href="http://sscollege.ac.in"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <p style={{ color: "white" }}>
+                        <b style={{ fontSize: 20 }}>
+                          Sullamussalam Science College |
+                        </b>
+                        <i style={{ fontSize: 14 }}>Powered By IEDC </i>
+                      </p>
+                    </a>
+                  <a href="http://iedc.sscollege.ac.in">
+                    <img
+                      alt="sm"
+                      src={iedclog}
+                      style={{
+                        width: "80px",
+                        height: "80px",
+                      }}
+                    />
+                  </a>
+                </div>
+              </footer>
+      ) : (
+        <>
+          <br />
+        </>
+      )}
       </>
     );
   }
-}
+
+  export default Reports;

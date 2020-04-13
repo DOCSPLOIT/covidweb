@@ -1,72 +1,71 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
-export default class KeralaStatus extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      series: [0, 0, 0],
+import { useViewport } from "../Extras/ViewportProvider";
 
-      options: {
-        chart: {
-          width: 380,
-          type: "pie"
-        },
-        labels: ["Confirmed", "Recovered", "Deaths"],
-        responsive: [
-          {
-            breakpoint: 480,
-            options: {
-              chart: {
-                width: 380
-              },
-              legend: {
-                position: "bottom"
-              }
-            }
+const KeralaStatus =props=> {
+  const {width, height} = useViewport();
+  const [series, setSeries] = useState([]);
+  const options = {
+    chart: {
+      width: 380,
+      type: "pie"
+    },
+    labels: ["Active", "Recovered", "Deaths"],
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 380
+          },
+          legend: {
+            position: "bottom"
           }
-        ],
-
-        dataLabels: {
-          enabled: true
-        },
-        fill: {
-          colors: ["#008ffb", "#35dd81", "#dd3535"]
-        },
-        colors: ["#008ffb", "#35dd81", "#dd3535"]
+        }
       }
-    };
+    ],
+
+    dataLabels: {
+      enabled: true
+    },
+    fill: {
+      colors: ["#008ffb", "#35dd81", "#dd3535"]
+    },
+    colors: ["#008ffb", "#35dd81", "#dd3535"]
   }
 
-  componentDidMount() {
-    this.setState({
-      series: [
-        parseInt(this.props.cases),
-        this.props.recovered,
-        this.props.deaths
+
+
+  useEffect(()=>{
+    setSeries(
+      [
+        props.cases-props.recovered-props.deaths,
+        props.recovered,
+        props.deaths
       ]
-    });
-  }
+    );
+  },[props]);
 
-  render() {
     return (
       <div
         id="chart"
         style={
-          window.innerWidth > 800
+          width > 800
             ? {
-                marginTop: window.innerHeight * 0.25,
-                marginLeft: window.innerWidth * 0.1
+                marginTop: height * 0.25,
+                marginLeft: width * 0.1
               }
             : {}
         }
       >
         <Chart
-          options={this.state.options}
-          series={this.state.series}
+          options={options}
+          series={series}
           width={380}
           type="donut"
         />
       </div>
     );
   }
-}
+
+  export default KeralaStatus;
