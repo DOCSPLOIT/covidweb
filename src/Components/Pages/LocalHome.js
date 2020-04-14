@@ -61,43 +61,44 @@ const LocalHome = () => {
   });
 
   useEffect(() => {
-    const fetchData = ()=>{
-    fetch(`${url}/homePage`)
-      .then((r) => r.json())
-      .then((res) => {
-        setHomeData({
-          keralaObserve: res["districtWiseKerala"]["table"][14]["observation"],
-          districtWiseData: res["districtWiseKerala"],
-          keralaPredict: res["prediction"]["arr"][0][0],
-          indiaPredict: res["prediction"]["arr"][0][1],
-          globalPredict: res["prediction"]["arr"][0][2],
-          keralaRecover: parseInt(res["kerala"]["Cured/Discharged/Migrated"]),
-          keralaTdeath: parseInt(res["kerala"]["Death"]),
-          indiaRecover: res["india"]["TotalRecovered"],
-          indiaTdeath: res["india"]["TotalDeaths"],
-          worldRecover: res["global"]["recovered"],
-          worldTdeath: res["global"]["deaths"],
-          keralaTCases: res["kerala"]["Total Confirmed cases"],
-          worldTcases: res["global"]["cases"],
-          indiaTcases: res["india"]["TotalCases"],
-          keralaActive: res["kerala"]["active_cases"],
-          keralaConfirmed: res["kerala"]["Total Confirmed cases"],
-          indiaActive: res["india"]["ActiveCases"],
-          worldActive:
-            res["global"]["active_cases"]["currently_infected_patients"],
-          stateWiseData: res["stateWiseData"],
-          stateWiseDataOrg: res["stateWiseOrg"],
-        });
-      })
-      .then(() => {
-        setLoaded(true);
-      })
-      .catch((err) => console.log(err));
-    }
+    const fetchData = () => {
+      fetch(`${url}/homePage`)
+        .then((r) => r.json())
+        .then((res) => {
+          setHomeData({
+            keralaObserve:
+              res["districtWiseKerala"]["table"][14]["observation"],
+            districtWiseData: res["districtWiseKerala"],
+            keralaPredict: res["prediction"]["arr"][0][0],
+            indiaPredict: res["prediction"]["arr"][0][1],
+            globalPredict: res["prediction"]["arr"][0][2],
+            keralaRecover: parseInt(res["kerala"]["Cured/Discharged/Migrated"]),
+            keralaTdeath: parseInt(res["kerala"]["Death"]),
+            indiaRecover: res["india"]["TotalRecovered"],
+            indiaTdeath: res["india"]["TotalDeaths"],
+            worldRecover: res["global"]["recovered"],
+            worldTdeath: res["global"]["deaths"],
+            keralaTCases: res["kerala"]["Total Confirmed cases"],
+            worldTcases: res["global"]["cases"],
+            indiaTcases: res["india"]["TotalCases"],
+            keralaActive: res["kerala"]["active_cases"],
+            keralaConfirmed: res["kerala"]["Total Confirmed cases"],
+            indiaActive: res["india"]["ActiveCases"],
+            worldActive:
+              res["global"]["active_cases"]["currently_infected_patients"],
+            stateWiseData: res["stateWiseData"],
+            stateWiseDataOrg: res["stateWiseOrg"],
+          });
+        })
+        .then(() => {
+          setLoaded(true);
+        })
+        .catch((err) => console.log(err));
+    };
     fetchData();
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     setkeralamapData({
       KeralaMapProps: {
         district: "Total",
@@ -660,17 +661,17 @@ const LocalHome = () => {
                       }}
                     />
                   </a>
-                    <a
-                      href="http://sscollege.ac.in"
-                      style={{ textDecoration: "none" }}
-                    >
-                      <p style={{ color: "white" }}>
-                        <b style={{ fontSize: 20 }}>
-                          Sullamussalam Science College |
-                        </b>
-                        <i style={{ fontSize: 14 }}>Powered By IEDC </i>
-                      </p>
-                    </a>
+                  <a
+                    href="http://sscollege.ac.in"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <p style={{ color: "white" }}>
+                      <b style={{ fontSize: 20 }}>
+                        Sullamussalam Science College |
+                      </b>
+                      <i style={{ fontSize: 14 }}>Powered By IEDC </i>
+                    </p>
+                  </a>
                   <a href="http://iedc.sscollege.ac.in">
                     <img
                       alt="sm"
@@ -698,79 +699,123 @@ const LocalHome = () => {
                   elevation={1}
                 >
                   <h2>Kerala</h2>
-                  <center>
-                    <div style={{ display: "flex", margin: 0 }}>
-                      <div
-                        style={{
-                          backgroundColor: "#ccdeff",
-                          borderRadius: 5,
-                          width: "25%",
 
-                          margin: "0 5px",
-                        }}
-                      >
-                        <p style={{ color: "#3792cf" }}>Active</p>
-                        <b
-                          style={{
-                            fontSize: 20,
-                            lineHeight: 0,
-                            color: "#3792cf",
-                          }}
-                        >
-                          {homeData.keralaActive}
-                        </b>
-                      </div>
-                      <div
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      height: "80px",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        flex: "1",
+                        backgroundColor: "#ccdeff",
+                        borderRadius: 5,
+                        margin: "0 2px",
+                      }}
+                    >
+                      <span style={{ color: "#3792cf", margin: "5px 0" }}>
+                        Active
+                      </span>
+                      <span
                         style={{
-                          backgroundColor: "#fce4e4",
-                          borderRadius: 5,
-                          width: "25%",
-                          margin: "0 2px",
+                          fontSize: 20,
+                          color: "#3792cf",
+                          fontWeight: "bold",
+                          margin: "5px 0",
                         }}
                       >
-                        <p style={{ color: "#cf3737" }}>Death</p>
-                        <b style={{ fontSize: 20, color: "#cf3737" }}>
-                          {homeData.keralaTdeath}
-                        </b>
-                        <br />
-                        <br />
-                        <br />
-                      </div>
-
-                      <div
-                        style={{
-                          backgroundColor: "#aae9c6",
-                          borderRadius: 5,
-                          width: "25%",
-                          margin: "0 2px",
-                        }}
-                      >
-                        <p style={{ color: "#239c5a" }}> Recovered </p>
-                        <b style={{ fontSize: 20, color: "#239c5a" }}>
-                          {homeData.keralaRecover}
-                        </b>
-                        <br />
-                        <br />
-                        <br />
-                      </div>
-
-                      <div
-                        style={{
-                          backgroundColor: "#98b6ec",
-                          borderRadius: 5,
-                          width: "25%",
-                          margin: "0 2px",
-                        }}
-                      >
-                        <p style={{ color: "#1552c2" }}>Confirmed</p>
-                        <b style={{ fontSize: 20, color: "#1552c2" }}>
-                          {homeData.keralaTCases}
-                        </b>
-                      </div>
-                      <br />
-                      <br />
+                        {homeData.keralaActive}
+                      </span>
                     </div>
-                  </center>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        flex: "1",
+                        backgroundColor: "#fce4e4",
+                        borderRadius: 5,
+                        margin: "0 2px",
+                      }}
+                    >
+                      <span style={{ color: "#cf3737", margin: "5px 0" }}>
+                        Death
+                      </span>
+                      <span
+                        style={{
+                          fontSize: 20,
+                          color: "#cf3737",
+                          fontWeight: "bold",
+                          margin: "5px 0",
+                        }}
+                      >
+                        {homeData.keralaTdeath}
+                      </span>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        flex: "1",
+                        backgroundColor: "#aae9c6",
+                        borderRadius: 5,
+                        margin: "0 2px",
+                      }}
+                    >
+                      <span style={{ color: "#239c5a", margin: "5px 0" }}>
+                        {" "}
+                        Recovered{" "}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: 20,
+                          color: "#239c5a",
+                          fontWeight: "bold",
+                          margin: "5px 0",
+                        }}
+                      >
+                        {homeData.keralaRecover}
+                      </span>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        flex: "1",
+                        backgroundColor: "#ccdeff",
+                        borderRadius: 5,
+                        margin: "0 2px",
+                      }}
+                    >
+                      <span style={{ color: "#1552c2", margin: "5px 0" }}>
+                        Confirmed
+                      </span>
+                      <span
+                        style={{
+                          fontSize: 20,
+                          color: "#1552c2",
+                          fontWeight: "bold",
+                          margin: "5px 0",
+                        }}
+                      >
+                        {homeData.keralaTCases}
+                      </span>
+                    </div>
+                  </div>
+
                   <p style={{ fontSize: 12, fontFamily: "lato" }}>
                     Reference : dhs.kerala.gov.in
                   </p>
@@ -786,76 +831,120 @@ const LocalHome = () => {
                   elevation={1}
                 >
                   <h2>India</h2>
-                  <div style={{ display: "flex", margin: 0 }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      height: "80px",
+                    }}
+                  >
                     <div
                       style={{
-                        backgroundColor: "#ccdeff",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        flex: "1",
                         borderRadius: 5,
-                        width: "25%",
-
-                        margin: "0 5px",
+                        margin: "0 2px",
+                        backgroundColor: "#ccdeff",
                       }}
                     >
-                      <p style={{ color: "#3792cf" }}>Active</p>
-                      <b
+                      <span style={{ color: "#3792cf", margin: "5px 0" }}>
+                        Active
+                      </span>
+                      <span
                         style={{
                           fontSize: 20,
-                          lineHeight: 0,
+                          fontWeight: "bold",
+                          margin: "5px 0",
                           color: "#3792cf",
                         }}
                       >
                         {homeData.indiaActive}
-                      </b>
+                      </span>
                     </div>
                     <div
                       style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        flex: "1",
+                        borderRadius: 5,
+                        margin: "0 2px",
                         backgroundColor: "#fce4e4",
-                        borderRadius: 5,
-                        width: "25%",
-                        margin: "0 2px",
                       }}
                     >
-                      <p style={{ color: "#cf3737" }}>Death</p>
-                      <b style={{ fontSize: 20, color: "#cf3737" }}>
+                      <span style={{ color: "#cf3737", margin: "5px 0" }}>
+                        Death
+                      </span>
+                      <span
+                        style={{
+                          color: "#cf3737",
+                          fontSize: 20,
+                          fontWeight: "bold",
+                          margin: "5px 0",
+                        }}
+                      >
                         {homeData.indiaTdeath}
-                      </b>
-                      <br />
-                      <br />
-                      <br />
+                      </span>
                     </div>
 
                     <div
                       style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        flex: "1",
+                        borderRadius: 5,
+                        margin: "0 2px",
                         backgroundColor: "#aae9c6",
-                        borderRadius: 5,
-                        width: "25%",
-                        margin: "0 2px",
                       }}
                     >
-                      <p style={{ color: "#239c5a" }}> Recovered </p>
-                      <b style={{ fontSize: 20, color: "#239c5a" }}>
+                      <span style={{ color: "#239c5a", margin: "5px 0" }}>
+                        {" "}
+                        Recovered{" "}
+                      </span>
+                      <span
+                        style={{
+                          color: "#239c5a",
+                          fontSize: 20,
+                          fontWeight: "bold",
+                          margin: "5px 0",
+                        }}
+                      >
                         {homeData.indiaRecover}
-                      </b>
-                      <br />
-                      <br />
-                      <br />
+                      </span>
                     </div>
 
                     <div
                       style={{
-                        backgroundColor: "#98b6ec",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        flex: "1",
                         borderRadius: 5,
-                        width: "25%",
                         margin: "0 2px",
+                        backgroundColor: "#98b6ec",
                       }}
                     >
-                      <p style={{ color: "#1552c2" }}>Confirmed</p>
-                      <b style={{ fontSize: 20, color: "#1552c2" }}>
+                      <span style={{ color: "#1552c2", margin: "5px 0" }}>
+                        Confirmed
+                      </span>
+                      <span
+                        style={{
+                          color: "#1552c2",
+                          fontSize: 20,
+                          fontWeight: "bold",
+                          margin: "5px 0",
+                        }}
+                      >
                         {homeData.indiaTcases}
-                      </b>
+                      </span>
                     </div>
-                    <br />
-                    <br />
                   </div>
 
                   <p style={{ fontSize: 12, fontFamily: "lato" }}>
@@ -873,76 +962,102 @@ const LocalHome = () => {
                   elevation={1}
                 >
                   <h2>World</h2>
-                  <div style={{ display: "flex", margin: 0 }}>
+                  <div style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      height: "80px", }}>
                     <div
                       style={{
                         backgroundColor: "#ccdeff",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        flex: "1",
                         borderRadius: 5,
-                        width: "25%",
-
-                        margin: "0 5px",
+                        margin: "0 2px",
                       }}
                     >
-                      <p style={{ color: "#3792cf" }}>Active</p>
-                      <b
+                      <span style={{ color: "#3792cf",margin: "5px 0", }}>Active</span>
+                      <span
                         style={{
                           fontSize: 20,
-                          lineHeight: 0,
+                          fontWeight: "bold",
+                          margin: "5px 0",
                           color: "#3792cf",
                         }}
                       >
                         {homeData.worldActive}
-                      </b>
+                      </span>
                     </div>
                     <div
                       style={{
                         backgroundColor: "#fce4e4",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        flex: "1",
                         borderRadius: 5,
-                        width: "25%",
                         margin: "0 2px",
                       }}
                     >
-                      <p style={{ color: "#cf3737" }}>Death</p>
-                      <b style={{ fontSize: 20, color: "#cf3737" }}>
+                      <span style={{ color: "#cf3737",margin: "5px 0", }}>Death</span>
+                      <span style={{
+                        color: "#cf3737",
+                        fontSize: 20,
+                        fontWeight: "bold",
+                        margin: "5px 0",
+                         }}>
                         {homeData.worldTdeath}
-                      </b>
-                      <br />
-                      <br />
-                      <br />
+                      </span>
                     </div>
 
                     <div
                       style={{
                         backgroundColor: "#aae9c6",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        flex: "1",
                         borderRadius: 5,
-                        width: "25%",
                         margin: "0 2px",
                       }}
                     >
-                      <p style={{ color: "#239c5a" }}> Recovered </p>
-                      <b style={{ fontSize: 20, color: "#239c5a" }}>
+                      <span style={{ color: "#239c5a",margin: "5px 0", }}> Recovered </span>
+                      <span style={{
+                         color: "#239c5a",
+                         fontSize: 20,
+                        fontWeight: "bold",
+                        margin: "5px 0",
+                          }}>
                         {homeData.worldRecover}
-                      </b>
-                      <br />
-                      <br />
-                      <br />
+                      </span>
                     </div>
 
                     <div
                       style={{
                         backgroundColor: "#98b6ec",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        flex: "1",
                         borderRadius: 5,
-                        width: "25%",
                         margin: "0 2px",
                       }}
                     >
-                      <p style={{ color: "#1552c2" }}>Confirmed</p>
-                      <b style={{ fontSize: 20, color: "#1552c2" }}>
+                      <span style={{ color: "#1552c2",margin: "5px 0",}}>Confirmed</span>
+                      <span style={{
+                        color: "#1552c2",
+                        fontSize: 20,
+                        fontWeight: "bold",
+                        margin: "5px 0",
+                        }}>
                         {homeData.worldTcases}
-                      </b>
+                      </span>
                     </div>
-                    <br />
-                    <br />
                   </div>
 
                   <p style={{ fontSize: 12, fontFamily: "lato" }}>
@@ -973,7 +1088,12 @@ const LocalHome = () => {
                 >
                   <h2>{keralamapData.KeralaMapProps.district}</h2>
                   <div
-                    style={{ width: "100%", display: "flex", margin: "10px 0", justifyContent: "space-evenly" }}
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      margin: "10px 0",
+                      justifyContent: "space-evenly",
+                    }}
                   >
                     <div
                       style={{
@@ -1116,7 +1236,12 @@ const LocalHome = () => {
                 >
                   <h2>{indiamapData.IndiaMapProps.states}</h2>
                   <div
-                    style={{ width: "100%", display: "flex", margin: "10px 0", justifyContent: "space-evenly" }}
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      margin: "10px 0",
+                      justifyContent: "space-evenly",
+                    }}
                   >
                     <div
                       style={{

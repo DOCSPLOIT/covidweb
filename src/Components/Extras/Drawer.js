@@ -70,7 +70,7 @@ export default function TemporaryDrawer() {
             <a href="http://sscollege.ac.in" style={{ textDecoration: "none" }}>
               <p style={{ color: "white" }}>
                 <b style={{ fontSize: 15 }}>Sullamussalam Science College </b>
-                <l style={{ fontSize: 14 }}>Powered By IEDC </l>
+                <i style={{ fontSize: 14 }}>Powered By IEDC </i>
               </p>
             </a>
           </center>
@@ -140,7 +140,8 @@ export default function TemporaryDrawer() {
         style={{
           color: "white",
           position: "absolute",
-          marginTop: height * 0.044,
+          top: "50%",
+          transform: "translateY(-50%)",
           marginLeft: width * 0.04,
           zIndex: 990
         }}

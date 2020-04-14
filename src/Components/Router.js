@@ -20,14 +20,18 @@ const Router = () => {
         {width > 800 ? null : (
             <div>
             <Drawer />
-            <h3 style={{
-                marginLeft: width * 0.3,
-                  fontSize: 25,
-                  color: "white",
-                  position: "absolute",
+            <span style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                fontWeight: 500,
+                fontSize: "1.2rem",
+                textAlign: "center",
+                color: "white",
+                transform: "translate(-50%, -50%)"
             }}>
             Covid-19 Updates
-            </h3>
+            </span>
             </div>
             )}
         {width > 800 ? (
