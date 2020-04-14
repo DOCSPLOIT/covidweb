@@ -63,7 +63,8 @@ export default function TemporaryDrawer() {
           style={{
             position: "absolute",
             backgroundColor: "#001F3A",
-            marginTop: height * 0.9
+            bottom: 0,
+            left: 0
           }}
         >
           <center>
@@ -79,10 +80,10 @@ export default function TemporaryDrawer() {
       <h3
         style={{
           textAlign: "center",
-          fontSize: 25
+          fontSize: "1.2rem"
         }}
       >
-        Covid Updates
+        Covid-19 Updates
       </h3>
       <Divider />
       <List>

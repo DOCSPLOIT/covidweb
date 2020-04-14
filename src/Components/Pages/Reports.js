@@ -37,7 +37,7 @@ const Reports = ()=> {
           className="statusBoard"
           elevation={1}
         >
-          <h2 style={{ lineHeight: 0 }}>{t["Country,Other"]}</h2>
+          <h3 style={{ lineHeight: 0 }}>{t["Country,Other"]}</h3>
           <center>
             <div style={{ display: "flex", margin: 0 }}>
               <div
@@ -45,8 +45,7 @@ const Reports = ()=> {
                   backgroundColor: "#ccdeff",
                   borderRadius: 5,
                   width: "25%",
-
-                  margin: "0 5px",
+                  margin: "0 2px",
                 }}
               >
                 <p style={{ color: "#3792cf" }}>Active</p>
@@ -117,7 +116,7 @@ const Reports = ()=> {
             {View}
             <br />
 
-            <p style={{ fontFamily: "lato" }}>Reference: www.worlodmeter.com</p>
+            <p style={{ fontFamily: "lato" }}>Reference: www.worldometers.info</p>
             <br />
             <br />
           </center>

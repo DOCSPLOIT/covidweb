@@ -343,7 +343,7 @@ const LocalHome = () => {
                   </div>
                   <br />
                   <p style={{ fontSize: 12, fontFamily: "lato" }}>
-                    Reference: www.worldometer.info
+                    Reference: www.worldometers.info
                   </p>
                 </MaterialUI.Paper>
               </div>
@@ -1061,7 +1061,7 @@ const LocalHome = () => {
                   </div>
 
                   <p style={{ fontSize: 12, fontFamily: "lato" }}>
-                    Reference : www.worldometer.info
+                    Reference : www.worldometers.info
                   </p>
                   <br />
                 </MaterialUI.Paper>

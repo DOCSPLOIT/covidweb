@@ -44,8 +44,8 @@ const IndiaKerala =()=> {
             let kdata = res["historyKerala"].map(d => {
                 return [d.timestamp, d.cases]
             });
-        //     idata.splice(0, 3);
-        // kdata.splice(0, 30);
+        idata.splice(0, 31);
+        kdata.splice(0, 30);
             setSeries(
                 [
                     {
