@@ -15,9 +15,7 @@ const IndiaKerala =()=> {
             type: "datetime"
         },
         markers: {
-            size: 5,
-            shape: 'circle',
-            radius: 1
+            size: 4,
         },
         stroke: {
             width: 3

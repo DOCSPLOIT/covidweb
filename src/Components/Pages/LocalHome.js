@@ -13,6 +13,7 @@ import IndiaMap from "../Graphs/IndiaMap";
 import SlideShow from "../Graphs/SlideShow";
 import IndiaKerala from "../Graphs/IndiaKerala";
 import StateWiseOrg from "../Graphs/StateWiseOrg";
+import KeralaLineGraph from "../Graphs/KeralaLineGraph";
 import { useViewport } from "../Extras/ViewportProvider";
 
 const LocalHome = () => {
@@ -621,6 +622,10 @@ const LocalHome = () => {
                   />
                 </div>
               </MaterialUI.Paper>
+              <br />
+              <center>
+                <KeralaLineGraph />
+              </center>
               <br />
               <center>
                 <IndiaKerala />
@@ -1363,6 +1368,10 @@ const LocalHome = () => {
                   />
                 </center>
               </MaterialUI.Paper>
+              <br />
+              <center>
+                <KeralaLineGraph />
+              </center>
               <br />
               <center>
                 <IndiaKerala />
