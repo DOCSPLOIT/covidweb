@@ -623,32 +623,31 @@ const LocalHome = () => {
                 </div>
               </MaterialUI.Paper>
               <br />
+              <StateWiseOrg stateWiseOrg={homeData.stateWiseDataOrg} />
+              <br />
+              {/* transition video embed */}
+              <center>
+                <IndiaKerala />
+              </center>
+              <br />
               <center>
                 <KeralaLineGraph />
               </center>
               <br />
               <center>
-                <IndiaKerala />
-              </center>
-              <br />
-              <h3 style={{ marginLeft: width * 0.4 }}>
-                StateWise Reports(India)
-              </h3>
-
-              <center>
-                <StateWise stateWiseData={homeData.stateWiseData} />
-              </center>
-              <StateWiseOrg stateWiseOrg={homeData.stateWiseDataOrg} />
-              <br />
-              <center>
                 <MaterialUI.Paper style={{ width: width * 0.8 }} elevation={10}>
-                  <br />
                   <h3>Districtwise Active Cases Reports (Kerala)</h3>
                   <DistrictWiseBar
                     districtWiseData={homeData.districtWiseData.table}
                   />
                   <br />
                 </MaterialUI.Paper>
+              </center>
+              <center>
+                <h3 style={{ marginLeft: width * 0.4 }}>
+                  StateWise Reports(India)
+                </h3>
+                <StateWise stateWiseData={homeData.stateWiseData} />
                 <SlideShow />
               </center>
               <br />
@@ -967,10 +966,13 @@ const LocalHome = () => {
                   elevation={1}
                 >
                   <h2>World</h2>
-                  <div style={{
+                  <div
+                    style={{
                       display: "flex",
                       justifyContent: "space-around",
-                      height: "80px", }}>
+                      height: "80px",
+                    }}
+                  >
                     <div
                       style={{
                         backgroundColor: "#ccdeff",
@@ -983,7 +985,9 @@ const LocalHome = () => {
                         margin: "0 2px",
                       }}
                     >
-                      <span style={{ color: "#3792cf",margin: "5px 0", }}>Active</span>
+                      <span style={{ color: "#3792cf", margin: "5px 0" }}>
+                        Active
+                      </span>
                       <span
                         style={{
                           fontSize: 20,
@@ -1007,13 +1011,17 @@ const LocalHome = () => {
                         margin: "0 2px",
                       }}
                     >
-                      <span style={{ color: "#cf3737",margin: "5px 0", }}>Death</span>
-                      <span style={{
-                        color: "#cf3737",
-                        fontSize: 20,
-                        fontWeight: "bold",
-                        margin: "5px 0",
-                         }}>
+                      <span style={{ color: "#cf3737", margin: "5px 0" }}>
+                        Death
+                      </span>
+                      <span
+                        style={{
+                          color: "#cf3737",
+                          fontSize: 20,
+                          fontWeight: "bold",
+                          margin: "5px 0",
+                        }}
+                      >
                         {homeData.worldTdeath}
                       </span>
                     </div>
@@ -1030,13 +1038,18 @@ const LocalHome = () => {
                         margin: "0 2px",
                       }}
                     >
-                      <span style={{ color: "#239c5a",margin: "5px 0", }}> Recovered </span>
-                      <span style={{
-                         color: "#239c5a",
-                         fontSize: 20,
-                        fontWeight: "bold",
-                        margin: "5px 0",
-                          }}>
+                      <span style={{ color: "#239c5a", margin: "5px 0" }}>
+                        {" "}
+                        Recovered{" "}
+                      </span>
+                      <span
+                        style={{
+                          color: "#239c5a",
+                          fontSize: 20,
+                          fontWeight: "bold",
+                          margin: "5px 0",
+                        }}
+                      >
                         {homeData.worldRecover}
                       </span>
                     </div>
@@ -1053,13 +1066,17 @@ const LocalHome = () => {
                         margin: "0 2px",
                       }}
                     >
-                      <span style={{ color: "#1552c2",margin: "5px 0",}}>Confirmed</span>
-                      <span style={{
-                        color: "#1552c2",
-                        fontSize: 20,
-                        fontWeight: "bold",
-                        margin: "5px 0",
-                        }}>
+                      <span style={{ color: "#1552c2", margin: "5px 0" }}>
+                        Confirmed
+                      </span>
+                      <span
+                        style={{
+                          color: "#1552c2",
+                          fontSize: 20,
+                          fontWeight: "bold",
+                          margin: "5px 0",
+                        }}
+                      >
                         {homeData.worldTcases}
                       </span>
                     </div>
@@ -1370,27 +1387,31 @@ const LocalHome = () => {
               </MaterialUI.Paper>
               <br />
               <center>
-                <KeralaLineGraph />
+                <StateWiseOrg stateWiseOrg={homeData.stateWiseDataOrg} />
               </center>
               <br />
+              {/* Transition video embed */}
               <center>
                 <IndiaKerala />
               </center>
               <br />
+              <center>
+                <KeralaLineGraph />
+              </center>
+              <br />
+              <center>
+                <MaterialUI.Paper elevation={10}>
+                  <h3>Districtwise Active Cases Reports (Kerala)</h3>
+                  <DistrictWiseBar
+                    districtWiseData={homeData.districtWiseData.table}
+                  />
+                  <br />
+                </MaterialUI.Paper>
+              </center>
               <Animated animationIn="fadeInUp" animationInDuration={4000}>
                 <h3>Statewise Reports (India)</h3>
                 <StateWise stateWiseData={homeData.stateWiseData} />
               </Animated>
-              <center>
-                <StateWiseOrg stateWiseOrg={homeData.stateWiseDataOrg} />
-              </center>
-              <MaterialUI.Paper elevation={10}>
-                <h3>Districtwise Active Cases Reports (Kerala)</h3>
-                <DistrictWiseBar
-                  districtWiseData={homeData.districtWiseData.table}
-                />
-                <br />
-              </MaterialUI.Paper>
               <SlideShow />
               <br />
               <br />

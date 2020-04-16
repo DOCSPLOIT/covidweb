@@ -173,7 +173,9 @@ const Status = () => {
                   />
                 </div>
               </div>
-
+              <br />
+              <br />
+              <br />
               <br />
               <footer className="footer">
                 <div className="footer__div">
