@@ -12,7 +12,7 @@ import { useViewport } from "../Extras/ViewportProvider";
 
 const StateWiseOrg = ({ stateWiseOrg }) => {
   const [data, setData] = useState(stateWiseOrg);
-  const {width} = useViewport();
+  const { width } = useViewport();
 
   useEffect(() => {
     const modData = () => {
@@ -27,12 +27,36 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
 
   const renderTableData = () =>
     data.map((d, index) => {
-      const { confirmed, active, deaths, state, deltaconfirmed, deltadeaths, deltarecovered } = d;
+      const {
+        confirmed,
+        active,
+        deaths,
+        state,
+        deltaconfirmed,
+        deltadeaths,
+        deltarecovered,
+      } = d;
       return (
         <TableRow key={index}>
           <TableCell>{state}</TableCell>
-          <TableCell>{`${confirmed} `}<span style={{color:"#cf3737", fontSize:"0.5rem", fontWeight:"bold"}}>+{deltaconfirmed}</span></TableCell>
-          <TableCell>{`${deaths} `}<span style={{fontSize:"0.5rem", fontWeight:"bold"}}>+{deltadeaths}</span></TableCell>
+          <TableCell>
+            {`${confirmed} `}
+            <span
+              style={{
+                color: "#cf3737",
+                fontSize: "0.5rem",
+                fontWeight: "bold",
+              }}
+            >
+              +{deltaconfirmed}
+            </span>
+          </TableCell>
+          <TableCell>
+            {`${deaths} `}
+            <span style={{ fontSize: "0.5rem", fontWeight: "bold" }}>
+              +{deltadeaths}
+            </span>
+          </TableCell>
           <TableCell>{active}</TableCell>
         </TableRow>
       );
@@ -40,8 +64,9 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
 
   const renderTableHeader = () => {
     let header = ["State", "Confirmed", "Death", "Active"];
-    return header.map((d, index) => {
-      return (
+    return (
+    <TableRow>
+    {header.map((d, index) => (
         <TableCell
           key={index}
           style={
@@ -58,9 +83,12 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
                       : null,
                 }
           }
-        >{d}</TableCell>
-      );
-    });
+        >
+          {d}
+        </TableCell>
+    ))}
+    </TableRow>
+    );
   };
 
   return (
@@ -78,8 +106,10 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
         elevation={10}
       >
         <h3 id="title">State Wise Data from covid19india.org</h3>
-        <Table id="stwscvdorg">
-          <TableHead style={{backgroundColor:"#ededed"}}> {renderTableHeader()}</TableHead>
+        <Table stickyHeader>
+          <TableHead style={{ backgroundColor: "#ededed" }}>
+            {renderTableHeader()}
+          </TableHead>
           <TableBody style={{ textAlign: "center" }}>
             {renderTableData()}
           </TableBody>

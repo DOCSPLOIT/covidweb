@@ -108,41 +108,43 @@ const Sources = () => {
         <br />
 
         {width > 800 ? (
-          <footer className="footer">
-            <div className="footer__div">
-              <a href="http://sscollege.ac.in">
-                <img
-                  alt="lgosm"
-                  src={logosm}
-                  style={{
-                    width: "55px",
-                    height: "55px",
-                  }}
-                />
-              </a>
-              <a
-                href="http://sscollege.ac.in"
-                style={{ textDecoration: "none" }}
-              >
-                <p style={{ color: "white" }}>
-                  <b style={{ fontSize: 20 }}>
-                    Sullamussalam Science College |
-                  </b>
-                  <i style={{ fontSize: 14 }}>Powered By IEDC </i>
-                </p>
-              </a>
-              <a href="http://iedc.sscollege.ac.in">
-                <img
-                  alt="sm"
-                  src={iedclog}
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                  }}
-                />
-              </a>
-            </div>
-          </footer>
+          <div className="footer_wrapper">
+              <footer className="footer">
+                <div className="footer__div">
+                  <a href="http://sscollege.ac.in">
+                    <img
+                      alt="lgosm"
+                      src={logosm}
+                      style={{
+                        width: "55px",
+                        height: "55px",
+                      }}
+                    />
+                  </a>
+                  <a
+                    href="http://sscollege.ac.in"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <p style={{ color: "white" }}>
+                      <b style={{ fontSize: 20 }}>
+                        Sullamussalam Science College |
+                      </b>
+                      <i style={{ fontSize: 14 }}>Powered By IEDC </i>
+                    </p>
+                  </a>
+                  <a href="http://iedc.sscollege.ac.in">
+                    <img
+                      alt="sm"
+                      src={iedclog}
+                      style={{
+                        width: "80px",
+                        height: "80px",
+                      }}
+                    />
+                  </a>
+                </div>
+              </footer>
+              </div>
         ) : (
           <>
             <br />

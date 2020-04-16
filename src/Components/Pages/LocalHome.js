@@ -625,6 +625,22 @@ const LocalHome = () => {
               <br />
               <StateWiseOrg stateWiseOrg={homeData.stateWiseDataOrg} />
               <br />
+              <center>
+                <MaterialUI.Paper
+                  elevation={10}
+                  style={{ width: width * 0.8, height: "500px" }}
+                >
+                  <div>
+                    <iframe
+                      src="https://flo.uri.sh/visualisation/1913788/embed"
+                      frameBorder={0}
+                      style={{ width: "100%", height: "500px" }}
+                      title="flourish-iframe"
+                    ></iframe>
+                  </div>
+                </MaterialUI.Paper>
+              </center>
+              <br />
               {/* transition video embed */}
               <center>
                 <IndiaKerala />
@@ -653,41 +669,43 @@ const LocalHome = () => {
               <br />
               <br />
               <br />
-              <footer className="footer">
-                <div className="footer__div">
-                  <a href="http://sscollege.ac.in">
-                    <img
-                      alt="lgosm"
-                      src={logosm}
-                      style={{
-                        width: "55px",
-                        height: "55px",
-                      }}
-                    />
-                  </a>
-                  <a
-                    href="http://sscollege.ac.in"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <p style={{ color: "white" }}>
-                      <b style={{ fontSize: 20 }}>
-                        Sullamussalam Science College |
-                      </b>
-                      <i style={{ fontSize: 14 }}>Powered By IEDC </i>
-                    </p>
-                  </a>
-                  <a href="http://iedc.sscollege.ac.in">
-                    <img
-                      alt="sm"
-                      src={iedclog}
-                      style={{
-                        width: "80px",
-                        height: "80px",
-                      }}
-                    />
-                  </a>
-                </div>
-              </footer>
+              <div className="footer_wrapper">
+                <footer className="footer">
+                  <div className="footer__div">
+                    <a href="http://sscollege.ac.in">
+                      <img
+                        alt="lgosm"
+                        src={logosm}
+                        style={{
+                          width: "55px",
+                          height: "55px",
+                        }}
+                      />
+                    </a>
+                    <a
+                      href="http://sscollege.ac.in"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <p style={{ color: "white" }}>
+                        <b style={{ fontSize: 20 }}>
+                          Sullamussalam Science College |
+                        </b>
+                        <i style={{ fontSize: 14 }}>Powered By IEDC </i>
+                      </p>
+                    </a>
+                    <a href="http://iedc.sscollege.ac.in">
+                      <img
+                        alt="sm"
+                        src={iedclog}
+                        style={{
+                          width: "80px",
+                          height: "80px",
+                        }}
+                      />
+                    </a>
+                  </div>
+                </footer>
+              </div>
             </div>
           ) : (
             <div>
@@ -1390,6 +1408,22 @@ const LocalHome = () => {
                 <StateWiseOrg stateWiseOrg={homeData.stateWiseDataOrg} />
               </center>
               <br />
+              <center>
+                <MaterialUI.Paper
+                  elevation={10}
+                  style={{ width: width, height: "400px" }}
+                >
+                  <div>
+                    <iframe
+                      src="https://flo.uri.sh/visualisation/1913788/embed"
+                      frameBorder={0}
+                      style={{ width: "100%", height: "400px" }}
+                      title="flourish-iframe"
+                    ></iframe>
+                  </div>
+                </MaterialUI.Paper>
+              </center>
+              <br/>
               {/* Transition video embed */}
               <center>
                 <IndiaKerala />

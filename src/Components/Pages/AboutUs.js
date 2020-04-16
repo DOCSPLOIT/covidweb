@@ -172,7 +172,8 @@ const About = () => {
       <br />
 
       {width > 800 ? (
-        <footer className="footer">
+        <div className="footer_wrapper">
+              <footer className="footer">
                 <div className="footer__div">
                   <a href="http://sscollege.ac.in">
                     <img
@@ -184,17 +185,17 @@ const About = () => {
                       }}
                     />
                   </a>
-                    <a
-                      href="http://sscollege.ac.in"
-                      style={{ textDecoration: "none" }}
-                    >
-                      <p style={{ color: "white" }}>
-                        <b style={{ fontSize: 20 }}>
-                          Sullamussalam Science College |
-                        </b>
-                        <i style={{ fontSize: 14 }}>Powered By IEDC </i>
-                      </p>
-                    </a>
+                  <a
+                    href="http://sscollege.ac.in"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <p style={{ color: "white" }}>
+                      <b style={{ fontSize: 20 }}>
+                        Sullamussalam Science College |
+                      </b>
+                      <i style={{ fontSize: 14 }}>Powered By IEDC </i>
+                    </p>
+                  </a>
                   <a href="http://iedc.sscollege.ac.in">
                     <img
                       alt="sm"
@@ -207,6 +208,7 @@ const About = () => {
                   </a>
                 </div>
               </footer>
+              </div>
       ) : (
         <>
           <br />

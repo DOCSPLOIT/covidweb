@@ -63,6 +63,7 @@ const Predictions = () => {
             <br />
             <br />
             {width > 800 ? (
+              <div className="footer_wrapper">
               <footer className="footer">
                 <div className="footer__div">
                   <a href="http://sscollege.ac.in">
@@ -98,6 +99,7 @@ const Predictions = () => {
                   </a>
                 </div>
               </footer>
+              </div>
             ) : (
               <>
                 <br />

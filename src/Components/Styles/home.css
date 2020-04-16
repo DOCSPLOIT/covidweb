@@ -18,18 +18,21 @@
   color: #000000;
 }
 
+.footer_wrapper {
+  display: flex;
+
+}
+
 .footer {
-  position: fixed;
   width: 100%;
-  height: 75px;
-  left: 0;
-  bottom: 0;
+  height: 100%;
+  flex: 1;
   background: #001f3a;
-  z-index: 900;
 }
 
 .footer__div {
   display: flex;
+  height: 100%;
   justify-content: space-between;
   align-items: center;
 }
