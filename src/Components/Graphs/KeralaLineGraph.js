@@ -17,7 +17,7 @@ const KeralaLineGraph = () => {
     },
     stroke: {
       // curve: "smooth",
-      width: 3,
+      width: 5,
     },
     grid: {
       padding: {
