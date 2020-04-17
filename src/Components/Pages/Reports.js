@@ -35,7 +35,7 @@ const Reports = ()=> {
             margin: 0,
           }}
           className="statusBoard"
-          elevation={1}
+          elevation={0}
         >
           <h3 style={{ lineHeight: 0 }}>{t["Country,Other"]}</h3>
           <center>
