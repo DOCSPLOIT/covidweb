@@ -14,6 +14,7 @@ import SlideShow from "../Graphs/SlideShow";
 import IndiaKerala from "../Graphs/IndiaKerala";
 import StateWiseOrg from "../Graphs/StateWiseOrg";
 import KeralaLineGraph from "../Graphs/KeralaLineGraph";
+import Chatbot from "../Extras/Chatbot/Chatbot"
 import { useViewport } from "../Extras/ViewportProvider";
 
 const LocalHome = () => {
@@ -623,6 +624,7 @@ const LocalHome = () => {
                 </div>
               </MaterialUI.Paper>
               <br />
+              <Chatbot/>
               <StateWiseOrg stateWiseOrg={homeData.stateWiseDataOrg} />
               <br />
               <center>
@@ -1404,6 +1406,7 @@ const LocalHome = () => {
                 </center>
               </MaterialUI.Paper>
               <br />
+              <Chatbot/>
               <center>
                 <StateWiseOrg stateWiseOrg={homeData.stateWiseDataOrg} />
               </center>
