@@ -102,6 +102,18 @@ const Sources = () => {
             </b>
             <br />
             <br />
+            <b
+              style={{
+                fontFamily: "Poppins,sans-serif",
+                fontSize: 14,
+                color: "black",
+              }}
+            >
+              CovAid Chatbot : In collaboration with TCS
+            </b>
+            <br />
+            <br /><br />
+            
           </MaterialUI.Paper>
         </center>
         <br />
