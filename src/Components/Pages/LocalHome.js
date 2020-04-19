@@ -359,7 +359,7 @@ const LocalHome = () => {
                   <h2>KERALA SPREAD TRENDS</h2>
                 </center>
                 <p style={{ fontFamily: "lato" }}>
-                  ** Click on the map to view the details **
+                  ** Tap over a district for more details **
                 </p>
                 <div style={{ display: "flex" }}>
                   <div
@@ -496,7 +496,7 @@ const LocalHome = () => {
                   <h2>INDIA SPREAD TRENDS</h2>
                 </center>
                 <p style={{ fontFamily: "lato" }}>
-                  ** Click on the map to view the details **
+                  ** Tap over a state/UT for more details **
                 </p>
                 <div style={{ display: "flex" }}>
                   <div
@@ -1239,7 +1239,7 @@ const LocalHome = () => {
 
                 <center>
                   <p style={{ fontFamily: "lato" }}>
-                    ** Click on the map to view the details **
+                    ** Tap over a district for more details **
                   </p>
                   <KeralaMap
                     setContent={(obj) => {
@@ -1387,7 +1387,7 @@ const LocalHome = () => {
                 <br />
                 <center>
                   <p style={{ fontFamily: "lato" }}>
-                    ** Click on the map to view the details **
+                    ** Tap over a state/UT for more details **
                   </p>
                   <IndiaMap
                     setContent={(obj) => {
