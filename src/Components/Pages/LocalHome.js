@@ -390,11 +390,11 @@ const LocalHome = () => {
                       >
                         <br />
                         <p style={{ color: "#337aff" }} className="props">
-                          Observation
+                          Confirmed
                         </p>
                         <br />
                         <b style={{ color: "#337aff", fontSize: 25 }}>
-                          {keralamapData.KeralaMapProps.observation}
+                          {keralamapData.KeralaMapProps.confirmed}
                         </b>
                         <br />
                       </div>
