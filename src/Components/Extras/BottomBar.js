@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
@@ -8,11 +8,12 @@ import StatusIcon from "@material-ui/icons/Equalizer";
 import MediaIcon from "@material-ui/icons/PermMediaOutlined";
 import PredictIcon from "@material-ui/icons/ShowChart";
 import InfoIcon from "@material-ui/icons/InfoOutlined";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useViewport } from "./ViewportProvider";
 
 export default function SimpleBottomNavigation() {
-  const navigate = useHistory();
+  const location = useLocation();
+  const history = useHistory();
   const { width} = useViewport();
   const useStyles = makeStyles({
     root: {
@@ -30,51 +31,56 @@ export default function SimpleBottomNavigation() {
   });
   const classes = useStyles();
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(`${location.pathname.replace("/", "")}`);
+
+  useEffect(() => {
+    setValue(`${location.pathname.replace("/", "")}`)
+    },[location]);
 
   return (
     <BottomNavigation
       value={value}
       onChange={(event, newValue) => {
+        history.push(`/${newValue}`);
         setValue(newValue);
       }}
       showLabels
     >
       <BottomNavigationAction
-        onClick={() => navigate.push("/")}
         classes={classes}
         label="Home"
+        value=""
         icon={<HomeIcon />}
       />
       <BottomNavigationAction
-        onClick={() => navigate.push("/news")}
         classes={classes}
         label="Updates"
+        value="news"
         icon={<NewsIcon />}
       />
       <BottomNavigationAction
-        onClick={() => navigate.push("/predict")}
         classes={classes}
         label="Projection"
+        value="predict"
         icon={<PredictIcon />}
       />
       <BottomNavigationAction
-        onClick={() => navigate.push("/status")}
         classes={classes}
         label="Status"
+        value="status"
         icon={<StatusIcon />}
       />
 
       <BottomNavigationAction
-        onClick={() => navigate.push("/source")}
         classes={classes}
         label="Sources"
+        value="source"
         icon={<MediaIcon />}
       />
       <BottomNavigationAction
-        onClick={() => navigate.push("/about")}
         classes={classes}
         label="About us"
+        value="about"
         icon={<InfoIcon />}
       />
     </BottomNavigation>
