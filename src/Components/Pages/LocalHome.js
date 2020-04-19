@@ -1252,6 +1252,7 @@ const LocalHome = () => {
                           district: obj.district,
                           death: obj.death,
                           recovered: obj.recovered,
+                          confirmed: obj.confirmed,
                         },
                       });
                     }}
