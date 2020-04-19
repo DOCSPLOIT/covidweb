@@ -132,7 +132,11 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
                 borderRadius: 8,
                 fontSize: 18,
                 margin: 2,
-                color: "rgb(100,100,100)",
+                color: index===0 ?"rgb(100,100,100)"
+                      :index===1 ? "black"
+                      :index===2 ? "#f54f4f"
+                      :index===3 ? "#337aff"
+                      :"rgb(100,100,100)"
               }}
             >
               {d}
@@ -175,9 +179,3 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
 
 export default StateWiseOrg;
 
-const styles = createStyles({
-  tableData: {
-    textAlign: "center",
-    borderWidth: 0,
-  },
-});

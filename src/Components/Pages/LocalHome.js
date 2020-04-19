@@ -47,6 +47,7 @@ const LocalHome = () => {
     KeralaMapProps: {
       district: "",
       active_cases: 0,
+      confirmed:0,
       observation: 0,
       death: 0,
       recovered: 0,
@@ -106,6 +107,7 @@ const LocalHome = () => {
         district: "Total",
         active_cases: homeData.keralaActive,
         observation: homeData.keralaObserve,
+        confirmed: homeData.keralaTCases,
         death: homeData.keralaTdeath,
         recovered: homeData.keralaRecover,
       },
@@ -182,14 +184,14 @@ const LocalHome = () => {
 
                     <div
                       style={{
-                        backgroundColor: "#98b6ec",
+                        backgroundColor: "#ccdeff",
                         borderRadius: 15,
                         width: "100%",
                         margin: "0 5px",
                       }}
                     >
-                      <p style={{ color: "#1552c2" }}>Confirmed</p>
-                      <b style={{ fontSize: 25, color: "#1552c2" }}>
+                      <p style={{ color: "#3792cf" }}>Confirmed</p>
+                      <b style={{ fontSize: 25, color: "#3792cf" }}>
                         {homeData.keralaConfirmed}
                       </b>
                     </div>
@@ -256,14 +258,14 @@ const LocalHome = () => {
 
                     <div
                       style={{
-                        backgroundColor: "#98b6ec",
+                        backgroundColor: "#ccdeff",
                         borderRadius: 15,
                         width: "100%",
                         margin: "0 5px",
                       }}
                     >
-                      <p style={{ color: "#1552c2" }}>Confirmed</p>
-                      <b style={{ fontSize: 25, color: "#1552c2" }}>
+                      <p style={{ color: "#3792cf" }}>Confirmed</p>
+                      <b style={{ fontSize: 25, color: "#3792cf" }}>
                         {homeData.indiaTcases}
                       </b>
                     </div>
@@ -329,14 +331,14 @@ const LocalHome = () => {
 
                     <div
                       style={{
-                        backgroundColor: "#98b6ec",
+                        backgroundColor: "#ccdeff",
                         borderRadius: 15,
                         width: "100%",
                         margin: "0 5px",
                       }}
                     >
-                      <p style={{ color: "#1552c2" }}>Confirmed</p>
-                      <b style={{ fontSize: 20, color: "#1552c2" }}>
+                      <p style={{ color: "#3792cf" }}>Confirmed</p>
+                      <b style={{ fontSize: 20, color: "#3792cf" }}>
                         {homeData.worldTcases}
                       </b>
                     </div>
@@ -952,7 +954,7 @@ const LocalHome = () => {
                         flex: "1",
                         borderRadius: 5,
                         margin: "0 2px",
-                        backgroundColor: "#98b6ec",
+                        backgroundColor: "#ccdeff",
                       }}
                     >
                       <span style={{ color: "#1552c2", margin: "5px 0" }}>
@@ -1076,7 +1078,7 @@ const LocalHome = () => {
 
                     <div
                       style={{
-                        backgroundColor: "#98b6ec",
+                        backgroundColor: "#ccdeff",
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-evenly",
@@ -1154,11 +1156,11 @@ const LocalHome = () => {
                           fontWeight: "bold",
                         }}
                       >
-                        Observation
+                        Confirmed
                       </p>
 
                       <b style={{ color: "#337aff", fontSize: 20 }}>
-                        {keralamapData.KeralaMapProps.observation}
+                        {keralamapData.KeralaMapProps.confirmed}
                       </b>
                     </div>
 
