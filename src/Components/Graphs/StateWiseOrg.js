@@ -32,14 +32,13 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
         confirmed,
         active,
         deaths,
+        recovered,
         state,
         deltaconfirmed,
         deltadeaths,
         deltarecovered,
       } = d;
-     
-      
-      
+
       const check = (n1, n2) => (index % 2 === 0 ? n1 : n2);
       const styles = createStyles({
         tableData: {
@@ -50,31 +49,39 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
           fontFamily: "arch",
           fontWeight: "bolder",
           borderRadius: check(null, 8),
-          fontSize: 15,
+          fontSize: 12,
           margin: 2,
-          color: "rgb(100,100,100)",
-          textAlign:"center",
+          textAlign: "center",
         },
       });
-
       return (
-        <TableRow style={{ borderWidth: 0, }} key={index}>
+        <TableRow style={{ borderWidth: 0 }} key={index}>
           <TableCell
-            style={{ backgroundColor: "white", borderWidth: 0,textAlign:'left' }}
+            style={{
+              backgroundColor: "white",
+              borderWidth: 0,
+              textAlign: "left",
+              color: "",
+            }}
             padding="none"
           >
-            <p style={styles.tableData}>{state}</p>
+            <p
+              id="state"
+              style={({ color: "rgb(100,100,100)" }, styles.tableData)}
+            >
+              {state}
+            </p>
           </TableCell>
           <TableCell
             style={{ backgroundColor: "white", borderWidth: 0 }}
             padding="none"
           >
-            <p style={styles.tableData}>
+            <p id="confirm" style={({ color: "#ff073a" }, styles.tableData)}>
               {`${confirmed} `}
               <span
                 style={{
                   color: "#cf3737",
-                  fontSize: ".65rem",
+                  fontSize: ".55rem",
                   fontWeight: "bold",
                 }}
               >
@@ -83,14 +90,18 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
             </p>
           </TableCell>
           <TableCell
-            style={{ backgroundColor: "white", borderWidth: 0 }}
+            style={{
+              backgroundColor: "white",
+              color: "#6c757d",
+              borderWidth: 0,
+            }}
             padding="none"
           >
-            <p style={styles.tableData}>
+            <p id="deaths" style={styles.tableData}>
               {`${deaths} `}
               <span
                 style={{
-                  fontSize: "0.65rem",
+                  fontSize: "0.55rem",
                   fontWeight: "bold",
                   textAlign: "center",
                 }}
@@ -100,17 +111,31 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
             </p>
           </TableCell>
           <TableCell
-            style={{ backgroundColor: "white", borderWidth: 0 }}
+            style={{
+              backgroundColor: "white",
+              color: "#007bff",
+              borderWidth: 0,
+            }}
             padding="none"
           >
-            <p style={styles.tableData}>{active}</p>
+            <p id="active" style={styles.tableData}>{active}</p>
+          </TableCell>
+          <TableCell
+            style={{
+              backgroundColor: "white",
+              color: "#28a745",
+              borderWidth: 0,
+            }}
+            padding="none"
+          >
+            <p id='recovered' style={styles.tableData}>{recovered}</p>
           </TableCell>
         </TableRow>
       );
     });
 
   const renderTableHeader = () => {
-    let header = ["State", "Confirmed", "Death", "Active"];
+    let header = ["State",width>800? "Confirmed":'Cnfmd', "Death", "Active",width>800? "Recovered":'Rcvrd'];
     return (
       <TableRow>
         {header.map((d, index) => (
@@ -118,11 +143,10 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
             key={index}
             padding="none"
             align="center"
-            style={{ backgroundColor: "white", borderWidth: 0,width:'10%', }}
+            style={{ backgroundColor: "white", borderWidth: 0 }}
           >
             <p
               style={{
-                
                 padding: width > 800 ? 20 : 10,
                 paddingLeft: 2,
                 paddingRight: 2,
@@ -130,13 +154,20 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
                 fontFamily: "arch",
                 fontWeight: "bolder",
                 borderRadius: 8,
-                fontSize: 18,
+                fontSize: 15,
                 margin: 2,
-                color: index===0 ?"rgb(100,100,100)"
-                      :index===1 ? "black"
-                      :index===2 ? "#f54f4f"
-                      :index===3 ? "#337aff"
-                      :"rgb(100,100,100)"
+                color:
+                  index === 0
+                    ? "rgb(100,100,100)"
+                    : index === 1
+                    ? "#ff073a"
+                    : index === 2
+                    ? "#6c757d"
+                    : index === 3
+                    ? "#007bff"
+                    : index === 4
+                    ? "#28a745"
+                    : "rgb(100,100,100)",
               }}
             >
               {d}
@@ -178,4 +209,3 @@ const StateWiseOrg = ({ stateWiseOrg }) => {
 };
 
 export default StateWiseOrg;
-

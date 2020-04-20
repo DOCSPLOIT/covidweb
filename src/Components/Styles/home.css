@@ -20,7 +20,6 @@
 
 .footer_wrapper {
   display: flex;
-
 }
 
 .footer {
@@ -37,7 +36,7 @@
   align-items: center;
 }
 
-.footer__div img{
+.footer__div img {
   margin: 0 1rem;
 }
 
@@ -91,22 +90,32 @@
   align-self: center;
 
   height: 500px;
- 
-  
 }
 .table::-webkit-scrollbar {
   display: none;
-  
+}
+#state {
+  color: #646464;
+}
+#confirm {
+  color: #ff073a;
+}
+#deaths {
+  color: #6c757d;
+}
+#active {
+  color: #007bff;
+}
+#recovered {
+  color: #28a745;
 }
 @media only screen and (max-width: 800px) {
   .each-slide div {
-   
     height: 300px;
   }
   .slide-container {
     width: 100%;
-    margin:0px;
+    margin: 0px;
     background-position: center;
-   
   }
 }
