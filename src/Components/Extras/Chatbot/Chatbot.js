@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "@material-ui/core/Modal";
 import ChatIcon from "@material-ui/icons/Chat";
+import { Fab } from '@material-ui/core';
 import { useViewport } from "../ViewportProvider";
 import "./Chatbot.css";
 
@@ -42,15 +43,15 @@ const Chatbot = () => {
           : "modaldiv-mobile modaldiv-show"
       }
     >
-      <div onClick={handleOpen} className="modaldiv__chatbutton">
-        <ChatIcon
-          style={{
-            color: "#001f3a",
-            fontSize: "3rem",
-            cursor: "pointer",
-          }}
-        />
-        <div style={{ fontSize: "0.6rem" }}>Chatbot</div>
+      <div onClick={handleOpen}>
+        <Fab style={{backgroundColor: "rgb(13, 33, 61)"}} classes={{label:"modaldiv__chatbutton"}}>
+         <ChatIcon style={{
+           fontSize: "2rem",
+           color: "white"
+         }}/>
+         <span style={{fontSize: "0.4rem", color:"white"}}>Chatbot</span>
+        </Fab>
+        
       </div>
       <Modal className="modaldiv__modal" open={open} onClose={handleClose}>
         <div

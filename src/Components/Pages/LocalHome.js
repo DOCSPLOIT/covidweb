@@ -14,7 +14,8 @@ import SlideShow from "../Graphs/SlideShow";
 import IndiaKerala from "../Graphs/IndiaKerala";
 import StateWiseOrg from "../Graphs/StateWiseOrg";
 import KeralaLineGraph from "../Graphs/KeralaLineGraph";
-import Chatbot from "../Extras/Chatbot/Chatbot"
+import KeralaTable from "../Graphs/KeralaTable";
+import Chatbot from "../Extras/Chatbot/Chatbot";
 import { useViewport } from "../Extras/ViewportProvider";
 
 const LocalHome = () => {
@@ -47,7 +48,7 @@ const LocalHome = () => {
     KeralaMapProps: {
       district: "",
       active_cases: 0,
-      confirmed:0,
+      confirmed: 0,
       observation: 0,
       death: 0,
       recovered: 0,
@@ -626,7 +627,7 @@ const LocalHome = () => {
                 </div>
               </MaterialUI.Paper>
               <br />
-              <Chatbot/>
+              <Chatbot />
               <StateWiseOrg stateWiseOrg={homeData.stateWiseDataOrg} />
               <br />
               <center>
@@ -643,6 +644,10 @@ const LocalHome = () => {
                     ></iframe>
                   </div>
                 </MaterialUI.Paper>
+              </center>
+              <br />
+              <center>
+                <KeralaTable />
               </center>
               <br />
               {/* transition video embed */}
@@ -1409,7 +1414,7 @@ const LocalHome = () => {
                 </center>
               </MaterialUI.Paper>
               <br />
-              <Chatbot/>
+              <Chatbot />
               <center>
                 <StateWiseOrg stateWiseOrg={homeData.stateWiseDataOrg} />
               </center>
@@ -1429,8 +1434,11 @@ const LocalHome = () => {
                   </div>
                 </MaterialUI.Paper>
               </center>
-              <br/>
-              {/* Transition video embed */}
+              <br />
+              <center>
+                <KeralaTable />
+              </center>
+              <br />
               <center>
                 <IndiaKerala />
               </center>
