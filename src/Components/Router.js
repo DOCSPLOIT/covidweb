@@ -7,7 +7,7 @@ import Home from "./Pages/Home";
 import AllNews from "./Pages/AllNews";
 import Status from "./Pages/Status";
 import Sources from "./Pages/Source";
-import Predictions from "./Pages/Predictions";
+// import Predictions from "./Pages/Predictions";
 import Drawer from "./Extras/Drawer";
 import About from "./Pages/AboutUs";
 import { useViewport } from "./Extras/ViewportProvider";
@@ -45,9 +45,9 @@ const Router = () => {
               <Link className="navitem" to="/news">
                 UPDATES
               </Link>
-              <Link className="navitem" to="/predict">
+              {/* <Link className="navitem" to="/predict">
                 PROJECTION
-              </Link>
+              </Link> */}
               <Link className="navitem" to="/status">
                 STATUS
               </Link>
@@ -76,9 +76,9 @@ const Router = () => {
           <Route path="/status">
             <Status />
           </Route>
-          <Route path="/predict">
+          {/* <Route path="/predict">
             <Predictions />
-          </Route>
+          </Route> */}
           <Route path="/source">
             <Sources />
           </Route>

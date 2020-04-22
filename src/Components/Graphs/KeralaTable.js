@@ -76,7 +76,7 @@ const KeralaTable = () => {
             padding="none"
           >
             <p style={({ color: "rgb(100,100,100)" }, styles.tableData)}>
-              {index+1}
+              Week {index+1}
             </p>
           </TableCell>
           <TableCell
@@ -145,7 +145,12 @@ const KeralaTable = () => {
                     : "rgb(100,100,100)",
               }}
             >
-              {d}
+              {index==0
+              ?(<span>
+                Week&nbsp;
+                <span style={{fontSize:"0.6rem"}}>*from Jan 30</span>
+              </span>)
+              :d}
             </p>
           </TableCell>
         ))}

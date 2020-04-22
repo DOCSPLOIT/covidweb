@@ -6,7 +6,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import NewsIcon from "@material-ui/icons/AnnouncementOutlined";
 import StatusIcon from "@material-ui/icons/Equalizer";
 import MediaIcon from "@material-ui/icons/PermMediaOutlined";
-import PredictIcon from "@material-ui/icons/ShowChart";
+// import PredictIcon from "@material-ui/icons/ShowChart";
 import InfoIcon from "@material-ui/icons/InfoOutlined";
 import { useHistory, useLocation } from "react-router-dom";
 import { useViewport } from "./ViewportProvider";
@@ -39,6 +39,7 @@ export default function SimpleBottomNavigation() {
 
   return (
     <BottomNavigation
+
       value={value}
       onChange={(event, newValue) => {
         history.push(`/${newValue}`);
@@ -58,12 +59,12 @@ export default function SimpleBottomNavigation() {
         value="news"
         icon={<NewsIcon />}
       />
-      <BottomNavigationAction
+      {/* <BottomNavigationAction
         classes={classes}
         label="Projection"
         value="predict"
         icon={<PredictIcon />}
-      />
+      /> */}
       <BottomNavigationAction
         classes={classes}
         label="Status"

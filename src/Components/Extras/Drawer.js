@@ -87,7 +87,7 @@ export default function TemporaryDrawer() {
       </h3>
       <Divider />
       <List>
-        {["Home", "Updates",'Projection', "Status", "Sources", "About"].map(
+        {["Home", "Updates", "Status", "Sources", "About"].map(
           (text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
@@ -113,10 +113,8 @@ export default function TemporaryDrawer() {
                   index===1?
                   '/news':
                   index===2?
-                  '/predict':
-                  index===3?
                   '/status':
-                  index===4?
+                  index===3?
                   '/source':
                   '/about'
                 }
