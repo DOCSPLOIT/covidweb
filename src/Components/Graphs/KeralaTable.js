@@ -23,6 +23,7 @@ const KeralaTable = () => {
         .json()
         .then((res) => {
           let tdata = [];
+          res["historyGlobal"].splice(0,8);
           for (let i = 0; i < res["historyKerala"].length; i += 7) {
             tdata.push({
               kerala_cases: res["historyKerala"][i].cases,
