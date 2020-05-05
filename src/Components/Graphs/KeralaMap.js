@@ -3,7 +3,7 @@ import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { scaleLinear } from "d3-scale";
 import { useViewport } from "../Extras/ViewportProvider";
 
-const minColor = "#fcd9d9";
+const minColor = "#f0f0f0";
 const maxColor = "#910000";
 
 const url =
@@ -25,7 +25,7 @@ const KeralaMap = (props) => {
 
   if (data.length > 0) {
     const colorScale = scaleLinear()
-      .domain([1, maxValue])
+      .domain([0, maxValue])
       .range([minColor, maxColor]);
     return (
       <div style={width > 800 ? { width: width * 0.55 } : { width: width }}>

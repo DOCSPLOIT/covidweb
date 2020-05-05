@@ -3,7 +3,7 @@ import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { scaleLinear } from "d3-scale";
 import { useViewport } from "../Extras/ViewportProvider";
 
-const minColor = "#d6bfbf";
+const minColor = "#f0f0f0";
 const maxColor = "#cc3535";
 
 const url =
@@ -30,7 +30,7 @@ const IndiaMap = (props) => {
 
   if (data.length > 0) {
     const colorScale = scaleLinear()
-      .domain([1, maxValue])
+      .domain([0, maxValue])
       .range([minColor, maxColor]);
     return (
       <div style={width > 800 ? { width: width * 0.6 } : { width: width }}>
