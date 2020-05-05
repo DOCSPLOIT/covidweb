@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-import { scaleLinear } from "d3-scale";
+import { scaleSequential } from "d3-scale";
+import { interpolateReds } from "d3";
 import { useViewport } from "../Extras/ViewportProvider";
 
-const minColor = "#f0f0f0";
-const maxColor = "#cc3535";
+// const minColor = "#ffffff";
+// const maxColor = "#cc3535";
+
+const colorInterpolator = (t) => {
+  return interpolateReds(t * 0.85);
+};
 
 const url =
   "https://raw.githubusercontent.com/m3tasploit/projectfiles/master/india.json";
@@ -29,9 +34,12 @@ const IndiaMap = (props) => {
   }, [props.stateWiseData]);
 
   if (data.length > 0) {
-    const colorScale = scaleLinear()
-      .domain([0, maxValue])
-      .range([minColor, maxColor]);
+    // const colorScale = scaleLinear()
+    //   .domain([0, maxValue])
+    //   .range([minColor, maxColor]);
+    const colorScale = scaleSequential([0, maxValue], colorInterpolator).clamp(
+      true
+    );
     return (
       <div style={width > 800 ? { width: width * 0.6 } : { width: width }}>
         <ComposableMap
@@ -40,7 +48,7 @@ const IndiaMap = (props) => {
           projection="geoMercator"
           projectionConfig={
             width > 800
-              ? { center: [80, 25], scale: 150 }
+              ? { center: [80, 20.5], scale: 150 }
               : { center: [80, 22], scale: 150 }
           }
         >

@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-import { scaleLinear } from "d3-scale";
+import { scaleSequential } from "d3-scale";
+import { interpolateBlues } from "d3";
 import { useViewport } from "../Extras/ViewportProvider";
 
-const minColor = "#f0f0f0";
-const maxColor = "#910000";
+// const minColor = "#ffffff";
+// const maxColor = "#910000";
+
+const colorInterpolator = (t) => {
+  return interpolateBlues(t * 0.85);
+};
 
 const url =
   "https://raw.githubusercontent.com/m3tasploit/projectfiles/master/kerala.json";
@@ -24,9 +29,12 @@ const KeralaMap = (props) => {
   }, [props.districtWiseData]);
 
   if (data.length > 0) {
-    const colorScale = scaleLinear()
-      .domain([0, maxValue])
-      .range([minColor, maxColor]);
+    // const colorScale = scaleLinear()
+    //   .domain([0, maxValue])
+    //   .range([minColor, maxColor]);
+    const colorScale = scaleSequential([0, maxValue], colorInterpolator).clamp(
+      true
+    );
     return (
       <div style={width > 800 ? { width: width * 0.55 } : { width: width }}>
         <ComposableMap
@@ -35,7 +43,7 @@ const KeralaMap = (props) => {
           projection="geoMercator"
           projectionConfig={
             width > 800
-              ? { center: [76, 10.55], scale: 1200 }
+              ? { center: [76, 10.0], scale: 1000 }
               : { center: [76, 10.55], scale: 1000 }
           }
         >
@@ -52,7 +60,7 @@ const KeralaMap = (props) => {
                   geo.properties.recovered = st.recovered;
                   geo.properties.confirmed = st.confirmed;
                 }
-                let col = st ? colorScale(st["active_cases"]) : "#F5F4F6";
+                let col = st ? colorScale(st["active_cases"]) : "#ffffff";
                 return (
                   <Geography
                     key={i + 1}
